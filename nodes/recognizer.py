@@ -14,9 +14,12 @@ recognizer.py is a wrapper for pocketsphinx.
     ~start (std_srvs/Empty) - start speech recognition
     ~stop (std_srvs/Empty) - stop speech recognition
 """
-#reads the package manifest and sets up the python library path 
-#based on the package dependencies. It's required for 
-#older rosbuild-based packages, but is no longer needed on catkin
+"""
+roslib.load_manifest('pocketsphinx')
+reads the package manifest and sets up the python library path 
+based on the package dependencies. It's required for 
+older rosbuild-based packages, but is no longer needed on catkin
+"""
 import roslib; roslib.load_manifest('pocketsphinx')
 import rospy
 # For creating GUI using python
@@ -24,14 +27,18 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 
-#GLib Object System provides the required implementations of a flexible, 
-#extensible, and intentionally easy to map (into other languages) 
-#object-oriented framework for C
+"""
+GLib Object System provides the required implementations of a flexible, 
+extensible, and intentionally easy to map (into other languages) 
+object-oriented framework for C
+"""
 import gobject
 
-#GStreamer python overrides for the gobject-introspection-based pygst bindings.
-#Another option is ffmped. Both have pros and cons:
-#http://www.oodlestechnologies.com/blogs/GStreamer-vs-FFmpeg-Pros-And-Cons-At-A-Glance
+"""
+GStreamer python overrides for the gobject-introspection-based pygst bindings.
+Another option is ffmped. Both have pros and cons:
+http://www.oodlestechnologies.com/blogs/GStreamer-vs-FFmpeg-Pros-And-Cons-At-A-Glance
+"""
 import pygst
 pygst.require('0.10')
 
@@ -68,7 +75,8 @@ class recognizer(object):
             self.launch_config = 'gconfaudiosrc'
 
         rospy.loginfo("Launch config: %s", self.launch_config)
-
+        
+        # This is for GStreamer. But What does this do? Is it configuration of GStreamer?
         self.launch_config += " ! audioconvert ! audioresample " \
                             + '! vader name=vad auto-threshold=true ' \
                             + '! pocketsphinx name=asr ! fakesink'
@@ -87,12 +95,15 @@ class recognizer(object):
 
     def start_recognizer(self):
         rospy.loginfo("Starting recognizer... ")
-
+        
+        # ASR = Automatic Speech Recognition
         self.pipeline = gst.parse_launch(self.launch_config)
+        #name has been mentioned in launch_config
         self.asr = self.pipeline.get_by_name('asr')
         self.asr.connect('partial_result', self.asr_partial_result)
         self.asr.connect('result', self.asr_result)
         self.asr.set_property('configured', True)
+        # dsratio?
         self.asr.set_property('dsratio', 1)
 
         # Configure language model
@@ -110,8 +121,15 @@ class recognizer(object):
 
         self.asr.set_property('lm', lm)
         self.asr.set_property('dict', dic)
-
+        
+        """
+        A bus is a simple system that takes care of forwarding messages 
+        from the streaming threads to an application in its own thread context. 
+        The advantage of a bus is that an application does not need to be 
+        thread-aware in order to use GStreamer, even though GStreamer itself is heavily threaded.
+        """
         self.bus = self.pipeline.get_bus()
+        #After calling this statement, the bus will emit the "message" signal for each message posted on the bus.
         self.bus.add_signal_watch()
         self.bus_id = self.bus.connect('message::application', self.application_message)
         self.pipeline.set_state(gst.STATE_PLAYING)
