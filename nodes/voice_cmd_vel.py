@@ -10,6 +10,7 @@ import roslib; roslib.load_manifest('pocketsphinx')
 import rospy
 import math
 
+# Twist messageas used for moving bot forward, backward(x values), left, right(y values)
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
 
