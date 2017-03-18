@@ -14,17 +14,28 @@ recognizer.py is a wrapper for pocketsphinx.
     ~start (std_srvs/Empty) - start speech recognition
     ~stop (std_srvs/Empty) - stop speech recognition
 """
-
+#reads the package manifest and sets up the python library path 
+#based on the package dependencies. It's required for 
+#older rosbuild-based packages, but is no longer needed on catkin
 import roslib; roslib.load_manifest('pocketsphinx')
 import rospy
-
+# For creating GUI using python
 import pygtk
 pygtk.require('2.0')
 import gtk
 
+#GLib Object System provides the required implementations of a flexible, 
+#extensible, and intentionally easy to map (into other languages) 
+#object-oriented framework for C
 import gobject
+
+#GStreamer python overrides for the gobject-introspection-based pygst bindings.
+#Another option is ffmped. Both have pros and cons:
+#http://www.oodlestechnologies.com/blogs/GStreamer-vs-FFmpeg-Pros-And-Cons-At-A-Glance
 import pygst
 pygst.require('0.10')
+
+#Deprecated: Since PyGObject 3.10.2, calling GObject.threads_init() is no longer needed
 gobject.threads_init()
 import gst
 
