@@ -20,7 +20,6 @@ reads the package manifest and sets up the python library path
 based on the package dependencies. It's required for 
 older rosbuild-based packages, but is no longer needed on catkin
 """
-import roslib; roslib.load_manifest('pocketsphinx')
 import rospy
 # For creating GUI using python
 import pygtk
