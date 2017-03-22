@@ -12,3 +12,7 @@ install(PROGRAMS nodes/recognizer.py
 
 install(PROGRAMS nodes/voice_cmd_vel.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(PROGRAMS nodes/voice_control_updated.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
