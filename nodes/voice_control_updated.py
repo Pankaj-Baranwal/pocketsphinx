@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import argparse
-import roslib
 import rospy
 
 from geometry_msgs.msg import Twist
