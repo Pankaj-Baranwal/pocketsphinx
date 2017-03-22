@@ -35,167 +35,106 @@ class ASRControl(object):
         self.pub_ = rospy.Publisher(pub, Twist, queue_size=10)
 
         if rospy.has_param(self._lm_param):
-            lm = rospy.get_param(self._lm_param)
+            self.lm = rospy.get_param(self._lm_param)
         else:
             rospy.logerr('Recognizer not started. Please specify a language model file.')
         return
 
         if rospy.has_param(self._dict_param):
-            dic = rospy.get_param(self._dict_param)
+            self.lexicon = rospy.get_param(self._dict_param)
         else:
             rospy.logerr('No dictionary found. Please add an appropriate dictionary argument.')
         return
 
         if rospy.has_param(self._kws_param):
-            kws = rospy.get_param(self._kws_param)
+            self.kw_list = rospy.get_param(self._kws_param)
         else:
             rospy.logerr('kws cant run. Please add an appropriate keyword list file.')
         return
 
-
-
+    def start_recognizer(self):
         # initialize pocketsphinx. As mentioned in python wrapper
         config = Decoder.default_config()
 
         # Hidden Markov model: The model which has been used
-        config.set_string('-hmm', model)
+        config.set_string('-hmm', self.lm)
         #Pronunciation dictionary used
-        config.set_string('-dict', lexicon)
+        config.set_string('-dict', self.lexicon)
         #Keyword list file for keyword searching
-        config.set_string('-kws', kwlist)
+        config.set_string('-kws', self.kw_list)
 
         stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
                         rate=16000, input=True, frames_per_buffer=1024)
+        stream.start_stream()
 
+        #decoder streaming data
+        self.decoder = Decoder(config)
+        self.decoder.start_utt()
 
-        rospy.loginfo("Launch config: %s", self.launch_config)
-        
-        # This is for GStreamer. But What does this do? Is it configuration of GStreamer?
-        self.launch_config += " ! audioconvert ! audioresample " \
-                            + '! vader name=vad auto-threshold=true ' \
-                            + '! pocketsphinx name=asr ! fakesink'
+        while not rospy.is_shutdown():
+            # taken as is from python wrapper
+            buf = stream.read(1024)
+            if buf:
+                self.decoder.process_raw(buf, False, False)
+            else:
+                break
+            self.parse_asr_result()
 
-        # Configure ROS settings
-        self.started = False
-        rospy.on_shutdown(self.shutdown)
-        self.pub = rospy.Publisher('~output', String)
-        rospy.Service("~start", Empty, self.start)
-        rospy.Service("~stop", Empty, self.stop)
-
-        if rospy.has_param(self._lm_param) and rospy.has_param(self._dic_param):
-            self.start_recognizer()
-        else:
-            rospy.logwarn("lm and dic parameters need to be set to start recognizer.")
-
-    def start_recognizer(self):
-        rospy.loginfo("Starting recognizer... ")
-        
-        # ASR = Automatic Speech Recognition
-        self.pipeline = gst.parse_launch(self.launch_config)
-        #name has been mentioned in launch_config
-        self.asr = self.pipeline.get_by_name('asr')
-        self.asr.connect('partial_result', self.asr_partial_result)
-        self.asr.connect('result', self.asr_result)
-        self.asr.set_property('configured', True)
-        # dsratio?
-        self.asr.set_property('dsratio', 1)
-
-        # Configure language model
-        if rospy.has_param(self._lm_param):
-            lm = rospy.get_param(self._lm_param)
-        else:
-            rospy.logerr('Recognizer not started. Please specify a language model file.')
-            return
-
-        if rospy.has_param(self._dic_param):
-            dic = rospy.get_param(self._dic_param)
-        else:
-            rospy.logerr('Recognizer not started. Please specify a dictionary.')
-            return
-
-        self.asr.set_property('lm', lm)
-        self.asr.set_property('dict', dic)
-        
+    def parse_asr_result(self):
         """
-        A bus is a simple system that takes care of forwarding messages 
-        from the streaming threads to an application in its own thread context. 
-        The advantage of a bus is that an application does not need to be 
-        thread-aware in order to use GStreamer, even though GStreamer itself is heavily threaded.
+        move the robot based on ASR hypothesis
         """
-        self.bus = self.pipeline.get_bus()
-        #After calling this statement, the bus will emit the "message" signal for each message posted on the bus.
-        self.bus.add_signal_watch()
-        self.bus_id = self.bus.connect('message::application', self.application_message)
-        self.pipeline.set_state(gst.STATE_PLAYING)
-        self.started = True
+        if self.decoder.hyp() != None:
+            print ([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
+                for seg in self.decoder.seg()])
+            print ("Detected keyphrase, restarting search")
+            seg.word = seg.word.lower()
+            self.decoder.end_utt()
+            self.decoder.start_utt()
+            # you may want to modify the main logic here
+            if seg.word.find("full speed") > -1:
+                if self.speed == 0.2:
+                    self.msg.linear.x = self.msg.linear.x*2
+                    self.msg.angular.z = self.msg.angular.z*2
+                    self.speed = 0.4
+            if seg.word.find("half speed") > -1:
+                if self.speed == 0.4:
+                    self.msg.linear.x = self.msg.linear.x/2
+                    self.msg.angular.z = self.msg.angular.z/2
+                    self.speed = 0.2
+            if seg.word.find("forward") > -1:
+                self.msg.linear.x = self.speed
+                self.msg.angular.z = 0
+            elif seg.word.find("left") > -1:
+                if self.msg.linear.x != 0:
+                    if self.msg.angular.z < self.speed:
+                        self.msg.angular.z += 0.05
+                else:
+                    self.msg.angular.z = self.speed*2
+            elif seg.word.find("right") > -1:
+                if self.msg.linear.x != 0:
+                    if self.msg.angular.z > -self.speed:
+                        self.msg.angular.z -= 0.05
+                else:
+                    self.msg.angular.z = -self.speed*2
+            elif seg.word.find("back") > -1:
+                self.msg.linear.x = -self.speed
+                self.msg.angular.z = 0
+            elif seg.word.find("stop") > -1 or seg.word.find("halt") > -1:
+                self.msg = Twist()
 
-    def pulse_index_from_name(self, name):
-        output = commands.getstatusoutput("pacmd list-sources | grep -B 1 'name: <" + name + ">' | grep -o -P '(?<=index: )[0-9]*'")
-
-        if len(output) == 2:
-            return output[1]
-        else:
-            raise Exception("Error. pulse index doesn't exist for name: " + name)
-
-    def stop_recognizer(self):
-        if self.started:
-            self.pipeline.set_state(gst.STATE_NULL)
-            self.pipeline.remove(self.asr)
-            self.bus.disconnect(self.bus_id)
-            self.started = False
+        self.pub_.publish(self.msg)
 
     def shutdown(self):
-        """ Delete any remaining parameters so they don't affect next launch """
-        for param in [self._device_name_param, self._lm_param, self._dic_param]:
-            if rospy.has_param(param):
-                rospy.delete_param(param)
+        """
+        command executed after Ctrl+C is pressed
+        """
+        rospy.loginfo("Stop ASRControl")
+        self.pub_.publish(Twist())
+        rospy.sleep(1)
 
-        """ Shutdown the GTK thread. """
-        gtk.main_quit()
 
-    def start(self, req):
-        self.start_recognizer()
-        rospy.loginfo("recognizer started")
-        return EmptyResponse()
-
-    def stop(self, req):
-        self.stop_recognizer()
-        rospy.loginfo("recognizer stopped")
-        return EmptyResponse()
-
-    def asr_partial_result(self, asr, text, uttid):
-        """ Forward partial result signals on the bus to the main thread. """
-        struct = gst.Structure('partial_result')
-        struct.set_value('hyp', text)
-        struct.set_value('uttid', uttid)
-        asr.post_message(gst.message_new_application(asr, struct))
-
-    def asr_result(self, asr, text, uttid):
-        """ Forward result signals on the bus to the main thread. """
-        struct = gst.Structure('result')
-        struct.set_value('hyp', text)
-        struct.set_value('uttid', uttid)
-        asr.post_message(gst.message_new_application(asr, struct))
-
-    def application_message(self, bus, msg):
-        """ Receive application messages from the bus. """
-        msgtype = msg.structure.get_name()
-        if msgtype == 'partial_result':
-            self.partial_result(msg.structure['hyp'], msg.structure['uttid'])
-        if msgtype == 'result':
-            self.final_result(msg.structure['hyp'], msg.structure['uttid'])
-
-    def partial_result(self, hyp, uttid):
-        """ Delete any previous selection, insert text and select it. """
-        rospy.logdebug("Partial: " + hyp)
-
-    def final_result(self, hyp, uttid):
-        """ Insert the final result. """
-        msg = String()
-        msg.data = str(hyp.lower())
-        rospy.loginfo(msg.data)
-        self.pub.publish(msg)
 
 if __name__ == "__main__":
-    start = recognizer()
+    start = ASRControl()
 
