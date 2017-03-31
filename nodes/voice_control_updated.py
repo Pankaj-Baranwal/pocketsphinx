@@ -31,7 +31,7 @@ class ASRControl(object):
         self._kws_param = "~kws"
 
         # you may need to change publisher destination depending on what you run
-        self.pub_ = rospy.Publisher(pub, Twist, queue_size=10)
+        self.pub_ = rospy.Publisher("voice_data", Twist, queue_size=10)
 
         if rospy.has_param(self._lm_param):
             self.lm = rospy.get_param(self._lm_param)
