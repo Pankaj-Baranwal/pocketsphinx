@@ -1,4 +1,5 @@
-<package>
+<?xml version="1.0"?>
+<package format="2">
   <name>pocketsphinx</name>
   <version>0.4.0</version>
   <description>
@@ -12,9 +13,9 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>rospy</run_depend>
-  <run_depend>std_msgs</run_depend>
-  <run_depend>std_srvs</run_depend>
-  <run_depend>geometry_msgs</run_depend><!-- only needed for demos -->
+  <exec_depend>rospy</exec_depend>>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>><!-- only needed for demos -->
 
 </package>
