@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
+<!-- 
+New changes comply with :
+http://docs.ros.org/indigo/api/catkin/html/howto/format2/migrating_from_format_1.html#migrating-from-format1-to-format2
+-->
 <package format="2">
   <name>pocketsphinx</name>
   <version>0.4.0</version>
