@@ -6,6 +6,16 @@ The script shows how to control ROS turtlebot with English keywords using pocket
 It used up-to-date pocketsphinx features and is independent of most external dependencies.  
   
 Current repository is a ROS wrapper which incorporates those features.  
+  
+## Dependencies  
+1) pyaudio  
+    ```
+    sudo pip install pyaudio
+    ```
+2) pocketsphinx: You will need to have pip preinstalled for this to work
+    ```
+    sudo pip install pocketsphinx
+    ```
 
 ## Getting Started
 Clone this repository into the src folder of your catkin workspace using:
