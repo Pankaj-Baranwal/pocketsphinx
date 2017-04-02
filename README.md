@@ -9,7 +9,8 @@ Current repository is a ROS wrapper which incorporates those features.
 
 ## Getting Started
 Clone this repository into the src folder of your catkin workspace using:
-``` git clone https://github.com/Pankaj-Baranwal/pocketsphinx
+``` 
+git clone https://github.com/Pankaj-Baranwal/pocketsphinx
 ```
 To know more about catkin workspace and ROS, follow instructions at: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment  
 After everything is setup, open a terminal from your catkin workspace and type the following command:  
