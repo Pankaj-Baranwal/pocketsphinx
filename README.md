@@ -1,4 +1,4 @@
-# Modified ROS wrapper for pocketsphinx.  
+# Modified ROS wrapper for pocketsphinx  
 Original repository: https://github.com/mikeferguson/pocketsphinx  
   
 Also used repo: https://github.com/gorinars/ros_voice_control  
