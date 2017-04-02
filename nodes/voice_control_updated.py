@@ -36,20 +36,20 @@ class ASRControl(object):
         if rospy.has_param(self._lm_param):
             self.lm = rospy.get_param(self._lm_param)
         else:
-            rospy.logerr('Recognizer not started. Please specify a language model file.')
-        return
+            self.lm = "/usr/share/pocketsphinx/model/hmm/en_US/hub4wsj_sc_8k"
 
         if rospy.has_param(self._dict_param):
             self.lexicon = rospy.get_param(self._dict_param)
         else:
             rospy.logerr('No dictionary found. Please add an appropriate dictionary argument.')
-        return
+            return
 
         if rospy.has_param(self._kws_param):
             self.kw_list = rospy.get_param(self._kws_param)
         else:
             rospy.logerr('kws cant run. Please add an appropriate keyword list file.')
-        return
+            return
+        self.start_recognizer()
 
     def start_recognizer(self):
         # initialize pocketsphinx. As mentioned in python wrapper
@@ -135,5 +135,6 @@ class ASRControl(object):
 
 
 if __name__ == "__main__":
-    start = ASRControl()
+    if len(sys.argv) > 0:
+        start = ASRControl()
 
