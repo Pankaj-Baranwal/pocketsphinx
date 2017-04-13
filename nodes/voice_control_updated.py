@@ -36,7 +36,9 @@ class ASRControl(object):
         if rospy.has_param(self._lm_param):
             self.lm = rospy.get_param(self._lm_param)
         else:
+            rospy.loginfo("Loading the default acoustic model")
             self.lm = "/usr/share/pocketsphinx/model/hmm/en_US/hub4wsj_sc_8k"
+            rospy.loginfo("Done loading the default acoustic model")
 
         if rospy.has_param(self._dict_param):
             self.lexicon = rospy.get_param(self._dict_param)
@@ -53,7 +55,9 @@ class ASRControl(object):
 
     def start_recognizer(self):
         # initialize pocketsphinx. As mentioned in python wrapper
+        rospy.loginfo("Initializing pocketsphinx")
         config = Decoder.default_config()
+        rospy.loginfo("Done initializing pocketsphinx")
 
         # Hidden Markov model: The model which has been used
         config.set_string('-hmm', self.lm)
@@ -62,13 +66,22 @@ class ASRControl(object):
         #Keyword list file for keyword searching
         config.set_string('-kws', self.kw_list)
 
-        stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-                        rate=16000, input=True, frames_per_buffer=1024)
+        rospy.loginfo("Opening the audio channel")
+
+	# I recommend installing and running audacity to help figure this out
+	# Other useful commands:
+	# pactl list short sources
+	# pacmd list-sinks
+        stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=2,
+                        rate=44100, input=True, frames_per_buffer=65536)
         stream.start_stream()
+        rospy.loginfo("Done opening the audio channel")
 
         #decoder streaming data
+        rospy.loginfo("Starting the decoder")
         self.decoder = Decoder(config)
         self.decoder.start_utt()
+        rospy.loginfo("Done starting the decoder")
 
         while not rospy.is_shutdown():
             # taken as is from python wrapper
