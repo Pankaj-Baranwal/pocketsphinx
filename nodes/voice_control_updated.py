@@ -72,8 +72,8 @@ class ASRControl(object):
 	# Other useful commands:
 	# pactl list short sources
 	# pacmd list-sinks
-        stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=2,
-                        rate=44100, input=True, frames_per_buffer=65536)
+        stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+                        rate=16000, input=True, frames_per_buffer=1024)
         stream.start_stream()
         rospy.loginfo("Done opening the audio channel")
 
