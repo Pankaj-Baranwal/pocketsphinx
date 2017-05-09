@@ -21,6 +21,10 @@ Current repository is a ROS wrapper which incorporates those features.
     ```
     sudo pip install pocketsphinx
     ```
+    There are many dependencies which need to be met before installation of pocketsphinx through pip works.
+    Use Synaptics package manager to install the unmet dependencies which would be mentioned as error messages on the terminal window in case installation fails. Some of them include:  
+    ###libpulse-dev  
+    ###swig
 
 ## Getting Started
 Clone this repository into the src folder of your catkin workspace using:
