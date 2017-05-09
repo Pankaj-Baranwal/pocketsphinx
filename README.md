@@ -11,6 +11,11 @@ Current repository is a ROS wrapper which incorporates those features.
 1) pyaudio  
     ```
     sudo pip install pyaudio
+    ```  
+    If this does not work, follow instructions below:
+    ```
+    sudo apt-get install libasound-dev
+    sudo apt-get install python-pyaudio
     ```
 2) pocketsphinx: You will need to have pip preinstalled for this to work
     ```
