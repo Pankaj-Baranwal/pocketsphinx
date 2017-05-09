@@ -39,7 +39,7 @@ Now, you are all setup. To test the package:
 ``` 
 rosrun pocketsphinx voice_control_updated.py
 ```
-In case you just want to test the package out, a sample dictionary and kws list have already been placed in the nodes folder within the package. Just use this command:  
+In case you just want to test the package out, a sample dictionary and kws list have already been placed in the demo folder within the package. Just use this command from within the folder:  
 ``` 
 rosrun pocketsphinx voice_control_updated.py _dict:=voice_cmd.dic _kws:=voice_cmd.kwlist
 ```
