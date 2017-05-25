@@ -11,7 +11,7 @@ import pyaudio
 
 from std_msgs.msg import String
 from std_srvs.srv import *
-import os
+from os import path
 import commands
 
 class ASRControl(object):
@@ -36,8 +36,10 @@ class ASRControl(object):
         if rospy.has_param(self._lm_param):
             self.lm = rospy.get_param(self._lm_param)
         else:
+            # rospy.logerr('No Language model found. Please add an appropriate language model.')
+            # return
             rospy.loginfo("Loading the default acoustic model")
-            self.lm = "/usr/share/pocketsphinx/model/hmm/en_US/hub4wsj_sc_8k"
+            self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
             rospy.loginfo("Done loading the default acoustic model")
 
         if rospy.has_param(self._dict_param):
