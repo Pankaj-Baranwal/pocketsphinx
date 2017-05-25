@@ -10,3 +10,5 @@ install(DIRECTORY demo
 install(PROGRAMS nodes/voice_control_updated.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
+install(PROGRAMS nodes/kws_test.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
