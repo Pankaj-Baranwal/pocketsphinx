@@ -18,9 +18,11 @@ decoder = Decoder(config)
 
 # Decode with lm
 decoder.start_utt()
-# stream = open(path.join(DATADIR, 'goforward.raw'), 'rb')
-stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-                        rate=16000, input=True, frames_per_buffer=1024)
+# To convert wav file into raw audio format, install sox.
+# Terminal command: sox <wav file name> <target raw audio file>
+stream = open(path.join(DATADIR, 'goforward.raw'), 'rb')
+# stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+#                         rate=16000, input=True, frames_per_buffer=1024)
 while True:
     buf = stream.read(1024)
     if buf:
@@ -40,9 +42,9 @@ decoder.set_fsg("goforward", fsg)
 decoder.set_search("goforward")
 
 decoder.start_utt()
-# stream = open(path.join(DATADIR, 'goforward.raw'), 'rb')
-stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-                        rate=16000, input=True, frames_per_buffer=1024)
+stream = open(path.join(DATADIR, 'goforward.raw'), 'rb')
+# stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+#                         rate=16000, input=True, frames_per_buffer=1024)
 while True:
     buf = stream.read(1024)
     if buf:
