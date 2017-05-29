@@ -14,10 +14,6 @@ from std_srvs.srv import *
 from os import path
 import commands
 
-
-modeldir = "../../../model"
-datadir = "../../../test/data"
-
 class KWSDetection(object):
     def __init__(self):
         # Start node
@@ -29,7 +25,6 @@ class KWSDetection(object):
         self._dict_param = "~dict"
         self._kws_param = "~kws"
 
-        # May need to change publisher destination depending on what you run
         self.pub_ = rospy.Publisher("kws_data", String, queue_size=10)
 
         if rospy.has_param(self._lm_param):
