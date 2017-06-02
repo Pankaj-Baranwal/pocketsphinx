@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
-import sys, os
-
-import argparse
+import os, sys
 import rospy
 
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
+
 import pyaudio
 
 from std_msgs.msg import String
@@ -28,23 +27,21 @@ class KWSDetection(object):
         self._keyphrase_param = "~keyphrase"
         self._threshold_param = "~threshold"
 
-        # Variable to distinguis between kws list and keyphrase
+        # Variable to distinguish between kws list and keyphrase
         self._list = True;
-
 
         self.pub_ = rospy.Publisher("kws_data", String, queue_size=10)
 
         # Check if required arguments provided in command line
         if rospy.has_param(self._lm_param):
             self.lm = rospy.get_param(self._lm_param)
+        else if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
+            rospy.loginfo("Loading the default acoustic model")
+            self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
+            rospy.loginfo("Done loading the default acoustic model")
         else:
-            if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
-                rospy.loginfo("Loading the default acoustic model")
-                self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
-                rospy.loginfo("Done loading the default acoustic model")
-            else:
-                rospy.logerr("No language model specified. Couldn't find defaut model.")
-                return
+            rospy.logerr("No language model specified. Couldn't find defaut model.")
+            return
 
         if rospy.has_param(self._dict_param):
             self.lexicon = rospy.get_param(self._dict_param)
