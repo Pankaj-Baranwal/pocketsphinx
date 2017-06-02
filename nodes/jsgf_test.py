@@ -1,20 +1,17 @@
 #!/usr/bin/python
 
+import os, sys
+import rospy
+
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
-
-import argparse
-import rospy
 
 import pyaudio
 
 from std_msgs.msg import String
 from std_srvs.srv import *
-from os import environ, path
+from os import path
 import commands
-
-MODELDIR = "../../../model"
-DATADIR = "../../../test/data"
 
 class JSGFTest(object):
     def __init__(self):
@@ -22,89 +19,103 @@ class JSGFTest(object):
         rospy.init_node("jsgf_control")
         rospy.on_shutdown(self.shutdown)
 
-        self._use_lm = 1
-
         # Params
-        self._hmm_param = "~hmm"
+        self._audio = "~input"
         self._lm_param = "~lm"
         self._dict_param = "~dict"
-        self._audio = "~input"
+        self._hmm_param = "~hmm"
         self._gram = "~gram"
+        self._rule = "~rule"
+
+        # check if user wants lm or grammar mode
+        self._use_lm = 1
+        self._use_microphone = False
 
         self.pub_ = rospy.Publisher("lm_data", String, queue_size=10)
 
         if rospy.has_param(self._audio):
             self.audio = rospy.get_param(self._audio)
+            self._use_microphone = False
         else:
-            self.audio = path.join(DATADIR, 'goforward.raw')
-            rospy.loginfo("Loading default goforward audio input")
+            self._use_microphone = True
+            rospy.loginfo('No audio file provided. Using default microphone instead')
 
         if rospy.has_param(self._hmm_param):
             self.hmm = rospy.get_param(self._hmm_param)
+        else if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
+            rospy.loginfo("Loading the default acoustic model")
+            self.hmm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
+            rospy.loginfo("Done loading the default acoustic model")
         else:
-            self.hmm = path.join(MODELDIR, 'en-us/en-us')
-            rospy.loginfo("Loading the by default hidden markov model")
-
-        if rospy.has_param(self._lm_param):
-            self.lm = rospy.get_param(self._lm_param)
-        else:
-            self._use_lm = 0
-            # self.lm = path.join(DATADIR, 'turtle.lm.bin')
-            # rospy.loginfo("Loading the turtle language model by default")
+            rospy.logerr("No language model specified. Couldn't find default model.")
+            return
 
         if rospy.has_param(self._dict_param):
             self.dict = rospy.get_param(self._dict_param)
         else:
-            self.dict = path.join(DATADIR, 'turtle.dic')
-            rospy.loginfo("Loading the turtle dictionary by default")
+            rospy.logerr("No dictionary found. Please add an appropriate dictionary argument.")
+            return
+
+        if rospy.has_param(self._lm_param):
+            self._use_lm = 1
+            self.lm = rospy.get_param(self._lm_param)
+        else if rospy.has_param(self._gram) and rospy.has_param(self._rule):
+            self._use_lm = 0
+            self.gram = rospy.get_param(self._gram)
+            self.rule = rospy.get_param(self._rule)
+        else:
+            rospy.logerr("Couldn't find suitable parameters. Please take a look at the documentation")
+            return
 
         self.start_recognizer()
 
     def start_recognizer(self):
         rospy.loginfo("Initializing pocketsphinx")
-        # Create a decoder with certain model
         config = Decoder.default_config()
         rospy.loginfo("Done initializing pocketsphinx")
 
         config.set_string('-hmm', self.hmm)
+        config.set_string('-dict', self.dict)
         if (self._use_lm):
             config.set_string('-lm', self.lm)
-        config.set_string('-dict', self.dict)
         decoder = Decoder(config)
 
         if (self._use_lm):
-            print ('Language Model Found.')
+            rospy.loginfo('Language Model Found.')
             # Decode with lm
             decoder.start_utt()
-            # To convert wav file into raw audio format, install sox.
-            # Terminal command: sox <wav file name> <target raw audio file>
-            stream = open(self.audio, 'rb')
-            # stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-            #                         rate=16000, input=True, frames_per_buffer=1024)
+
+            if !self._use_microphone:
+                # To convert wav file into raw audio format, install sox.
+                # Command for conversion: sox <wav file name> <target raw audio file>
+                stream = open(self.audio, 'rb')
+            else:
+                stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+                                        rate=16000, input=True, frames_per_buffer=1024)
             while True:
                 buf = stream.read(1024)
                 if buf:
-                     decoder.process_raw(buf, False, False)
+                    decoder.process_raw(buf, False, False)
                 else:
-                     break
+                    break
             decoder.end_utt()
-            print ('Decoding with the provided language:', decoder.hyp().hypstr)
+            rospy.loginfo('Decoding with the provided language:', decoder.hyp().hypstr)
             self.pub_.publish(decoder.hyp().hypstr)
         else:
-            print ('language model not found. Using JSGF grammar instead.')
+            rospy.loginfo('language model not found. Using JSGF grammar instead.')
             # Switch to JSGF grammar
             if rospy.has_param(self._gram):
                 self.gram = rospy.get_param(self._gram)
-                print ('Using provided gram file')
+                rospy.loginfo('Using provided gram file')
             else:
-                print ('Loading default gram file')
+                rospy.loginfo('Loading default gram file')
                 self.gram = path.join(DATADIR, 'goforward.gram')
             jsgf = Jsgf((self.gram + '.gram'))
             if rospy.has_param(self._rule):
                 self.rule = rospy.get_param(self._rule)
-                print ('Using provided rule')
+                rospy.loginfo('Using provided rule')
             else:
-                print ('Loading default rule')
+                rospy.loginfo('Loading default rule')
                 self.rule = 'move2'
             rule = jsgf.get_rule((self.gram + '.' + self.rule))
             fsg = jsgf.build_fsg(rule, decoder.get_logmath(), 7.5)
