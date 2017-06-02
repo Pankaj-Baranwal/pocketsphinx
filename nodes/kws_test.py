@@ -24,17 +24,27 @@ class KWSDetection(object):
         self._lm_param = "~lm"
         self._dict_param = "~dict"
         self._kws_param = "~kws"
+        # Not necessary to provide the next two if _kws_param is provided
+        self._keyphrase_param = "~keyphrase"
+        self._threshold_param = "~threshold"
+
+        # Variable to distinguis between kws list and keyphrase
+        self._list = True;
+
 
         self.pub_ = rospy.Publisher("kws_data", String, queue_size=10)
 
+        # Check if required arguments provided in command line
         if rospy.has_param(self._lm_param):
             self.lm = rospy.get_param(self._lm_param)
         else:
-            # rospy.logerr('No Language model found. Please add an appropriate language model.')
-            # return
-            rospy.loginfo("Loading the default acoustic model")
-            self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
-            rospy.loginfo("Done loading the default acoustic model")
+            if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
+                rospy.loginfo("Loading the default acoustic model")
+                self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
+                rospy.loginfo("Done loading the default acoustic model")
+            else:
+                rospy.logerr("No language model specified. Couldn't find defaut model.")
+                return
 
         if rospy.has_param(self._dict_param):
             self.lexicon = rospy.get_param(self._dict_param)
@@ -43,14 +53,23 @@ class KWSDetection(object):
             return
 
         if rospy.has_param(self._kws_param):
+            self._list = True;
+
             self.kw_list = rospy.get_param(self._kws_param)
+        else if rospy.has_param(self._keyphrase_param) and rospy.has_param(self._threshold_param):
+            self._list = False;
+
+            self.keyphrase = rospy.get_param(self._keyphrase_param)
+            self.kws_threshold = rospy.get_param(self._threshold_param)
         else:
-            rospy.logerr('kws cant run. Please add an appropriate keyword list file.')
+            rospy.logerr('kws cant run. Please add an appropriate keyword list.')
             return
+
+        # If requirements fulfilled, start recognizer
         self.start_recognizer()
 
     def start_recognizer(self):
-        # initialize pocketsphinx. As mentioned in python wrapper
+        # initialize pocketsphinx.
         rospy.loginfo("Initializing pocketsphinx")
         config = Decoder.default_config()
         rospy.loginfo("Done initializing pocketsphinx")
@@ -59,11 +78,16 @@ class KWSDetection(object):
         config.set_string('-hmm', self.lm)
         #Pronunciation dictionary used
         config.set_string('-dict', self.lexicon)
-        #Keyword list file for keyword searching
-        config.set_string('-kws', self.kw_list)
+
+        if self._list:
+            # Keyword list file for keyword searching
+            config.set_string('-kws', self.kw_list)
+        else:
+            # In case keyphrase is provided
+            config.set_string('-keyphrase', self.keyphrase)
+            config.set_float('-kws_threshold', self.kws_threshold)
 
         rospy.loginfo("Opening the audio channel")
-
         # I recommend installing and running audacity to help figure this out
         # Other useful commands:
         # pactl list short sources
@@ -93,22 +117,19 @@ class KWSDetection(object):
         move the robot based on ASR hypothesis
         """
         if self.decoder.hyp() != None:
-            print ([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
+            rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
                 for seg in self.decoder.seg()])
-            print ("Detected keyphrase, restarting search")
+            rospy.loginfo("Detected keyphrase, restarting search")
             seg.word = seg.word.lower()
             self.decoder.end_utt()
             self.decoder.start_utt()
             self.pub_.publish(seg.word)
 
     def shutdown(self):
-        """
-        command executed after Ctrl+C is pressed
-        """
+        # command executed after Ctrl+C is pressed
         rospy.loginfo("Stop ASRControl")
         self.pub_.publish("")
         rospy.sleep(1)
-
 
 
 if __name__ == "__main__":
