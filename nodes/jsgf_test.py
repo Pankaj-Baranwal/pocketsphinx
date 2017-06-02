@@ -34,8 +34,8 @@ class JSGFTest(object):
         self.pub_ = rospy.Publisher("lm_data", String, queue_size=10)
 
         if rospy.has_param(self._audio):
-            self.audio = rospy.get_param(self._audio)
             self._use_microphone = False
+            self.audio = rospy.get_param(self._audio)
         else:
             self._use_microphone = True
             rospy.loginfo('No audio file provided. Using default microphone instead')
@@ -83,60 +83,44 @@ class JSGFTest(object):
         if (self._use_lm):
             rospy.loginfo('Language Model Found.')
             # Decode with lm
-            decoder.start_utt()
-
-            if !self._use_microphone:
-                # To convert wav file into raw audio format, install sox.
-                # Command for conversion: sox <wav file name> <target raw audio file>
-                stream = open(self.audio, 'rb')
-            else:
-                stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-                                        rate=16000, input=True, frames_per_buffer=1024)
-            while True:
-                buf = stream.read(1024)
-                if buf:
-                    decoder.process_raw(buf, False, False)
-                else:
-                    break
-            decoder.end_utt()
-            rospy.loginfo('Decoding with the provided language:', decoder.hyp().hypstr)
-            self.pub_.publish(decoder.hyp().hypstr)
+            process_audio(decoder, 'language model: ')
         else:
             rospy.loginfo('language model not found. Using JSGF grammar instead.')
             # Switch to JSGF grammar
-            if rospy.has_param(self._gram):
-                self.gram = rospy.get_param(self._gram)
-                rospy.loginfo('Using provided gram file')
-            else:
-                rospy.loginfo('Loading default gram file')
-                self.gram = path.join(DATADIR, 'goforward.gram')
             jsgf = Jsgf((self.gram + '.gram'))
-            if rospy.has_param(self._rule):
-                self.rule = rospy.get_param(self._rule)
-                rospy.loginfo('Using provided rule')
-            else:
-                rospy.loginfo('Loading default rule')
-                self.rule = 'move2'
             rule = jsgf.get_rule((self.gram + '.' + self.rule))
+            
             fsg = jsgf.build_fsg(rule, decoder.get_logmath(), 7.5)
             fsg.writefile((self.gram + '.fsg'))
 
             decoder.set_search(self.gram)
             decoder.set_fsg(self.gram, fsg)
 
-            decoder.start_utt()
-            stream = open(self.audio, 'rb')
-            # stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-            #                         rate=16000, input=True, frames_per_buffer=1024)
-            while True:
-                buf = stream.read(1024)
-                if buf:
-                     decoder.process_raw(buf, False, False)
-                else:
-                     break
-            decoder.end_utt()
-            print ('Decoding with grammar:', decoder.hyp().hypstr)
-            self.pub_.publish(decoder.hyp().hypstr)
+            process_audio(decoder, 'grammar: ')
+
+    def  process_audio(decoder, message):
+        decoder.start_utt()
+
+        stream_init(self)
+        
+        while True:
+            buf = self.stream.read(1024)
+            if buf:
+                 decoder.process_raw(buf, False, False)
+            else:
+                 break
+        decoder.end_utt()
+        print ('Decoding with ', message, decoder.hyp().hypstr)
+        self.pub_.publish(decoder.hyp().hypstr)
+
+    def stream_init(self):
+        if self._use_microphone:
+            self.stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+                                    rate=16000, input=True, frames_per_buffer=1024)
+        else:
+            # To convert wav file into raw audio format, install sox.
+            # Command for conversion: sox <wav file name> <target raw audio file>
+            self.stream = open(self.audio, 'rb')
 
 if __name__ == "__main__":
     if len(sys.argv) > 0:
