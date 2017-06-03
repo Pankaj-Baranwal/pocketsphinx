@@ -1,0 +1,25 @@
+<launch>
+  <param name="is_okay_google" value="1" type="int"/>
+	<node
+		name="kws_control"
+		pkg="pocketsphinx"
+		type="kws_test">
+    <param name="input" value=""/>
+    <param name="lm" value=""/>
+    <param name="dict" value=""/>
+    <param name="kws" value=""/>
+    <param name="keyphrase" value=""/>
+    <param name="threshold" value=""/>
+  </node>
+	<node
+		name="jsgf_control"
+		pkg="pocketsphinx"
+		type="jsgf_test">
+    <param name="input" value=""/>
+    <param name="lm" value=""/>
+    <param name="dict" value=""/>
+    <param name="hmm" value=""/>
+    <param name="gram" value=""/>
+    <param name="rule" value=""/>
+	</node>
+</launch>
