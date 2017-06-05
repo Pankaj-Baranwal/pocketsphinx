@@ -36,11 +36,11 @@ class AudioMessage(object):
                 self.pub_.publish(buf)
             else:
                 break
+        self.pub_.publish("ended")
 
     def shutdown(self):
         # command executed after Ctrl+C is pressed
         rospy.loginfo("Stop ASRControl")
-        self.pub_.publish("")
         rospy.sleep(1)
 
 if __name__ == "__main__":
