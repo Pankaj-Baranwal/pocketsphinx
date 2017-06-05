@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+from os import environ, path
+
+import rospy
+
+import pyaudio
+
+from std_msgs.msg import String
+
+class AudioMessage(object):
+    def __init__(self):
+        # Start node
+        self.pub_ = rospy.Publisher("sphinx_msg", String, queue_size=1)
+        rospy.init_node("audio_control")
+        rospy.on_shutdown(self.shutdown)
+
+        self.transfer_audio_msg()
+
+
+    def transfer_audio_msg(self):
+        # Params
+        self._input = "~input"
+
+
+        if rospy.has_param(self._input):
+            stream = open(rospy.get_param(self._input), 'rb')
+        else:
+            stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+                                rate=16000, input=True, frames_per_buffer=1024)
+            stream.start_stream()
+
+        while not rospy.is_shutdown():
+            buf = stream.read(1024)
+            if buf:
+                self.pub_.publish(buf)
+            else:
+                break
+
+    def shutdown(self):
+        # command executed after Ctrl+C is pressed
+        rospy.loginfo("Stop ASRControl")
+        self.pub_.publish("")
+        rospy.sleep(1)
+
+if __name__ == "__main__":
+    start = AudioMessage()
