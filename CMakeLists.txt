@@ -15,3 +15,6 @@ install(PROGRAMS nodes/kws_test.py
 
 install(PROGRAMS nodes/sendAudioAsTopic.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(PROGRAMS nodes/jsgf_test.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

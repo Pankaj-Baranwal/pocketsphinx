@@ -15,12 +15,14 @@ import commands
 
 class JSGFTest(object):
     def __init__(self):
+
+        self.pub_ = rospy.Publisher("grammar_data", String, queue_size=10)
+
         # Start node
         rospy.init_node("jsgf_control")
         rospy.on_shutdown(self.shutdown)
 
         # Params
-        self._audio = "~input"
         self._lm_param = "~lm"
         self._dict_param = "~dict"
         self._hmm_param = "~hmm"
@@ -29,20 +31,10 @@ class JSGFTest(object):
 
         # check if user wants lm or grammar mode
         self._use_lm = 1
-        self._use_microphone = False
-
-        self.pub_ = rospy.Publisher("lm_data", String, queue_size=10)
-
-        if rospy.has_param(self._audio):
-            self._use_microphone = False
-            self.audio = rospy.get_param(self._audio)
-        else:
-            self._use_microphone = True
-            rospy.loginfo('No audio file provided. Using default microphone instead')
 
         if rospy.has_param(self._hmm_param):
             self.hmm = rospy.get_param(self._hmm_param)
-        else if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
+        elif (os.path.isdir("/usr/local/share/pocketsphinx/model")):
             rospy.loginfo("Loading the default acoustic model")
             self.hmm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
             rospy.loginfo("Done loading the default acoustic model")
@@ -57,9 +49,11 @@ class JSGFTest(object):
             return
 
         if rospy.has_param(self._lm_param):
+            rospy.loginfo(self._lm_param)
+            rospy.loginfo(rospy.get_param(self._lm_param))
             self._use_lm = 1
             self.lm = rospy.get_param(self._lm_param)
-        else if rospy.has_param(self._gram) and rospy.has_param(self._rule):
+        elif rospy.has_param(self._gram) and rospy.has_param(self._rule):
             self._use_lm = 0
             self.gram = rospy.get_param(self._gram)
             self.rule = rospy.get_param(self._rule)
@@ -77,50 +71,45 @@ class JSGFTest(object):
         config.set_string('-hmm', self.hmm)
         config.set_string('-dict', self.dict)
         if (self._use_lm):
-            config.set_string('-lm', self.lm)
-        decoder = Decoder(config)
-
-        if (self._use_lm):
             rospy.loginfo('Language Model Found.')
-            # Decode with lm
-            process_audio(decoder, 'language model: ')
+            self.mode = "lanugage model: "
+            config.set_string('-lm', self.lm)
+            self.decoder = Decoder(config)
         else:
+            self.decoder = Decoder(config)
+            self.mode = "grammar: "
             rospy.loginfo('language model not found. Using JSGF grammar instead.')
             # Switch to JSGF grammar
             jsgf = Jsgf((self.gram + '.gram'))
             rule = jsgf.get_rule((self.gram + '.' + self.rule))
             
-            fsg = jsgf.build_fsg(rule, decoder.get_logmath(), 7.5)
+            fsg = jsgf.build_fsg(rule, self.decoder.get_logmath(), 7.5)
             fsg.writefile((self.gram + '.fsg'))
 
-            decoder.set_search(self.gram)
-            decoder.set_fsg(self.gram, fsg)
+            self.decoder.set_fsg(self.gram, fsg)
 
-            process_audio(decoder, 'grammar: ')
+            self.decoder.set_search(self.gram)
 
-    def  process_audio(decoder, message):
-        decoder.start_utt()
+        self.decoder.start_utt()
 
-        stream_init(self)
-        
-        while True:
-            buf = self.stream.read(1024)
-            if buf:
-                 decoder.process_raw(buf, False, False)
-            else:
-                 break
-        decoder.end_utt()
-        print ('Decoding with ', message, decoder.hyp().hypstr)
-        self.pub_.publish(decoder.hyp().hypstr)
+        rospy.Subscriber("sphinx_msg", String, self.process_audio)
+        rospy.spin()
 
-    def stream_init(self):
-        if self._use_microphone:
-            self.stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-                                    rate=16000, input=True, frames_per_buffer=1024)
+    def  process_audio(self, data):
+        if data.data == "ended":
+            self.decoder.end_utt()  
+            # rospy.loginfo('Decoding with ', self.mode, self.decoder.hyp().hypstr)
+            self.pub_.publish(self.decoder.hyp().hypstr)
         else:
-            # To convert wav file into raw audio format, install sox.
-            # Command for conversion: sox <wav file name> <target raw audio file>
-            self.stream = open(self.audio, 'rb')
+            self.decoder.process_raw(data.data, False, False)
+        # if self.decoder.hyp() != None: 
+        # rospy.loginfo('Decoding with ', self.mode, self.decoder.hyp().hypstr)
+
+    def shutdown(self):
+        # command executed after Ctrl+C is pressed
+        rospy.loginfo("Stop ASRControl")
+        self.pub_.publish("")
+        rospy.sleep(1)
 
 if __name__ == "__main__":
     if len(sys.argv) > 0:
