@@ -15,6 +15,9 @@ import commands
 
 class KWSDetection(object):
     def __init__(self):
+
+        self.pub_ = rospy.Publisher("kws_data", String, queue_size=5)
+
         # Start node
         rospy.init_node("kws_control")
         rospy.on_shutdown(self.shutdown)
@@ -30,12 +33,10 @@ class KWSDetection(object):
         # Variable to distinguish between kws list and keyphrase
         self._list = True;
 
-        self.pub_ = rospy.Publisher("kws_data", String, queue_size=10)
-
         # Check if required arguments provided in command line
         if rospy.has_param(self._lm_param):
             self.lm = rospy.get_param(self._lm_param)
-        else if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
+        elif (os.path.isdir("/usr/local/share/pocketsphinx/model")):
             rospy.loginfo("Loading the default acoustic model")
             self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
             rospy.loginfo("Done loading the default acoustic model")
@@ -50,11 +51,11 @@ class KWSDetection(object):
             return
 
         if rospy.has_param(self._kws_param):
-            self._list = True;
+            self._list = True
 
             self.kw_list = rospy.get_param(self._kws_param)
-        else if rospy.has_param(self._keyphrase_param) and rospy.has_param(self._threshold_param):
-            self._list = False;
+        elif rospy.has_param(self._keyphrase_param) and rospy.has_param(self._threshold_param):
+            self._list = False
 
             self.keyphrase = rospy.get_param(self._keyphrase_param)
             self.kws_threshold = rospy.get_param(self._threshold_param)
@@ -84,15 +85,15 @@ class KWSDetection(object):
             config.set_string('-keyphrase', self.keyphrase)
             config.set_float('-kws_threshold', self.kws_threshold)
 
-        rospy.loginfo("Opening the audio channel")
-        # I recommend installing and running audacity to help figure this out
-        # Other useful commands:
-        # pactl list short sources
-        # pacmd list-sinks
-        stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-                        rate=16000, input=True, frames_per_buffer=1024)
-        stream.start_stream()
-        rospy.loginfo("Done opening the audio channel")
+        # rospy.loginfo("Opening the audio channel")
+        # # I recommend installing and running audacity to help figure this out
+        # # Other useful commands:
+        # # pactl list short sources
+        # # pacmd list-sinks
+        # stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+        #                 rate=16000, input=True, frames_per_buffer=1024)
+        # stream.start_stream()
+        # rospy.loginfo("Done opening the audio channel")
 
         #decoder streaming data
         rospy.loginfo("Starting the decoder")
@@ -100,19 +101,16 @@ class KWSDetection(object):
         self.decoder.start_utt()
         rospy.loginfo("Done starting the decoder")
 
-        while not rospy.is_shutdown():
-            # taken as is from python wrapper
-            buf = stream.read(1024)
-            if buf:
-                self.decoder.process_raw(buf, False, False)
-            else:
-                break
-            self.parse_asr_result()
+        rospy.Subscriber("sphinx_msg", String, self.parse_asr_result)
+        rospy.spin()
 
-    def parse_asr_result(self):
+        # self.parse_asr_result(data)
+
+    def parse_asr_result(self, data):
         """
         move the robot based on ASR hypothesis
         """
+        self.decoder.process_raw(data.data, False, False)
         if self.decoder.hyp() != None:
             rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
                 for seg in self.decoder.seg()])

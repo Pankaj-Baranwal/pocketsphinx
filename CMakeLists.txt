@@ -12,3 +12,6 @@ install(PROGRAMS nodes/voice_control_updated.py
 
 install(PROGRAMS nodes/kws_test.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(PROGRAMS nodes/sendAudioAsTopic.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
