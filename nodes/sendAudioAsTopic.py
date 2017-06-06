@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
-from os import environ, path
+import os
+
+import rospkg
 
 import rospy
 
@@ -22,13 +24,17 @@ class AudioMessage(object):
         # Params
         self._input = "~input"
 
+        rospack = rospkg.RosPack()
+
+        self.location = rospack.get_path('pocketsphinx') + '/demo/'
 
         if rospy.has_param(self._input):
-            stream = open(rospy.get_param(self._input), 'rb')
-        else:
-            stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
+            if rospy.get_param(self._input) != ":default":
+                stream = open(os.path.join(self.location + rospy.get_param(self._input)), 'rb')
+            else:
+                stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
                                 rate=16000, input=True, frames_per_buffer=1024)
-            stream.start_stream()
+                stream.start_stream()
 
         while not rospy.is_shutdown():
             buf = stream.read(1024)
