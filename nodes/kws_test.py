@@ -2,6 +2,7 @@
 
 import os, sys
 import rospy
+import rospkg
 
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
@@ -10,7 +11,6 @@ import pyaudio
 
 from std_msgs.msg import String
 from std_srvs.srv import *
-from os import path
 import commands
 
 class KWSDetection(object):
@@ -22,7 +22,11 @@ class KWSDetection(object):
         rospy.init_node("kws_control")
         rospy.on_shutdown(self.shutdown)
 
+        rospack = rospkg.RosPack()
+
+
         # Params
+        self.location = rospack.get_path('pocketsphinx') + '/demo/'
         self._lm_param = "~lm"
         self._dict_param = "~dict"
         self._kws_param = "~kws"
@@ -31,30 +35,33 @@ class KWSDetection(object):
         self._threshold_param = "~threshold"
 
         # Variable to distinguish between kws list and keyphrase
-        self._list = True;
+        self._list = True
 
         # Check if required arguments provided in command line
         if rospy.has_param(self._lm_param):
-            self.lm = rospy.get_param(self._lm_param)
-        elif (os.path.isdir("/usr/local/share/pocketsphinx/model")):
-            rospy.loginfo("Loading the default acoustic model")
-            self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
-            rospy.loginfo("Done loading the default acoustic model")
+            self.lm = self.location + rospy.get_param(self._lm_param)
+            if rospy.get_param(self._lm_param) == ":default":
+                if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
+                    rospy.loginfo("Loading the default acoustic model")
+                    self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
+                    rospy.loginfo("Done loading the default acoustic model")
+                else:
+                    rospy.logerr("No language model specified. Couldn't find defaut model.")
+                    return
         else:
-            rospy.logerr("No language model specified. Couldn't find defaut model.")
-            return
+            rospy.loginfo("Couldn't find lm argument")
 
-        if rospy.has_param(self._dict_param):
-            self.lexicon = rospy.get_param(self._dict_param)
+        if rospy.has_param(self._dict_param) and rospy.get_param(self._dict_param) != ":default":
+            self.lexicon = self.location + rospy.get_param(self._dict_param)
         else:
             rospy.logerr('No dictionary found. Please add an appropriate dictionary argument.')
             return
-
-        if rospy.has_param(self._kws_param):
+        rospy.loginfo(rospy.get_param(self._kws_param))
+        if rospy.has_param(self._kws_param) and rospy.get_param(self._kws_param) != ":default":
             self._list = True
 
-            self.kw_list = rospy.get_param(self._kws_param)
-        elif rospy.has_param(self._keyphrase_param) and rospy.has_param(self._threshold_param):
+            self.kw_list = self.location + rospy.get_param(self._kws_param)
+        elif rospy.has_param(self._keyphrase_param) and rospy.has_param(self._threshold_param) and rospy.get_param(self._keyphrase_param) != ":default" and rospy.get_param(self._threshold_param) != ":default":
             self._list = False
 
             self.keyphrase = rospy.get_param(self._keyphrase_param)
