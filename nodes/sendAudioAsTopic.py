@@ -9,11 +9,12 @@ import rospy
 import pyaudio
 
 from std_msgs.msg import String
+import time
 
 class AudioMessage(object):
     def __init__(self):
         # Start node
-        self.pub_ = rospy.Publisher("sphinx_msg", String, queue_size=1)
+        self.pub_ = rospy.Publisher("sphinx_msg", String, queue_size=10)
         rospy.init_node("audio_control")
         rospy.on_shutdown(self.shutdown)
 
@@ -21,6 +22,10 @@ class AudioMessage(object):
 
 
     def transfer_audio_msg(self):
+
+        rospy.loginfo("audio input node will start after delay of 5 seconds")
+
+        time.sleep(5)
         # Params
         self._input = "~input"
 
