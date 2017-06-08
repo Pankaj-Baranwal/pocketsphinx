@@ -1,0 +1,31 @@
+<launch>
+    <arg name="input" default=":default"/>
+    <arg name="hmm" default=":default"/>
+    <arg name="dict"/>
+    <arg name="lm" default=":default"/>
+    <arg name="gram" default=":default"/>
+    <arg name="rule" default=":default"/>
+
+	<node
+		name="jsgf_control"
+		pkg="pocketsphinx"
+		type="jsgf_test.py"
+        output="screen"
+        >
+        
+        <param name="lm" value="$(arg lm)"/>
+        <param name="dict" value="$(arg dict)"/>
+        <param name="hmm" value="$(arg hmm)"/>
+        <param name="gram" value="$(arg gram)"/>
+        <param name="rule" value="$(arg rule)"/>
+	</node>
+    <node
+        name="audio_control"
+        pkg="pocketsphinx"
+        type="sendAudioAsTopic.py"
+        output="screen"
+        >
+
+        <param name="input" value="$(arg input)"/>
+    </node>
+</launch>
