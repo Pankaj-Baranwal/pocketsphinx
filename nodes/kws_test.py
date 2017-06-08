@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
-import os, sys
+import os
 import rospy
+
 import rospkg
 
 from pocketsphinx.pocketsphinx import *
@@ -10,34 +11,43 @@ from sphinxbase.sphinxbase import *
 import pyaudio
 
 from std_msgs.msg import String
-from std_srvs.srv import *
-import commands
 
+# Class to add keyword spotting functionality
 class KWSDetection(object):
     def __init__(self):
 
-        self.pub_ = rospy.Publisher("kws_data", String, queue_size=5)
+        # Initializing publisher with buffer size of 10 messages
+        self.pub_ = rospy.Publisher("kws_data", String, queue_size=10)
 
-        # Start node
+        # initialize node
         rospy.init_node("kws_control")
+        # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
-
+        # Initializing rospack to find package location
         rospack = rospkg.RosPack()
 
 
         # Params
+
+        # Location of external files
         self.location = rospack.get_path('pocketsphinx') + '/demo/'
+        # File containing language model
         self._lm_param = "~lm"
+        # Dictionary
         self._dict_param = "~dict"
+        # List of keywords to detect
         self._kws_param = "~kws"
         # Not necessary to provide the next two if _kws_param is provided
+        # Single word which needs to be detected
         self._keyphrase_param = "~keyphrase"
+        # Threshold frequency of above mentioned word
         self._threshold_param = "~threshold"
 
-        # Variable to distinguish between kws list and keyphrase
+        # Variable to distinguish between kws list and keyphrase.
+        # Default is keyword list
         self._list = True
 
-        # Check if required arguments provided in command line
+        # Setting param values
         if rospy.has_param(self._lm_param):
             self.lm = self.location + rospy.get_param(self._lm_param)
             if rospy.get_param(self._lm_param) == ":default":
@@ -70,18 +80,17 @@ class KWSDetection(object):
             rospy.logerr('kws cant run. Please add an appropriate keyword list.')
             return
 
-        # If requirements fulfilled, start recognizer
+        # All params satisfied. Starting recognizer
         self.start_recognizer()
 
+    # Function to handle keyword spotting of audio
     def start_recognizer(self):
-        # initialize pocketsphinx.
-        rospy.loginfo("Initializing pocketsphinx")
+        
         config = Decoder.default_config()
-        rospy.loginfo("Done initializing pocketsphinx")
+        rospy.loginfo("Pocketsphinx initialized")
 
-        # Hidden Markov model: The model which has been used
+        # Setting configuration of decoder using provided params
         config.set_string('-hmm', self.lm)
-        #Pronunciation dictionary used
         config.set_string('-dict', self.lexicon)
 
         if self._list:
@@ -92,40 +101,34 @@ class KWSDetection(object):
             config.set_string('-keyphrase', self.keyphrase)
             config.set_float('-kws_threshold', self.kws_threshold)
 
-        # rospy.loginfo("Opening the audio channel")
-        # # I recommend installing and running audacity to help figure this out
-        # # Other useful commands:
-        # # pactl list short sources
-        # # pacmd list-sinks
-        # stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-        #                 rate=16000, input=True, frames_per_buffer=1024)
-        # stream.start_stream()
-        # rospy.loginfo("Done opening the audio channel")
-
-        #decoder streaming data
-        rospy.loginfo("Starting the decoder")
+        # Set required configuration for decoder
         self.decoder = Decoder(config)
-        self.decoder.start_utt()
-        rospy.loginfo("Done starting the decoder")
 
-        rospy.Subscriber("sphinx_msg", String, self.parse_asr_result)
+        # Start processing input audio
+        self.decoder.start_utt()
+        rospy.loginfo("Decoder started successfully")
+
+        # Subscribe to audio topic
+        rospy.Subscriber("sphinx_msg", String, self.process_audio)
         rospy.spin()
 
         # self.parse_asr_result(data)
 
-    def parse_asr_result(self, data):
-        """
-        move the robot based on ASR hypothesis
-        """
+    # Audio processing based on decoder config
+    def process_audio(self, data):
+        # Actual processing
         self.decoder.process_raw(data.data, False, False)
+
+        # Check if keyword detected
         if self.decoder.hyp() != None:
             rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
                 for seg in self.decoder.seg()])
             rospy.loginfo("Detected keyphrase, restarting search")
             seg.word = seg.word.lower()
             self.decoder.end_utt()
-            self.decoder.start_utt()
+            # Publish output to a topic
             self.pub_.publish(seg.word)
+            self.decoder.start_utt()
 
     def shutdown(self):
         # command executed after Ctrl+C is pressed
@@ -135,5 +138,4 @@ class KWSDetection(object):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 0:
-        start = KWSDetection()
+    start = KWSDetection()

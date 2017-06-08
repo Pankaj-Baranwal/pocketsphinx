@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os, sys
+import os
 import rospy
 
 import rospkg
@@ -12,7 +12,7 @@ import pyaudio
 
 from std_msgs.msg import String
 
-# This class is to add jsgf grammar functionality
+# Class to add jsgf grammar functionality
 class JSGFTest(object):
     def __init__(self):
 
@@ -23,7 +23,7 @@ class JSGFTest(object):
         rospy.init_node("jsgf_control")
         # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
-        # Initializing rospack
+        # Initializing rospack to find package location
         rospack = rospkg.RosPack()
 
 
@@ -42,7 +42,7 @@ class JSGFTest(object):
         # Name of rule within the grammar
         self._rule = "~rule"
 
-        # check if user wants lm or grammar mode. Default = grammar
+        # check if lm or grammar mode. Default = grammar
         self._use_lm = 0
 
         # Setting param values
@@ -114,6 +114,7 @@ class JSGFTest(object):
 
         # Start processing input audio
         self.decoder.start_utt()
+        rospy.loginfo("Decoder started successfully")
 
         # Subscribe to audio topic
         rospy.Subscriber("sphinx_msg", String, self.process_audio)
@@ -128,6 +129,7 @@ class JSGFTest(object):
             # Publish output to a topic
             self.pub_.publish(self.decoder.hyp().hypstr)
         else:
+            # Actual processing
             self.decoder.process_raw(data.data, False, False)
 
     def shutdown(self):
