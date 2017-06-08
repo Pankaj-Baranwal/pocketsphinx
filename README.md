@@ -21,11 +21,11 @@ You can know more about pocketpshinx here: https://cmusphinx.github.io/
     ```
     There are many dependencies which need to be met before installation of pocketsphinx through pip works.
     Use Synaptics package manager to install the unmet dependencies which would be mentioned as error messages on the terminal window in case installation fails. Some of them include:  
-    ### libpulse-dev  
-    ### swig
+    libpulse-dev  
+    swig
 
 ## Getting Started
-Clone this repository into the src folder of your catkin workspace using:
+Clone this repository into the src folder of your catkin workspace using:  
 ```  
 cd ~/catkin_ws/src
 git clone https://github.com/Pankaj-Baranwal/pocketsphinx
@@ -37,7 +37,7 @@ catkin_make
 ```
 Now, you are all setup. To test kws(keyword spotting) mode:  
 1) You can use the default test files including a dictionary file and a kws list.  
-2) Launch roscore in a termincal window:
+2) Launch roscore in a termincal window:  
 ```
 roscore
 ```
@@ -54,11 +54,11 @@ roslaunch pocketsphinx kws.launch dict:=voice_cmd.dic kws:=voice_cmd.kwlist
 ```
 rostopic echo /kws_data
 ```
-Voila! You are good to go! You can read more about the different features and their usages in the wiki.
+Voila! You are good to go! You can read more about the different features and their usages in the wiki.  
 For running this node with turtlebot_gazebo simulation, follow these instructions:  
-4) Follow the above 3 steps.
-5) Install turtlebot simulation packages. Instructions can be found on its ROS wiki.
-If they do not work, you can use these instructions: https://docs.google.com/document/d/1gRBlLUdsWePjek5WvIHpK88wv1jqKmL901IvruDaM_I/edit?usp=sharing
+4) Follow the above 3 steps.  
+5) Install turtlebot simulation packages. Instructions can be found on its ROS wiki.  
+If they do not work, you can use these instructions: https://docs.google.com/document/d/1gRBlLUdsWePjek5WvIHpK88wv1jqKmL901IvruDaM_I/edit?usp=sharing  
 6) Launch turtlebot_gazebo:  
 ```  
 roslaunch turtlebot_gazebo turtlebot_world.launch
@@ -68,3 +68,4 @@ roslaunch turtlebot_gazebo turtlebot_world.launch
 rosrun pocketsphinx voice_control_example.py
 ```
 And now, your turtlebot simulation will follow your voice commands!
+Words in the dictionary include: "forward", "back", "stop", "half speed", "full speed", "left", "right" etc
