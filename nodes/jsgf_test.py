@@ -11,32 +11,41 @@ from sphinxbase.sphinxbase import *
 import pyaudio
 
 from std_msgs.msg import String
-from std_srvs.srv import *
-import commands
 
+# This class is to add jsgf grammar functionality
 class JSGFTest(object):
     def __init__(self):
 
+        # Initializing publisher with buffer size of 10 messages
         self.pub_ = rospy.Publisher("grammar_data", String, queue_size=10)
 
-        # Start node
+        # initialize node
         rospy.init_node("jsgf_control")
+        # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
-
+        # Initializing rospack
         rospack = rospkg.RosPack()
 
 
         # Params
+
+        # Location of external files
         self.location = rospack.get_path('pocketsphinx') + '/demo/'
+        # File containing language model
         self._lm_param = "~lm"
+        # Dictionary
         self._dict_param = "~dict"
+        # Hidden markov model. Default has been provided below
         self._hmm_param = "~hmm"
+        # Gram file contains the rules and grammar
         self._gram = "~gram"
+        # Name of rule within the grammar
         self._rule = "~rule"
 
-        # check if user wants lm or grammar mode
-        self._use_lm = 1
+        # check if user wants lm or grammar mode. Default = grammar
+        self._use_lm = 0
 
+        # Setting param values
         if rospy.has_param(self._hmm_param):
             self.hmm = self.location + rospy.get_param(self._hmm_param)
             if rospy.get_param(self._hmm_param) == ":default":
@@ -68,53 +77,58 @@ class JSGFTest(object):
             rospy.logerr("Couldn't find suitable parameters. Please take a look at the documentation")
             return
 
+        # All params satisfied. Starting recognizer
         self.start_recognizer()
 
+    # Function to handle lm or grammar processing of audio
     def start_recognizer(self):
-        rospy.loginfo("Initializing pocketsphinx")
+
         config = Decoder.default_config()
         rospy.loginfo("Done initializing pocketsphinx")
 
+        # Setting configuration of decoder using provided params
         config.set_string('-hmm', self.hmm)
         config.set_string('-dict', self.dict)
-        rospy.logerr(self.hmm)
-        rospy.logerr(self.dict)
+
+        # Check if language model to be used or grammar mode
         if (self._use_lm):
             rospy.loginfo('Language Model Found.')
             self.mode = "lanugage model: "
             config.set_string('-lm', self.lm)
             self.decoder = Decoder(config)
         else:
+            rospy.loginfo('language model not found. Using JSGF grammar instead.')
             self.decoder = Decoder(config)
             self.mode = "grammar: "
-            rospy.loginfo('language model not found. Using JSGF grammar instead.')
+
             # Switch to JSGF grammar
             jsgf = Jsgf(self.location + self.gram + '.gram')
             rule = jsgf.get_rule(self.gram + '.' + self.rule)
-            rospy.loginfo(self.gram + '.' + self.rule)
-            
+            # Using finite state grammar as mentioned in the rule
             fsg = jsgf.build_fsg(rule, self.decoder.get_logmath(), 7.5)
-            rospy.logerr(self.location + self.gram + '.fsg')
+            rospy.loginfo("Writing fsg to " + self.location + self.gram + '.fsg')
             fsg.writefile(self.location + self.gram + '.fsg')
-            rospy.logerr("written sfg")
+            
             self.decoder.set_fsg(self.gram, fsg)
-
             self.decoder.set_search(self.gram)
 
+        # Start processing input audio
         self.decoder.start_utt()
 
+        # Subscribe to audio topic
         rospy.Subscriber("sphinx_msg", String, self.process_audio)
         rospy.spin()
 
+    # Audio processing based on decoder config
     def  process_audio(self, data):
+        # Check if input audio has ended
         if data.data == "ended":
             self.decoder.end_utt()  
-            # rospy.loginfo('Decoding with ', self.mode, self.decoder.hyp().hypstr)
+            rospy.loginfo('Decoding with ' + self.mode + 'produced output: ' + self.decoder.hyp().hypstr)
+            # Publish output to a topic
             self.pub_.publish(self.decoder.hyp().hypstr)
         else:
             self.decoder.process_raw(data.data, False, False)
-        # if self.decoder.hyp() != None: 
-        # rospy.loginfo('Decoding with ', self.mode, self.decoder.hyp().hypstr)
 
     def shutdown(self):
         # command executed after Ctrl+C is pressed
@@ -123,5 +137,4 @@ class JSGFTest(object):
         rospy.sleep(1)
 
 if __name__ == "__main__":
-    if len(sys.argv) > 0:
-        start = JSGFTest()
+    JSGFTest()
