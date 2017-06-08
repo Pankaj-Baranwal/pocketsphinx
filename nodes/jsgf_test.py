@@ -3,6 +3,8 @@
 import os, sys
 import rospy
 
+import rospkg
+
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
 
@@ -10,7 +12,6 @@ import pyaudio
 
 from std_msgs.msg import String
 from std_srvs.srv import *
-from os import path
 import commands
 
 class JSGFTest(object):
@@ -22,7 +23,11 @@ class JSGFTest(object):
         rospy.init_node("jsgf_control")
         rospy.on_shutdown(self.shutdown)
 
+        rospack = rospkg.RosPack()
+
+
         # Params
+        self.location = rospack.get_path('pocketsphinx') + '/demo/'
         self._lm_param = "~lm"
         self._dict_param = "~dict"
         self._hmm_param = "~hmm"
@@ -33,26 +38,28 @@ class JSGFTest(object):
         self._use_lm = 1
 
         if rospy.has_param(self._hmm_param):
-            self.hmm = rospy.get_param(self._hmm_param)
-        elif (os.path.isdir("/usr/local/share/pocketsphinx/model")):
-            rospy.loginfo("Loading the default acoustic model")
-            self.hmm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
-            rospy.loginfo("Done loading the default acoustic model")
+            self.hmm = self.location + rospy.get_param(self._hmm_param)
+            if rospy.get_param(self._hmm_param) == ":default":
+                if os.path.isdir("/usr/local/share/pocketsphinx/model"):
+                    rospy.loginfo("Loading the default acoustic model")
+                    self.hmm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
+                    rospy.loginfo("Done loading the default acoustic model")
+                else:
+                    rospy.logerr("No language model specified. Couldn't find default model.")
+                    return
         else:
             rospy.logerr("No language model specified. Couldn't find default model.")
             return
 
-        if rospy.has_param(self._dict_param):
-            self.dict = rospy.get_param(self._dict_param)
+        if rospy.has_param(self._dict_param) and rospy.get_param(self._dict_param) != ":default":
+            self.dict = self.location + rospy.get_param(self._dict_param)
         else:
             rospy.logerr("No dictionary found. Please add an appropriate dictionary argument.")
             return
 
-        if rospy.has_param(self._lm_param):
-            rospy.loginfo(self._lm_param)
-            rospy.loginfo(rospy.get_param(self._lm_param))
+        if rospy.has_param(self._lm_param) and rospy.get_param(self._lm_param)!=':default':
             self._use_lm = 1
-            self.lm = rospy.get_param(self._lm_param)
+            self.lm = self.location + rospy.get_param(self._lm_param)
         elif rospy.has_param(self._gram) and rospy.has_param(self._rule):
             self._use_lm = 0
             self.gram = rospy.get_param(self._gram)
@@ -70,6 +77,8 @@ class JSGFTest(object):
 
         config.set_string('-hmm', self.hmm)
         config.set_string('-dict', self.dict)
+        rospy.logerr(self.hmm)
+        rospy.logerr(self.dict)
         if (self._use_lm):
             rospy.loginfo('Language Model Found.')
             self.mode = "lanugage model: "
@@ -80,12 +89,14 @@ class JSGFTest(object):
             self.mode = "grammar: "
             rospy.loginfo('language model not found. Using JSGF grammar instead.')
             # Switch to JSGF grammar
-            jsgf = Jsgf((self.gram + '.gram'))
-            rule = jsgf.get_rule((self.gram + '.' + self.rule))
+            jsgf = Jsgf(self.location + self.gram + '.gram')
+            rule = jsgf.get_rule(self.gram + '.' + self.rule)
+            rospy.loginfo(self.gram + '.' + self.rule)
             
             fsg = jsgf.build_fsg(rule, self.decoder.get_logmath(), 7.5)
-            fsg.writefile((self.gram + '.fsg'))
-
+            rospy.logerr(self.location + self.gram + '.fsg')
+            fsg.writefile(self.location + self.gram + '.fsg')
+            rospy.logerr("written sfg")
             self.decoder.set_fsg(self.gram, fsg)
 
             self.decoder.set_search(self.gram)
