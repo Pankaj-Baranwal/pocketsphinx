@@ -19,6 +19,7 @@
 		type="jsgf_test.py"
         output="screen"
         >
+        <remap from="sphinx_audio" to="jsgf_audio" />
         <param name="lm" value="$(arg lm)"/>
         <param name="dict" value="$(arg dict)"/>
         <param name="hmm" value="$(arg hmm)"/>
