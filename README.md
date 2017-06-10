@@ -68,4 +68,6 @@ roslaunch turtlebot_gazebo turtlebot_world.launch
 rosrun pocketsphinx voice_control_example.py
 ```
 And now, your turtlebot simulation will follow your voice commands!
-Words in the dictionary include: "forward", "back", "stop", "half speed", "full speed", "left", "right" etc
+Words in the dictionary include: "forward", "back", "stop", "half speed", "full speed", "left", "right" etc  
+  
+Further details can be found in the wiki!
