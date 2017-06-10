@@ -2,11 +2,11 @@
 import rospy
 
 from geometry_msgs.msg import Twist
-
 from std_msgs.msg import String
-import commands
+
 
 class ASRControl(object):
+
     def __init__(self):
 
         # Default values for turtlebot_simulator
@@ -29,13 +29,13 @@ class ASRControl(object):
     def parse_asr_result(self, detected_words):
         if detected_words.find("full speed") > -1:
             if self.speed == 0.2:
-                self.msg.linear.x = self.msg.linear.x*2
-                self.msg.angular.z = self.msg.angular.z*2
+                self.msg.linear.x = self.msg.linear.x * 2
+                self.msg.angular.z = self.msg.angular.z * 2
                 self.speed = 0.4
         if detected_words.find("half speed") > -1:
             if self.speed == 0.4:
-                self.msg.linear.x = self.msg.linear.x/2
-                self.msg.angular.z = self.msg.angular.z/2
+                self.msg.linear.x = self.msg.linear.x / 2
+                self.msg.angular.z = self.msg.angular.z / 2
                 self.speed = 0.2
         if detected_words.find("forward") > -1:
             self.msg.linear.x = self.speed
@@ -45,13 +45,13 @@ class ASRControl(object):
                 if self.msg.angular.z < self.speed:
                     self.msg.angular.z += 0.05
             else:
-                self.msg.angular.z = self.speed*2
+                self.msg.angular.z = self.speed * 2
         elif detected_words.find("right") > -1:
             if self.msg.linear.x != 0:
                 if self.msg.angular.z > -self.speed:
                     self.msg.angular.z -= 0.05
             else:
-                self.msg.angular.z = -self.speed*2
+                self.msg.angular.z = -self.speed * 2
         elif detected_words.find("back") > -1:
             self.msg.linear.x = -self.speed
             self.msg.angular.z = 0
@@ -70,7 +70,5 @@ class ASRControl(object):
         rospy.sleep(1)
 
 
-
 if __name__ == "__main__":
     ASRControl()
-
