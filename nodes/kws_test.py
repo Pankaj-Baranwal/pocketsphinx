@@ -1,23 +1,27 @@
 #!/usr/bin/python
 
 import os
-import rospy
-
-import rospkg
-
-from pocketsphinx.pocketsphinx import *
-from sphinxbase.sphinxbase import *
 
 import pyaudio
 
+import rospy
+import rospkg
+
 from std_msgs.msg import String
+from pocketsphinx.pocketsphinx import *
+from sphinxbase.sphinxbase import *
+
 
 # Class to add keyword spotting functionality
 class KWSDetection(object):
+
     def __init__(self):
 
         # Initializing publisher with buffer size of 10 messages
         self.pub_ = rospy.Publisher("kws_data", String, queue_size=10)
+        # Initalizing publisher for continuous ASR
+        self.continuous_pub_ = rospy.Publisher(
+            "jsgf_audio", String, queue_size=10)
 
         # initialize node
         rospy.init_node("kws_control")
@@ -25,7 +29,6 @@ class KWSDetection(object):
         rospy.on_shutdown(self.shutdown)
         # Initializing rospack to find package location
         rospack = rospkg.RosPack()
-
 
         # Params
 
@@ -42,10 +45,14 @@ class KWSDetection(object):
         self._keyphrase_param = "~keyphrase"
         # Threshold frequency of above mentioned word
         self._threshold_param = "~threshold"
+        # Option for continuous
+        self._option_param = "~option"
 
         # Variable to distinguish between kws list and keyphrase.
         # Default is keyword list
         self._list = True
+        # For continuous mode
+        self.stop_output = False
 
         # Setting param values
         if rospy.has_param(self._lm_param):
@@ -56,7 +63,8 @@ class KWSDetection(object):
                     self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
                     rospy.loginfo("Done loading the default acoustic model")
                 else:
-                    rospy.logerr("No language model specified. Couldn't find defaut model.")
+                    rospy.logerr(
+                        "No language model specified. Couldn't find defaut model.")
                     return
         else:
             rospy.loginfo("Couldn't find lm argument")
@@ -64,9 +72,11 @@ class KWSDetection(object):
         if rospy.has_param(self._dict_param) and rospy.get_param(self._dict_param) != ":default":
             self.lexicon = self.location + rospy.get_param(self._dict_param)
         else:
-            rospy.logerr('No dictionary found. Please add an appropriate dictionary argument.')
+            rospy.logerr(
+                'No dictionary found. Please add an appropriate dictionary argument.')
             return
         rospy.loginfo(rospy.get_param(self._kws_param))
+
         if rospy.has_param(self._kws_param) and rospy.get_param(self._kws_param) != ":default":
             self._list = True
 
@@ -77,7 +87,8 @@ class KWSDetection(object):
             self.keyphrase = rospy.get_param(self._keyphrase_param)
             self.kws_threshold = rospy.get_param(self._threshold_param)
         else:
-            rospy.logerr('kws cant run. Please add an appropriate keyword list.')
+            rospy.logerr(
+                'kws cant run. Please add an appropriate keyword list.')
             return
 
         # All params satisfied. Starting recognizer
@@ -85,7 +96,7 @@ class KWSDetection(object):
 
     # Function to handle keyword spotting of audio
     def start_recognizer(self):
-        
+
         config = Decoder.default_config()
         rospy.loginfo("Pocketsphinx initialized")
 
@@ -112,23 +123,27 @@ class KWSDetection(object):
         rospy.Subscriber("sphinx_msg", String, self.process_audio)
         rospy.spin()
 
-        # self.parse_asr_result(data)
-
     # Audio processing based on decoder config
     def process_audio(self, data):
-        # Actual processing
-        self.decoder.process_raw(data.data, False, False)
 
         # Check if keyword detected
-        if self.decoder.hyp() != None:
-            rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
-                for seg in self.decoder.seg()])
-            rospy.loginfo("Detected keyphrase, restarting search")
-            seg.word = seg.word.lower()
-            self.decoder.end_utt()
-            # Publish output to a topic
-            self.pub_.publish(seg.word)
-            self.decoder.start_utt()
+        if !self.stop_output:
+            if self.decoder.hyp() != None:
+                # Actual processing
+                self.decoder.process_raw(data.data, False, False)
+                rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
+                               for seg in self.decoder.seg()])
+                rospy.loginfo("Detected keyphrase, restarting search")
+                seg.word = seg.word.lower()
+                self.decoder.end_utt()
+                # Publish output to a topic
+                self.pub_.publish(seg.word)
+                if rospy.has_param(self._option_param):
+                    self.stop_output = True
+                else:
+                    self.decoder.start_utt()
+        else:
+            self.continuous_pub_.publish(data.data)
 
     def shutdown(self):
         # command executed after Ctrl+C is pressed

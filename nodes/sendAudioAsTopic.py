@@ -1,23 +1,24 @@
 #!/usr/bin/python
 
 import os
-
-import rospkg
-
-import rospy
+from time import sleep
 
 import pyaudio
 
+import rospkg
+import rospy
+
 from std_msgs.msg import String
-import time
+
 
 # Class to publish audio to topic
 class AudioMessage(object):
+
     def __init__(self):
 
         # Initializing publisher with buffer size of 10 messages
-        self.pub_ = rospy.Publisher("sphinx_msg", String, queue_size=10)
-        
+        self.pub_ = rospy.Publisher("sphinx_audio", String, queue_size=10)
+
         # initialize node
         rospy.init_node("audio_control")
         # Call custom function on node shutdown
@@ -26,16 +27,15 @@ class AudioMessage(object):
         # All set. Publish to topic
         self.transfer_audio_msg()
 
-
     # Function to publish input audio to topic
     def transfer_audio_msg(self):
 
         rospy.loginfo("audio input node will start after delay of 5 seconds")
-        time.sleep(5)
+        sleep(5)
 
         # Initializing rospack to find package location
         rospack = rospkg.RosPack()
-        
+
         # Params
         self._input = "~input"
         # Location of external files
@@ -44,11 +44,12 @@ class AudioMessage(object):
         # Checking if audio file given or system microphone is needed
         if rospy.has_param(self._input):
             if rospy.get_param(self._input) != ":default":
-                stream = open(os.path.join(self.location + rospy.get_param(self._input)), 'rb')
+                stream = open(os.path.join(self.location +
+                                           rospy.get_param(self._input)), 'rb')
             else:
                 # Initializing pyaudio for input from system microhpone
                 stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
-                                rate=16000, input=True, frames_per_buffer=1024)
+                                                rate=16000, input=True, frames_per_buffer=1024)
                 stream.start_stream()
 
         while not rospy.is_shutdown():
@@ -65,6 +66,7 @@ class AudioMessage(object):
         # command executed after Ctrl+C is pressed
         rospy.loginfo("Stop ASRControl")
         rospy.sleep(1)
+
 
 if __name__ == "__main__":
     AudioMessage()
