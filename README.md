@@ -43,9 +43,9 @@ roscore
 ```
 2) Use the following command to start the required launch file from demo folder inside this package:  
 ``` 
-cd ~/catkin_ws/src/pocketsphinx/demo
 roslaunch pocketsphinx kws.launch input:=goforward.raw dict:=voice_cmd.dic kws:=voice_cmd.kwlist
 ```  
+Please note that the files provided as input need to be present in the **demo** folder withing this package.  
 Remove the input parameter to enable continuous input from your system's microphone:
 ```
 roslaunch pocketsphinx kws.launch dict:=voice_cmd.dic kws:=voice_cmd.kwlist
