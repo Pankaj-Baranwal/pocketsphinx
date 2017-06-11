@@ -123,7 +123,7 @@ class JSGFTest(object):
         rospy.loginfo("Decoder started successfully")
 
         # Subscribe to audio topic
-        rospy.Subscriber("sphinx_msg", String, self.process_audio)
+        rospy.Subscriber("jsgf_audio", String, self.process_audio)
         rospy.spin()
 
     # Audio processing based on decoder config

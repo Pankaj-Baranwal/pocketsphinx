@@ -126,6 +126,11 @@ class KWSDetection(object):
     # Audio processing based on decoder config
     def process_audio(self, data):
 
+        if rospy.has_param(self._option_param):
+            need_continuous = True
+        else:
+            need_continuous = False
+
         # Check if keyword detected
         if !self.stop_output:
             if self.decoder.hyp() != None:
@@ -138,7 +143,7 @@ class KWSDetection(object):
                 self.decoder.end_utt()
                 # Publish output to a topic
                 self.pub_.publish(seg.word)
-                if rospy.has_param(self._option_param):
+                if need_continuous:
                     self.stop_output = True
                 else:
                     self.decoder.start_utt()

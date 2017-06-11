@@ -1,7 +1,8 @@
 <launch>
+
     <arg name="input" default=":default"/>
-    <arg name="lm" default=":default" />
     <arg name="dict" />
+    <arg name="lm" default=":default" />
     <arg name="kws" default=":default"/>
     <arg name="keyphrase" default=":default"/>
     <arg name="threshold" default=":default"/>
