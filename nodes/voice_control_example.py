@@ -1,4 +1,4 @@
-#!/usr/bin/python
+"""/usr/bin/python"""
 import rospy
 
 from geometry_msgs.msg import Twist
@@ -6,6 +6,7 @@ from std_msgs.msg import String
 
 
 class ASRControl(object):
+    """Class to handle turtlebot simulation control using voice"""
 
     def __init__(self):
 
@@ -25,19 +26,19 @@ class ASRControl(object):
         rospy.Subscriber("kws_data", String, self.parse_asr_result)
         rospy.spin()
 
-    # Function to perform action on detected word
-    def parse_asr_result(self, detected_words):
+    def parse_asr_result(self, detected_words): #pylint: disable=too-many-branches
+        """Function to perform action on detected word"""
         if detected_words.find("full speed") > -1:
             if self.speed == 0.2:
                 self.msg.linear.x = self.msg.linear.x * 2
                 self.msg.angular.z = self.msg.angular.z * 2
                 self.speed = 0.4
-        if detected_words.find("half speed") > -1:
+        elif detected_words.find("half speed") > -1:
             if self.speed == 0.4:
                 self.msg.linear.x = self.msg.linear.x / 2
                 self.msg.angular.z = self.msg.angular.z / 2
                 self.speed = 0.2
-        if detected_words.find("forward") > -1:
+        elif detected_words.find("forward") > -1:
             self.msg.linear.x = self.speed
             self.msg.angular.z = 0
         elif detected_words.find("left") > -1:
@@ -55,7 +56,7 @@ class ASRControl(object):
         elif detected_words.find("back") > -1:
             self.msg.linear.x = -self.speed
             self.msg.angular.z = 0
-        elif detected_words.find("stop") > -1 or seg.word.find("halt") > -1:
+        elif detected_words.find("stop") > -1 or detected_words.find("halt") > -1:
             self.msg = Twist()
 
         # Publish required message
