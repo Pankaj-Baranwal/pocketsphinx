@@ -16,7 +16,7 @@
     <node
         name="audio_control"
         pkg="pocketsphinx"
-        type="sendAudioAsTopic.py"
+        type="send_audio.py"
         output="screen"
         >
         <param name="input" value="$(arg input)"/>

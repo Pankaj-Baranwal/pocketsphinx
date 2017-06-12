@@ -33,7 +33,7 @@
     <node
         name="audio_control"
         pkg="pocketsphinx"
-        type="sendAudioAsTopic.py"
+        type="send_audio.py"
         output="screen"
         >
 
