@@ -1,4 +1,4 @@
-#!/usr/bin/python
+"""/usr/bin/python"""
 
 import os
 from time import sleep
@@ -11,8 +11,8 @@ import rospy
 from std_msgs.msg import String
 
 
-# Class to publish audio to topic
 class AudioMessage(object):
+    """Class to publish audio to topic"""
 
     def __init__(self):
 
@@ -27,8 +27,8 @@ class AudioMessage(object):
         # All set. Publish to topic
         self.transfer_audio_msg()
 
-    # Function to publish input audio to topic
     def transfer_audio_msg(self):
+        """Function to publish input audio to topic"""
 
         rospy.loginfo("audio input node will start after delay of 5 seconds")
         sleep(5)
@@ -62,7 +62,9 @@ class AudioMessage(object):
         # mark end of audio
         self.pub_.publish("ended")
 
-    def shutdown(self):
+    @staticmethod
+    def shutdown():
+        """This function is executed on node shutdown."""
         # command executed after Ctrl+C is pressed
         rospy.loginfo("Stop ASRControl")
         rospy.sleep(1)
