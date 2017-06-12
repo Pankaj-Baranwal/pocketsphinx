@@ -1,8 +1,6 @@
-#!/usr/bin/python
+"""/usr/bin/python"""
 
 import os
-
-import pyaudio
 
 import rospy
 import rospkg
@@ -12,8 +10,8 @@ from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
 
 
-# Class to add keyword spotting functionality
 class KWSDetection(object):
+    """Class to add keyword spotting functionality"""
 
     def __init__(self):
 
@@ -35,32 +33,31 @@ class KWSDetection(object):
         # Location of external files
         self.location = rospack.get_path('pocketsphinx') + '/demo/'
         # File containing language model
-        self._lm_param = "~lm"
+        _lm_param = "~lm"
         # Dictionary
-        self._dict_param = "~dict"
+        _dict_param = "~dict"
         # List of keywords to detect
-        self._kws_param = "~kws"
-        # Not necessary to provide the next two if _kws_param is provided
-        # Single word which needs to be detected
-        self._keyphrase_param = "~keyphrase"
+        _kws_param = "~kws"
+        """Not necessary to provide the next two if _kws_param is provided
+        Single word which needs to be detected
+        """
+        _keyphrase_param = "~keyphrase"
         # Threshold frequency of above mentioned word
-        self._threshold_param = "~threshold"
+        _threshold_param = "~threshold"
         # Option for continuous
         self._option_param = "~option"
 
         # Variable to distinguish between kws list and keyphrase.
         # Default is keyword list
         self._list = True
-        # For continuous mode
-        self.stop_output = False
 
         # Setting param values
-        if rospy.has_param(self._lm_param):
-            self.lm = self.location + rospy.get_param(self._lm_param)
-            if rospy.get_param(self._lm_param) == ":default":
-                if (os.path.isdir("/usr/local/share/pocketsphinx/model")):
+        if rospy.has_param(_lm_param):
+            self.class_lm = self.location + rospy.get_param(_lm_param)
+            if rospy.get_param(_lm_param) == ":default":
+                if os.path.isdir("/usr/local/share/pocketsphinx/model"):
                     rospy.loginfo("Loading the default acoustic model")
-                    self.lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
+                    self.class_lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
                     rospy.loginfo("Done loading the default acoustic model")
                 else:
                     rospy.logerr(
@@ -69,23 +66,26 @@ class KWSDetection(object):
         else:
             rospy.loginfo("Couldn't find lm argument")
 
-        if rospy.has_param(self._dict_param) and rospy.get_param(self._dict_param) != ":default":
-            self.lexicon = self.location + rospy.get_param(self._dict_param)
+        if rospy.has_param(_dict_param) and rospy.get_param(_dict_param) != ":default":
+            self.lexicon = self.location + rospy.get_param(_dict_param)
         else:
             rospy.logerr(
                 'No dictionary found. Please add an appropriate dictionary argument.')
             return
-        rospy.loginfo(rospy.get_param(self._kws_param))
+        rospy.loginfo(rospy.get_param(_kws_param))
 
-        if rospy.has_param(self._kws_param) and rospy.get_param(self._kws_param) != ":default":
+        if rospy.has_param(_kws_param) and rospy.get_param(_kws_param) != ":default":
             self._list = True
 
-            self.kw_list = self.location + rospy.get_param(self._kws_param)
-        elif rospy.has_param(self._keyphrase_param) and rospy.has_param(self._threshold_param) and rospy.get_param(self._keyphrase_param) != ":default" and rospy.get_param(self._threshold_param) != ":default":
+            self.kw_list = self.location + rospy.get_param(_kws_param)
+        elif rospy.has_param(_keyphrase_param) and \
+        rospy.has_param(_threshold_param) and \
+        rospy.get_param(_keyphrase_param) != ":default" and \
+        rospy.get_param(_threshold_param) != ":default":
             self._list = False
 
-            self.keyphrase = rospy.get_param(self._keyphrase_param)
-            self.kws_threshold = rospy.get_param(self._threshold_param)
+            self.keyphrase = rospy.get_param(_keyphrase_param)
+            self.kws_threshold = rospy.get_param(_threshold_param)
         else:
             rospy.logerr(
                 'kws cant run. Please add an appropriate keyword list.')
@@ -94,14 +94,14 @@ class KWSDetection(object):
         # All params satisfied. Starting recognizer
         self.start_recognizer()
 
-    # Function to handle keyword spotting of audio
     def start_recognizer(self):
+        """Function to handle keyword spotting of audio"""
 
         config = Decoder.default_config()
         rospy.loginfo("Pocketsphinx initialized")
 
         # Setting configuration of decoder using provided params
-        config.set_string('-hmm', self.lm)
+        config.set_string('-hmm', self.class_lm)
         config.set_string('-dict', self.lexicon)
 
         if self._list:
@@ -123,39 +123,38 @@ class KWSDetection(object):
         rospy.Subscriber("sphinx_msg", String, self.process_audio)
         rospy.spin()
 
-    # Audio processing based on decoder config
     def process_audio(self, data):
+        """Audio processing based on decoder config"""
+        # For continuous mode
+        stop_output = False
 
-        if rospy.has_param(self._option_param):
-            need_continuous = True
-        else:
-            need_continuous = False
+        need_continuous = rospy.has_param(self._option_param)
 
         # Check if keyword detected
-        if !self.stop_output:
+        if not stop_output:
             if self.decoder.hyp() != None:
                 # Actual processing
                 self.decoder.process_raw(data.data, False, False)
                 rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
                                for seg in self.decoder.seg()])
                 rospy.loginfo("Detected keyphrase, restarting search")
-                seg.word = seg.word.lower()
+                seg.word = seg.word.lower() #pylint: disable=undefined-loop-variable
                 self.decoder.end_utt()
                 # Publish output to a topic
-                self.pub_.publish(seg.word)
+                self.pub_.publish(seg.word) #pylint: disable=undefined-loop-variable
                 if need_continuous:
-                    self.stop_output = True
+                    stop_output = True
                 else:
                     self.decoder.start_utt()
         else:
             self.continuous_pub_.publish(data.data)
-
-    def shutdown(self):
+    @staticmethod
+    def shutdown():
+        """This function is executed on node shutdown."""
         # command executed after Ctrl+C is pressed
         rospy.loginfo("Stop ASRControl")
-        self.pub_.publish("")
         rospy.sleep(1)
 
 
 if __name__ == "__main__":
-    start = KWSDetection()
+    KWSDetection()
