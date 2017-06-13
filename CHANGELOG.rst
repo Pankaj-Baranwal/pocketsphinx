@@ -2,6 +2,13 @@
 Changelog for package pocketsphinx
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.0 (2017-06-13)
+------------------
+* revamped package with latest ROS recommendations and pocketsphinx features
+* removed external dependencies
+* following PEP-8 style guidelines
+* added proper documentation as wiki and comments
+
 0.4.0 (2014-06-03)
 ------------------
 * add ~source parameter, for setting things like 'alsasrc'
