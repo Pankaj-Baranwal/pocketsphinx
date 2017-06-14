@@ -72,7 +72,6 @@ class KWSDetection(object):
             rospy.logerr(
                 'No dictionary found. Please add an appropriate dictionary argument.')
             return
-        rospy.loginfo(rospy.get_param(_kws_param))
 
         if rospy.has_param(_kws_param) and rospy.get_param(_kws_param) != ":default":
             self._list = True
@@ -120,7 +119,7 @@ class KWSDetection(object):
         rospy.loginfo("Decoder started successfully")
 
         # Subscribe to audio topic
-        rospy.Subscriber("sphinx_msg", String, self.process_audio)
+        rospy.Subscriber("sphinx_audio", String, self.process_audio)
         rospy.spin()
 
     def process_audio(self, data):
@@ -132,9 +131,10 @@ class KWSDetection(object):
 
         # Check if keyword detected
         if not stop_output:
+            rospy.loginfo("Entering normal KWS")
+            # Actual processing
+            self.decoder.process_raw(data.data, False, False)
             if self.decoder.hyp() != None:
-                # Actual processing
-                self.decoder.process_raw(data.data, False, False)
                 rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
                                for seg in self.decoder.seg()])
                 rospy.loginfo("Detected keyphrase, restarting search")
@@ -142,12 +142,15 @@ class KWSDetection(object):
                 self.decoder.end_utt()
                 # Publish output to a topic
                 self.pub_.publish(seg.word) #pylint: disable=undefined-loop-variable
+
                 if need_continuous:
                     stop_output = True
                 else:
                     self.decoder.start_utt()
         else:
+            rospy.loginfo("Entering continuous mode")
             self.continuous_pub_.publish(data.data)
+
     @staticmethod
     def shutdown():
         """This function is executed on node shutdown."""

@@ -44,8 +44,7 @@ class AudioMessage(object):
         # Checking if audio file given or system microphone is needed
         if rospy.has_param(self._input):
             if rospy.get_param(self._input) != ":default":
-                stream = open(os.path.join(self.location +
-                                           rospy.get_param(self._input)), 'rb')
+                stream = open(os.path.join(self.location + rospy.get_param(self._input)), 'rb')
             else:
                 # Initializing pyaudio for input from system microhpone
                 stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
@@ -58,6 +57,7 @@ class AudioMessage(object):
                 # Publish audio to topic
                 self.pub_.publish(buf)
             else:
+                rospy.loginfo("Buffer returned null")
                 break
         # mark end of audio
         self.pub_.publish("ended")
