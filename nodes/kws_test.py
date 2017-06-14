@@ -131,7 +131,6 @@ class KWSDetection(object):
 
         # Check if keyword detected
         if not stop_output:
-            rospy.loginfo("Entering normal KWS")
             # Actual processing
             self.decoder.process_raw(data.data, False, False)
             if self.decoder.hyp() != None:
@@ -148,7 +147,6 @@ class KWSDetection(object):
                 else:
                     self.decoder.start_utt()
         else:
-            rospy.loginfo("Entering continuous mode")
             self.continuous_pub_.publish(data.data)
 
     @staticmethod
