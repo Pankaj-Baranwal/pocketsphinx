@@ -20,7 +20,7 @@ class ASRControl(object):
         rospy.on_shutdown(self.shutdown)
 
         # Initializing publisher with buffer size of 10 messages
-        self.pub_ = rospy.Publisher("voice_data", Twist, queue_size=10)
+        self.pub_ = rospy.Publisher("mobile_base/commands/velocity", Twist, queue_size=10)
 
         # Subscribe to kws output
         rospy.Subscriber("kws_data", String, self.parse_asr_result)
@@ -28,35 +28,35 @@ class ASRControl(object):
 
     def parse_asr_result(self, detected_words): #pylint: disable=too-many-branches
         """Function to perform action on detected word"""
-        if detected_words.find("full speed") > -1:
+        if detected_words.data.find("full speed") > -1:
             if self.speed == 0.2:
                 self.msg.linear.x = self.msg.linear.x * 2
                 self.msg.angular.z = self.msg.angular.z * 2
                 self.speed = 0.4
-        elif detected_words.find("half speed") > -1:
+        elif detected_words.data.find("half speed") > -1:
             if self.speed == 0.4:
                 self.msg.linear.x = self.msg.linear.x / 2
                 self.msg.angular.z = self.msg.angular.z / 2
                 self.speed = 0.2
-        elif detected_words.find("forward") > -1:
+        elif detected_words.data.find("forward") > -1:
             self.msg.linear.x = self.speed
             self.msg.angular.z = 0
-        elif detected_words.find("left") > -1:
+        elif detected_words.data.find("left") > -1:
             if self.msg.linear.x != 0:
                 if self.msg.angular.z < self.speed:
                     self.msg.angular.z += 0.05
             else:
                 self.msg.angular.z = self.speed * 2
-        elif detected_words.find("right") > -1:
+        elif detected_words.data.find("right") > -1:
             if self.msg.linear.x != 0:
                 if self.msg.angular.z > -self.speed:
                     self.msg.angular.z -= 0.05
             else:
                 self.msg.angular.z = -self.speed * 2
-        elif detected_words.find("back") > -1:
+        elif detected_words.data.find("back") > -1:
             self.msg.linear.x = -self.speed
             self.msg.angular.z = 0
-        elif detected_words.find("stop") > -1 or detected_words.find("halt") > -1:
+        elif detected_words.data.find("stop") > -1 or detected_words.data.find("halt") > -1:
             self.msg = Twist()
 
         # Publish required message
