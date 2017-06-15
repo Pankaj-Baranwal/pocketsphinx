@@ -1,5 +1,5 @@
 # Taken from https://stackoverflow.com/a/6743593
-from sys import byteorder
+from sys import byteorder, argv
 from array import array
 from struct import pack
 
@@ -120,5 +120,8 @@ def record_to_file(path):
 
 if __name__ == '__main__':
     print("please speak a word into the microphone")
-    record_to_file('demo.wav')
-    print("done - result written to demo.wav")
+    name = 'demo.wav'
+    if len(argv) > 1:
+    	name = argv[1]
+    record_to_file(name+'.wav')
+    print("done - result written to " + name + ".wav")
