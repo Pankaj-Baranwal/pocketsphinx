@@ -59,8 +59,6 @@ class AudioMessage(object):
             else:
                 rospy.loginfo("Buffer returned null")
                 break
-        # mark end of audio
-        self.pub_.publish("ended")
 
     @staticmethod
     def shutdown():
