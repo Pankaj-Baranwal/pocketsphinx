@@ -41,6 +41,8 @@ class JSGFTest(object):
         # check if lm or grammar mode. Default = grammar
         self._use_lm = 0
 
+        self.in_speech_bf = False
+
         # Setting param values
         if rospy.has_param(_hmm_param):
             self.hmm = self.location + rospy.get_param(_hmm_param)
@@ -122,14 +124,14 @@ class JSGFTest(object):
     def process_audio(self, data):
         """Audio processing based on decoder config."""
         # Check if input audio has ended
-        if data.data == "ended":
-            self.decoder.end_utt()
-            rospy.loginfo('OUTPUT: \"' + self.decoder.hyp().hypstr + '\"')
-            # Publish output to a topic
-            self.pub_.publish(self.decoder.hyp().hypstr)
-        else:
-            # Actual processing
-            self.decoder.process_raw(data.data, False, False)
+        self.decoder.process_raw(data.data, False, False)
+        if self.decoder.get_in_speech() != self.in_speech_bf:
+            self.in_speech_bf = self.decoder.get_in_speech()
+            if not self.in_speech_bf:
+                self.decoder.end_utt()
+                rospy.loginfo('OUTPUT: \"' + self.decoder.hyp().hypstr + '\"')
+                self.pub_.publish(self.decoder.hyp().hypstr)
+                self.decoder.start_utt()
 
     @staticmethod
     def shutdown():
