@@ -48,7 +48,7 @@
         type="kws_test.py"
         output="screen"
         >
-        <param name="lm" value="$(arg lm)"/>
+        <param name="hmm" value="$(arg hmm)"/>
         <param name="dict" value="$(arg dict)"/>
         <param name="kws" value="$(arg kws)"/>
         <param name="keyphrase" value="$(arg keyphrase)"/>
