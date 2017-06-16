@@ -33,7 +33,7 @@ class KWSDetection(object):
         # Location of external files
         self.location = rospack.get_path('pocketsphinx') + '/demo/'
         # File containing language model
-        _lm_param = "~lm"
+        _hmm_param = "~hmm"
         # Dictionary
         _dict_param = "~dict"
         # List of keywords to detect
@@ -52,9 +52,9 @@ class KWSDetection(object):
         self._list = True
 
         # Setting param values
-        if rospy.has_param(_lm_param):
-            self.class_lm = self.location + rospy.get_param(_lm_param)
-            if rospy.get_param(_lm_param) == ":default":
+        if rospy.has_param(_hmm_param):
+            self.class_lm = self.location + rospy.get_param(_hmm_param)
+            if rospy.get_param(_hmm_param) == ":default":
                 if os.path.isdir("/usr/local/share/pocketsphinx/model"):
                     rospy.loginfo("Loading the default acoustic model")
                     self.class_lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
@@ -102,6 +102,8 @@ class KWSDetection(object):
         # Setting configuration of decoder using provided params
         config.set_string('-hmm', self.class_lm)
         config.set_string('-dict', self.lexicon)
+        config.set_string('-dither', "no")
+        config.set_string('-featparams', os.path.join(self.class_lm, "feat.params"))
 
         if self._list:
             # Keyword list file for keyword searching
@@ -134,6 +136,7 @@ class KWSDetection(object):
             # Actual processing
             self.decoder.process_raw(data.data, False, False)
             if self.decoder.hyp() != None:
+                print "ENTERED HELL'S KITCHEN!"
                 rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
                                for seg in self.decoder.seg()])
                 rospy.loginfo("Detected keyphrase, restarting search")
@@ -143,10 +146,13 @@ class KWSDetection(object):
                 self.pub_.publish(seg.word) #pylint: disable=undefined-loop-variable
 
                 if need_continuous:
+                    print "SMTHNG WRONG IN HELL'S KITCHEN!"
                     stop_output = True
                 else:
+                    print "RESTARTING HELL'S KITCHEN!"
                     self.decoder.start_utt()
         else:
+            print "WENT TO ELSE!"
             self.continuous_pub_.publish(data.data)
 
     @staticmethod
