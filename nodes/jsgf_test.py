@@ -129,8 +129,9 @@ class JSGFTest(object):
             self.in_speech_bf = self.decoder.get_in_speech()
             if not self.in_speech_bf:
                 self.decoder.end_utt()
-                rospy.loginfo('OUTPUT: \"' + self.decoder.hyp().hypstr + '\"')
-                self.pub_.publish(self.decoder.hyp().hypstr)
+                if self.decoder.hyp() != None:
+                    rospy.loginfo('OUTPUT: \"' + self.decoder.hyp().hypstr + '\"')
+                    self.pub_.publish(self.decoder.hyp().hypstr)
                 self.decoder.start_utt()
 
     @staticmethod
