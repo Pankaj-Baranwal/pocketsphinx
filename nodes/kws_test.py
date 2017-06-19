@@ -3,7 +3,6 @@
 import os
 
 import rospy
-import rospkg
 
 from std_msgs.msg import String
 from pocketsphinx.pocketsphinx import *
@@ -25,13 +24,9 @@ class KWSDetection(object):
         rospy.init_node("kws_control")
         # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
-        # Initializing rospack to find package location
-        rospack = rospkg.RosPack()
 
         # Params
 
-        # Location of external files
-        self.location = rospack.get_path('pocketsphinx') + '/demo/'
         # File containing language model
         _hmm_param = "~hmm"
         # Dictionary
@@ -53,7 +48,7 @@ class KWSDetection(object):
 
         # Setting param values
         if rospy.has_param(_hmm_param):
-            self.class_lm = self.location + rospy.get_param(_hmm_param)
+            self.class_lm = rospy.get_param(_hmm_param)
             if rospy.get_param(_hmm_param) == ":default":
                 if os.path.isdir("/usr/local/share/pocketsphinx/model"):
                     rospy.loginfo("Loading the default acoustic model")
@@ -67,7 +62,7 @@ class KWSDetection(object):
             rospy.loginfo("Couldn't find lm argument")
 
         if rospy.has_param(_dict_param) and rospy.get_param(_dict_param) != ":default":
-            self.lexicon = self.location + rospy.get_param(_dict_param)
+            self.lexicon = rospy.get_param(_dict_param)
         else:
             rospy.logerr(
                 'No dictionary found. Please add an appropriate dictionary argument.')
@@ -76,7 +71,7 @@ class KWSDetection(object):
         if rospy.has_param(_kws_param) and rospy.get_param(_kws_param) != ":default":
             self._list = True
 
-            self.kw_list = self.location + rospy.get_param(_kws_param)
+            self.kw_list = rospy.get_param(_kws_param)
         elif rospy.has_param(_keyphrase_param) and \
         rospy.has_param(_threshold_param) and \
         rospy.get_param(_keyphrase_param) != ":default" and \

@@ -1,11 +1,9 @@
 #!/usr/bin/python
 
-import os
 from time import sleep
 
 import pyaudio
 
-import rospkg
 import rospy
 
 from std_msgs.msg import String
@@ -33,18 +31,13 @@ class AudioMessage(object):
         rospy.loginfo("audio input node will start after delay of 5 seconds")
         sleep(5)
 
-        # Initializing rospack to find package location
-        rospack = rospkg.RosPack()
-
         # Params
         self._input = "~input"
-        # Location of external files
-        self.location = rospack.get_path('pocketsphinx') + '/demo/'
 
         # Checking if audio file given or system microphone is needed
         if rospy.has_param(self._input):
             if rospy.get_param(self._input) != ":default":
-                stream = open(os.path.join(self.location + rospy.get_param(self._input)), 'rb')
+                stream = open(rospy.get_param(self._input), 'rb')
             else:
                 # Initializing pyaudio for input from system microhpone
                 stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,

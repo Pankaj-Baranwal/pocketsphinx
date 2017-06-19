@@ -3,7 +3,6 @@
 import os
 
 import rospy
-import rospkg
 
 from std_msgs.msg import String
 from pocketsphinx.pocketsphinx import *
@@ -20,13 +19,9 @@ class JSGFTest(object):
         rospy.init_node("jsgf_control")
         # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
-        # Initializing rospack to find package location
-        rospack = rospkg.RosPack()
 
         # Params
 
-        # Location of external files
-        self.location = rospack.get_path('pocketsphinx') + '/demo/'
         # File containing language model
         _lm_param = "~lm"
         # Dictionary
@@ -45,7 +40,7 @@ class JSGFTest(object):
 
         # Setting param values
         if rospy.has_param(_hmm_param):
-            self.hmm = self.location + rospy.get_param(_hmm_param)
+            self.hmm = rospy.get_param(_hmm_param)
             if rospy.get_param(_hmm_param) == ":default":
                 if os.path.isdir("/usr/local/share/pocketsphinx/model"):
                     rospy.loginfo("Loading the default acoustic model")
@@ -61,7 +56,7 @@ class JSGFTest(object):
             return
 
         if rospy.has_param(_dict_param) and rospy.get_param(_dict_param) != ":default":
-            self.dict = self.location + rospy.get_param(_dict_param)
+            self.dict = rospy.get_param(_dict_param)
         else:
             rospy.logerr(
                 "No dictionary found. Please add an appropriate dictionary argument.")
@@ -69,7 +64,7 @@ class JSGFTest(object):
 
         if rospy.has_param(_lm_param) and rospy.get_param(_lm_param) != ':default':
             self._use_lm = 1
-            self.class_lm = self.location + rospy.get_param(_lm_param)
+            self.class_lm = rospy.get_param(_lm_param)
         elif rospy.has_param(_gram) and rospy.has_param(_rule):
             self._use_lm = 0
             self.gram = rospy.get_param(_gram)
@@ -102,13 +97,13 @@ class JSGFTest(object):
             self.decoder = Decoder(config)
 
             # Switch to JSGF grammar
-            jsgf = Jsgf(self.location + self.gram + '.gram')
+            jsgf = Jsgf(self.gram + '.gram')
             rule = jsgf.get_rule(self.gram + '.' + self.rule)
             # Using finite state grammar as mentioned in the rule
             fsg = jsgf.build_fsg(rule, self.decoder.get_logmath(), 7.5)
             rospy.loginfo("Writing fsg to " +
-                          self.location + self.gram + '.fsg')
-            fsg.writefile(self.location + self.gram + '.fsg')
+                          self.gram + '.fsg')
+            fsg.writefile(self.gram + '.fsg')
 
             self.decoder.set_fsg(self.gram, fsg)
             self.decoder.set_search(self.gram)
