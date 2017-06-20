@@ -48,11 +48,11 @@ class KWSDetection(object):
 
         # Setting param values
         if rospy.has_param(_hmm_param):
-            self.class_lm = rospy.get_param(_hmm_param)
+            self.class_hmm = rospy.get_param(_hmm_param)
             if rospy.get_param(_hmm_param) == ":default":
                 if os.path.isdir("/usr/local/share/pocketsphinx/model"):
                     rospy.loginfo("Loading the default acoustic model")
-                    self.class_lm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
+                    self.class_hmm = "/usr/local/share/pocketsphinx/model/en-us/en-us"
                     rospy.loginfo("Done loading the default acoustic model")
                 else:
                     rospy.logerr(
@@ -95,10 +95,10 @@ class KWSDetection(object):
         rospy.loginfo("Pocketsphinx initialized")
 
         # Setting configuration of decoder using provided params
-        config.set_string('-hmm', self.class_lm)
+        config.set_string('-hmm', self.class_hmm)
         config.set_string('-dict', self.lexicon)
         config.set_string('-dither', "no")
-        config.set_string('-featparams', os.path.join(self.class_lm, "feat.params"))
+        config.set_string('-featparams', os.path.join(self.class_hmm, "feat.params"))
 
         if self._list:
             # Keyword list file for keyword searching
