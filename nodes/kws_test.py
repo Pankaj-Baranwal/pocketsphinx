@@ -131,7 +131,6 @@ class KWSDetection(object):
             # Actual processing
             self.decoder.process_raw(data.data, False, False)
             if self.decoder.hyp() != None:
-                print "ENTERED HELL'S KITCHEN!"
                 rospy.loginfo([(seg.word, seg.prob, seg.start_frame, seg.end_frame)
                                for seg in self.decoder.seg()])
                 rospy.loginfo("Detected keyphrase, restarting search")
@@ -141,13 +140,10 @@ class KWSDetection(object):
                 self.pub_.publish(seg.word) #pylint: disable=undefined-loop-variable
 
                 if need_continuous:
-                    print "SMTHNG WRONG IN HELL'S KITCHEN!"
                     stop_output = True
                 else:
-                    print "RESTARTING HELL'S KITCHEN!"
                     self.decoder.start_utt()
         else:
-            print "WENT TO ELSE!"
             self.continuous_pub_.publish(data.data)
 
     @staticmethod
