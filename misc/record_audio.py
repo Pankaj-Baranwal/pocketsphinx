@@ -43,20 +43,22 @@ def record(OUTPUT_FILENAME):
                 data = stream.read(_chunk)
                 frames.append(data)
             else:
-                line = raw_input()
-                print ("STOPPING RECORDING")
-                # stop Recording
-                stream.stop_stream()
-                stream.close()
-                audio.terminate()
+                a = sys.stdin.read(1)
+                print (a)
+                if a == '\n':
+                    print ("STOPPING RECORDING")
+                    # stop Recording
+                    stream.stop_stream()
+                    stream.close()
+                    audio.terminate()
 
-                _wave_file = wave.open(OUTPUT_FILENAME, 'wb')
-                _wave_file.setnchannels(_channels)
-                _wave_file.setsampwidth(audio.get_sample_size(_format))
-                _wave_file.setframerate(_rate)
-                _wave_file.writeframes(b''.join(frames))
-                _wave_file.close()
-                break
+                    _wave_file = wave.open(OUTPUT_FILENAME, 'wb')
+                    _wave_file.setnchannels(_channels)
+                    _wave_file.setsampwidth(audio.get_sample_size(_format))
+                    _wave_file.setframerate(_rate)
+                    _wave_file.writeframes(b''.join(frames))
+                    _wave_file.close()
+                    break
 
 
 if __name__ == '__main__':
