@@ -3,6 +3,7 @@ import sys, select, os
 import termios
 import contextlib
 import time
+import re
 
 import numpy as np
 
@@ -20,6 +21,7 @@ def analyse_file(dic_path, kwlist_path):
     with open(dic_path) as f:
         content = f.readlines()
     content = [x.strip() for x in content]
+    print (content)
     with open(kwlist_path) as f:
         words = f.readlines()
     words = [x.strip()[:x.strip().rfind(' ')] for x in words]
@@ -27,13 +29,21 @@ def analyse_file(dic_path, kwlist_path):
     
     # threshold = ["/1e-1" for i in range(len(content))]
     frequency = []
+
     for i in range(len(words)):
-        if (words[i].index(' '))
-        spaces = content[i].count(' ') + 2
+        init_pos = 0
+        spaces = 0
+        for m in re.finditer(' ', words[i]):
+            indices = [j for j, s in enumerate(content) if words[i][init_pos:m.start()]+'\t' in s]
+            spaces = content[indices[0]].count(' ') + spaces + 1
+            init_pos = m.start()+1
+        indices = [j for j, s in enumerate(content) if words[i][init_pos:]+'\t' in s]
+        spaces = content[indices[0]].count(' ') + spaces + 1
         if  spaces <= 3:
             frequency.append(spaces)
         else:
             frequency.append(spaces * 2)
+    print (frequency)
     test_case = []
     test_case = [i for i in words]
     # for i in range(2):
@@ -128,13 +138,27 @@ def process_threshold(analysis_result, test_case):
     missed = [0 for i in range(len(words))]
     false_alarms = [0 for i in range(len(words))]
     for i in range(len(test_case)):
-        if analysis_result[j][3] < test_case[i][2] and analysis_result[i][2] > test_case[i][1]:
+        if analysis_result[j][3] < test_case[i][2] and analysis_result[j][2] > test_case[i][1]:
             if analysis_result[j][0] == test_case[i][0]:
                 continue
             else:
-                position = words.find(test_case[i][0])
-                missed[position] = missed[position]+1
-                frequency[words.index(analysis_result[i][0])] = frequency[words.index(analysis_result[i][0])] + 2
+                position_original = words.find(test_case[i][0])
+                position_observer = words.find(analysis_result[j][0])
+                missed[position_original] = missed[position_original]+1
+                false_alarms[position_observer] = false_alarms[position_observer]+2
+        else:
+            position_original = words.find(test_case[i][0])
+            missed[position_original] = missed[position_original]+1
+    for i in range(words):
+        if (missed[i] > false_alarms[i]/2):
+            frequency[i] = frequency[i] + missed[i] - (false_alarms[i]/2)
+        elif (missed[i] < false_alarms[i]/2):
+            frequency[i] = frequency[i] + ((false_alarms[i]/2) - missed)*2    
+    f = open('automated.kwlist', 'w')
+    for i in range(len(frequency)):
+        f.write(words[i] + ' ' + frequency[i] + '\n')
+    f.close()  # you can omit in most cases as the destructor will call it
+
     
     
 if __name__ == '__main__':
