@@ -14,10 +14,11 @@ frequency_threshold = 3
 words = []
 content = []
 test_case = []
+frequency = []
 no_of_frames = []
 
 def analyse_file(dic_path, kwlist_path):
-    global words, test_case
+    global words, test_case, frequency
     with open(dic_path) as f:
         content = f.readlines()
     content = [x.strip() for x in content]
@@ -28,7 +29,6 @@ def analyse_file(dic_path, kwlist_path):
 
     
     # threshold = ["/1e-1" for i in range(len(content))]
-    frequency = []
 
     for i in range(len(words)):
         init_pos = 0
@@ -70,20 +70,22 @@ def raw_mode(file):
 
 def record(OUTPUT_FILENAME):
     global no_of_frames
-
     # rec -c 1 -r 16000 -b 16 recording.wav
-    i = 0
     print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
-    print (test_case[i])
+    print (test_case[0])
     os.system('rec -q -c 1 -r 16000 -b 16 test_case_audio.wav &')
-    no_of_frames.append(time.time())
+    previous = time.time()
+    no_of_frames.append(0)
+    i = 0
     with raw_mode(sys.stdin):
         while True:
             if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
                 a = sys.stdin.read(1)
                 if a == '\n':
                     if i == len(test_case)-1:
-                        no_of_frames.append(time.time())
+                        current = time.time()
+                        no_of_frames.append(no_of_frames[i] + (current - previous)*100)
+                        previous = current
                         print ("STOPPING RECORDING")
                         time.sleep(2)
                         # stop Recording
@@ -91,7 +93,9 @@ def record(OUTPUT_FILENAME):
                         print (no_of_frames)
                         break
                     else:
-                        no_of_frames.append(time.time())
+                        current = time.time()
+                        no_of_frames.append(no_of_frames[i] + (current - previous)*100)
+                        previous = current
                         i = i+1
                         print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
                         print (test_case[i])
@@ -132,31 +136,35 @@ def kws_analysis():
             decoder.end_utt()
             decoder.start_utt()
     print (analysis_result)
+    process_threshold(analysis_result)
 
-def process_threshold(analysis_result, test_case):
+def process_threshold(analysis_result):
+    global frequency
     j = 0
     missed = [0 for i in range(len(words))]
     false_alarms = [0 for i in range(len(words))]
-    for i in range(len(test_case)):
-        if analysis_result[j][3] < test_case[i][2] and analysis_result[j][2] > test_case[i][1]:
-            if analysis_result[j][0] == test_case[i][0]:
+    for i in range(len(test_case)-1):
+        if analysis_result[j][3] < no_of_frames[i+1] and analysis_result[j][2] > no_of_frames[i]:
+            if analysis_result[j][0] == test_case[i]:
                 continue
             else:
-                position_original = words.find(test_case[i][0])
-                position_observer = words.find(analysis_result[j][0])
+                position_original = words.index(test_case[i])
+                position_observer = words.index(analysis_result[j][0])
                 missed[position_original] = missed[position_original]+1
                 false_alarms[position_observer] = false_alarms[position_observer]+2
         else:
-            position_original = words.find(test_case[i][0])
+            position_original = words.index(test_case[i])
             missed[position_original] = missed[position_original]+1
-    for i in range(words):
-        if (missed[i] > false_alarms[i]/2):
+    for i in range(len(words)):
+        print ('Overall missed words for ' + words[i] + str(missed[i]))
+        print ('Overall False Alarm for ' + words[i] + str(false_alarms[i]/2))
+        if missed[i] > false_alarms[i]/2:
             frequency[i] = frequency[i] + missed[i] - (false_alarms[i]/2)
-        elif (missed[i] < false_alarms[i]/2):
+        elif missed[i] < false_alarms[i]/2:
             frequency[i] = frequency[i] + ((false_alarms[i]/2) - missed)*2    
     f = open('automated.kwlist', 'w')
     for i in range(len(frequency)):
-        f.write(words[i] + ' ' + frequency[i] + '\n')
+        f.write(words[i] + ' ' + str(frequency[i]) + '\n')
     f.close()  # you can omit in most cases as the destructor will call it
 
     
