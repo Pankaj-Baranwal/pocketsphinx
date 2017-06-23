@@ -27,7 +27,8 @@ def analyse_file(dic_path, kwlist_path):
     
     # threshold = ["/1e-1" for i in range(len(content))]
     frequency = []
-    for i in range(len(content)):
+    for i in range(len(words)):
+        if (words[i].index(' '))
         spaces = content[i].count(' ') + 2
         if  spaces <= 3:
             frequency.append(spaces)
@@ -65,16 +66,19 @@ def record(OUTPUT_FILENAME):
     print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
     print (test_case[i])
     os.system('rec -q -c 1 -r 16000 -b 16 test_case_audio.wav &')
+    no_of_frames.append(time.time())
     with raw_mode(sys.stdin):
         while True:
             if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
                 a = sys.stdin.read(1)
                 if a == '\n':
                     if i == len(test_case)-1:
+                        no_of_frames.append(time.time())
                         print ("STOPPING RECORDING")
                         time.sleep(2)
                         # stop Recording
                         os.system('pkill rec')
+                        print (no_of_frames)
                         break
                     else:
                         no_of_frames.append(time.time())
@@ -120,11 +124,16 @@ def kws_analysis():
     print (analysis_result)
 
 def process_threshold(analysis_result, test_case):
+    j = 0
+    missed = [0 for i in range(len(words))]
+    false_alarms = [0 for i in range(len(words))]
     for i in range(len(test_case)):
-        if analysis_result[i][3] < test_case[i][2] and analysis_result[i][2] > test_case[i][1]:
-            if analysis_result[i][0] == test_case[i][0]:
+        if analysis_result[j][3] < test_case[i][2] and analysis_result[i][2] > test_case[i][1]:
+            if analysis_result[j][0] == test_case[i][0]:
                 continue
             else:
+                position = words.find(test_case[i][0])
+                missed[position] = missed[position]+1
                 frequency[words.index(analysis_result[i][0])] = frequency[words.index(analysis_result[i][0])] + 2
     
     
