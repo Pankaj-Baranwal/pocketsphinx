@@ -1,18 +1,8 @@
-"""
-Add feature to say each word individually. THen press a key for next word.
-This will help compare start_frame and end_frame and decide if it is 
-false positive or missed detection
-
-Calculate frequency of incorrect places each word was found in. And frequency of correct detections.
-And missed detections.
-"""
+""" sss"""
 import sys, select, os
 import termios
 import contextlib
 import time
-
-import wave
-import pyaudio
 
 import numpy as np
 
@@ -23,31 +13,36 @@ frequency_threshold = 3
 words = []
 content = []
 test_case = []
+no_of_frames = []
 
-def analyse_file(path):
+def analyse_file(dic_path, kwlist_path):
     global words, test_case
-    with open(path) as f:
+    with open(dic_path) as f:
         content = f.readlines()
     content = [x.strip() for x in content]
-    words = [x[:x.index('\t')] for x in content]
-    print (words)
+    with open(kwlist_path) as f:
+        words = f.readlines()
+    words = [x.strip()[:x.strip().rfind(' ')] for x in words]
 
     
     # threshold = ["/1e-1" for i in range(len(content))]
     frequency = []
     for i in range(len(content)):
-        spaces = content[i].count(' ') + 1
+        spaces = content[i].count(' ') + 2
         if  spaces <= 3:
             frequency.append(spaces)
         else:
             frequency.append(spaces * 2)
     test_case = []
     test_case = [i for i in words]
-    print (test_case)
+    # for i in range(2):
+    #     test_case.extend(test_case)
     np.random.shuffle(test_case)
+    print ("HERE IS YOUR TRAINING SET")
+    print (test_case)
+    OUTPUT_FILENAME = 'test_case_audio.wav'
 #     print (test_case)
 #     record_audio()
-    OUTPUT_FILENAME = 'test_case_audio.wav'
     record(OUTPUT_FILENAME)
     kws_analysis()
 
@@ -63,47 +58,23 @@ def raw_mode(file):
         termios.tcsetattr(file.fileno(), termios.TCSADRAIN, old_attrs)
 
 def record(OUTPUT_FILENAME):
+    global no_of_frames
 
-    no_of_frames = []
-
-    _format = pyaudio.paInt16
-    _channels = 1
-    _rate = 44100
-    _chunk = 1024
-
-    audio = pyaudio.PyAudio()
-
-    _rate = int(audio.get_device_info_by_index(0)['defaultSampleRate'])
-
-    # start Recording
-    stream = audio.open(format=_format, channels=_channels,
-                        rate=_rate, input=True,
-                        frames_per_buffer=_chunk)
-    frames = []
+    # rec -c 1 -r 16000 -b 16 recording.wav
     i = 0
     print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
     print (test_case[i])
+    os.system('rec -q -c 1 -r 16000 -b 16 test_case_audio.wav &')
     with raw_mode(sys.stdin):
         while True:
-            if not sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
-                data = stream.read(_chunk)
-                frames.append(data)
-            else:
+            if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
                 a = sys.stdin.read(1)
                 if a == '\n':
                     if i == len(test_case)-1:
                         print ("STOPPING RECORDING")
+                        time.sleep(2)
                         # stop Recording
-                        stream.stop_stream()
-                        stream.close()
-                        audio.terminate()
-
-                        _wave_file = wave.open(OUTPUT_FILENAME, 'wb')
-                        _wave_file.setnchannels(_channels)
-                        _wave_file.setsampwidth(audio.get_sample_size(_format))
-                        _wave_file.setframerate(_rate)
-                        _wave_file.writeframes(b''.join(frames))
-                        _wave_file.close()
+                        os.system('pkill rec')
                         break
                     else:
                         no_of_frames.append(time.time())
@@ -124,7 +95,8 @@ def kws_analysis():
     config.set_string('-dict', 'voice_cmd.dic')
     config.set_string('-kws', 'voice_cmd.kwlist')
     config.set_string('-dither', "no")
-    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 'en-us/en-us'), "feat.params"))
+    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 
+                    'en-us/en-us'), "feat.params"))
 
     stream = open(os.path.join("test_case_audio.wav"), "rb")
 
@@ -154,14 +126,10 @@ def process_threshold(analysis_result, test_case):
                 continue
             else:
                 frequency[words.index(analysis_result[i][0])] = frequency[words.index(analysis_result[i][0])] + 2
-
-
-
-
     
     
 if __name__ == '__main__':
 #     if len(argv) > 1:
 #     FILE_NAME = argv[1]
-    analyse_file("/home/pankaj/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic")
+    analyse_file("/home/pankaj/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic", "/home/pankaj/catkin_ws/src/pocketsphinx/demo/voice_cmd.kwlist")
     # kws_analysis()
