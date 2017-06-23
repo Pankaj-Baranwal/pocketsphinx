@@ -22,10 +22,14 @@ def analyse_file(dic_path, kwlist_path):
     with open(dic_path) as f:
         content = f.readlines()
     content = [x.strip() for x in content]
+    print ('CONTENT LIST')
     print (content)
     with open(kwlist_path) as f:
         words = f.readlines()
     words = [x.strip()[:x.strip().rfind(' ')] for x in words]
+    print ('WORDS LIST')
+
+    print (words)
 
     
     # threshold = ["/1e-1" for i in range(len(content))]
@@ -130,7 +134,7 @@ def kws_analysis():
         
         if decoder.hyp() != None:
             for seg in decoder.seg():
-                analysis_result.append([seg.word, seg.prob, seg.start_frame, seg.end_frame])
+                analysis_result.append([seg.word.rstrip(), seg.prob, seg.start_frame, seg.end_frame])
             # Output: [('forward', -617, 63, 121)]
             print ("Detected keyphrase, restarting search")
             decoder.end_utt()
@@ -148,6 +152,7 @@ def process_threshold(analysis_result):
             if analysis_result[j][0] == test_case[i]:
                 continue
             else:
+                print (words)
                 position_original = words.index(test_case[i])
                 position_observer = words.index(analysis_result[j][0])
                 missed[position_original] = missed[position_original]+1
