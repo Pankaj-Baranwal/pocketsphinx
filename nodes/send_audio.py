@@ -19,6 +19,7 @@ class AudioMessage(object):
 
         # initialize node
         rospy.init_node("audio_control")
+        rate = rospy.Rate(5) # 5hz
         # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
 
@@ -33,22 +34,30 @@ class AudioMessage(object):
 
         # Params
         self._input = "~input"
+        _rate_bool = False
 
         # Checking if audio file given or system microphone is needed
         if rospy.has_param(self._input):
             if rospy.get_param(self._input) != ":default":
+                _rate_bool = True
                 stream = open(rospy.get_param(self._input), 'rb')
+                rate = rospy.Rate(5) # 10hz
             else:
                 # Initializing pyaudio for input from system microhpone
                 stream = pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1,
                                                 rate=16000, input=True, frames_per_buffer=1024)
                 stream.start_stream()
+        else:
+            rospy.logerr("No input means provided. Please use the launch file instead")
+
 
         while not rospy.is_shutdown():
             buf = stream.read(1024)
             if buf:
                 # Publish audio to topic
                 self.pub_.publish(buf)
+                if _rate_bool:
+                    rate.sleep()
             else:
                 rospy.loginfo("Buffer returned null")
                 break
