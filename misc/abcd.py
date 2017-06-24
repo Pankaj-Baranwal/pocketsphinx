@@ -16,11 +16,42 @@ content = ['BACK\tB AE K', 'FORWARD\tF AO R W ER D', 'FULL\tF UH L', 'HALF\tHH A
 test_case = ['RIGHT', 'FULL SPEED', 'FORWARD', 'MOVE', 'STOP', 'LEFT', 'HALF SPEED', 'BACK']
 frequency = [3, 12, 14, 14, 8, 3, 3, 8]
 no_of_frames = [0, 280.32360076904297, 442.45760440826416, 611.5492105484009, 757.0955991744995, 913.1042003631592, 1071.2675094604492, 1245.9512948989868, 1397.8076934814453]
+reversal = False
+history_frequency = []
+history_errors = []
 
 def analyse_file(dic_path, kwlist_path):
-    kws_analysis('voice_cmd.kwlist')
-    for i in range(20):
+    global frequency
+    f = open('automated.kwlist', 'w')
+    for i in range(len(frequency)):
+        f.write(words[i] + ' /1e-' + str(frequency[i]) + '/\n')
+    f.close()
+    original_frequency = []
+    original_frequency.extend(frequency)
+    print (original_frequency)
+    for i in range(10):
         kws_analysis('automated.kwlist')
+    f = open('automated.kwlist', 'w')
+    for i in range(len(frequency)):
+        f.write(words[i] + ' /1e-' + str(frequency[i]) + '/\n')
+    f.close()
+    reversal = True
+    frequency = []
+    frequency.extend(original_frequency)
+    for i in range(10):
+        kws_analysis('automated.kwlist')
+    print (history_errors)
+    min_ = 0
+    for i in range(20):
+        if history_errors[i]<history_errors[min_]:
+            min_ = i
+    frequency = []
+    frequency.extend(history_frequency[min_])
+    f = open('automated.kwlist', 'w')
+    for i in range(len(frequency)):
+        f.write(words[i] + ' /1e-' + str(frequency[i]) + '/\n')
+    f.close()
+    
 
 
 def kws_analysis(kwlist):
@@ -52,7 +83,7 @@ def kws_analysis(kwlist):
         
         if decoder.hyp() != None:
             for seg in decoder.seg():
-                analysis_result.append([seg.word.rstrip(), seg.prob, seg.start_frame, seg.end_frame])
+                analysis_result.append([seg.word.rstrip(), seg.start_frame, seg.end_frame])
             # Output: [('forward', -617, 63, 121)]
             print ("Detected keyphrase, restarting search")
             decoder.end_utt()
@@ -61,31 +92,52 @@ def kws_analysis(kwlist):
     process_threshold(analysis_result)
 
 def process_threshold(analysis_result):
-    global frequency
+    global frequency, history_errors, history_frequency
     j = 0
+    counter = 0
     missed = [0 for i in range(len(words))]
     false_alarms = [0 for i in range(len(words))]
     for i in range(len(test_case)-1):
-        if analysis_result[j][3] < no_of_frames[i+1] and analysis_result[j][2] > no_of_frames[i]:
+        if analysis_result[j][2] < no_of_frames[i+1] and analysis_result[j][1] > no_of_frames[i]:
             if analysis_result[j][0] == test_case[i]:
+                j = j + 1
                 continue
             else:
                 position_original = words.index(test_case[i])
                 position_observer = words.index(analysis_result[j][0])
                 missed[position_original] = missed[position_original]+1
                 false_alarms[position_observer] = false_alarms[position_observer]+2
+                counter = counter + 2
+                # print ('adding missed to ' + test_case[i] + ' which is ' + words[words.index(test_case[i])])
+                # print ('adding false alarm to ' + analysis_result[j][0] + ' which is ' + words[words.index(analysis_result[j][0])])
         else:
             position_original = words.index(test_case[i])
             missed[position_original] = missed[position_original]+1
+            counter = counter + 1
+            # print ('adding missed to ' + test_case[i] + ' which is ' + words[words.index(test_case[i])])
+            # print (i)
+            # print (str(analysis_result[j][3]) + '  ' + str(no_of_frames[i+1]) + '   ' + str(analysis_result[j][2]) + '   ' + str(no_of_frames[i]))
     for i in range(len(words)):
-        print ('Overall missed words for ' + words[i] + str(missed[i]))
-        print ('Overall False Alarm for ' + words[i] + str(false_alarms[i]/2))
+        if missed[i] > 0:
+            print ('Overall missed words for ' + words[i] + str(missed[i]))
+        if false_alarms[i]/2 > 0:
+            print ('Overall False Alarm for ' + words[i] + str(false_alarms[i]/2))
         if missed[i] > false_alarms[i]/2:
-            diff = missed[i] - (false_alarms[i]/2)
-            if frequency[i] > diff:
-                frequency[i] = frequency[i] - missed[i] + (false_alarms[i]/2)
+            if not reversal:
+                frequency[i] = frequency[i] + missed[i] - (false_alarms[i]/2)
+            else:
+                diff = missed[i] - (false_alarms[i]/2)
+                if frequency[i] > diff:
+                    frequency[i] = frequency[i] - missed[i] + (false_alarms[i]/2)
         elif missed[i] < false_alarms[i]/2:
-            frequency[i] = frequency[i] + ((false_alarms[i]/2) - missed)*2
+            if not reversal:
+                diff = (false_alarms[i]/2) - missed[i]
+                if frequency[i] > diff:
+                    frequency[i] = frequency[i] - (false_alarms[i]/2) + missed[i]
+            else:
+                frequency[i] = frequency[i] + (false_alarms[i]/2) - missed[i]
+    history_frequency.append(frequency)
+    history_errors.append(counter)
     print (frequency)
     f = open('automated.kwlist', 'w')
     for i in range(len(frequency)):
