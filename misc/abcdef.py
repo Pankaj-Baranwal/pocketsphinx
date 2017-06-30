@@ -62,9 +62,50 @@ def analyse_file(dic_path, kwlist_path):
                 break
         if fa[0][1] == 0:
             break
+    print ("All false alarms removed. New frequency: ")
     print (frequency)
-    
 
+    missed, fa = process_threshold(kws_analysis(kwlist_path))
+
+    print ('MISSED')
+
+    missed.sort(key=lambda x: x[1], reverse=True)
+    print (missed)
+    
+    while missed[0][1] > 0:
+        print ('IN MISSED WHILE')
+        print (missed[0][0], str(missed[0][1]))
+        position = words.index(missed[0][0])
+        
+        for i in range(frequency[position],50):
+            _f = open(kwlist_path, 'w')
+            for j in range(len(frequency)):
+                if j == position:
+                    frequency[j] += 1
+                    _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+                else:
+                    _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+            _f.close()
+            missed_new, fa = process_threshold(kws_analysis(kwlist_path))
+            print ('MISSED_NEW')
+            
+            missed_new.sort(key=lambda x: x[1], reverse=True)
+            print (missed_new) 
+            print (frequency)
+
+            if missed[0][0] == missed_new[0][0] and missed_new[0][1] > 0:
+                print ('Missed Still the same')
+                print (missed_new[0][0], str(missed_new[0][1]))
+                pass
+            else:
+                missed = []
+                missed.extend(missed_new)
+                print (missed[0][0], ' missed reign ended')
+                break
+        if missed[0][1] == 0:
+            break
+    print ("All missing detections now detected. New frequency: ")
+    print (frequency)
 
 def kws_analysis(kwlist):
     analysis_result = []
@@ -109,6 +150,7 @@ def kws_analysis(kwlist):
     return analysis_result
 
 def process_threshold(analysis_result):
+    _indices = []
     print ('INSIDE process')
 
     j = 1
@@ -118,6 +160,7 @@ def process_threshold(analysis_result):
 
     for i in range(len(analysis_result)):
         _index = min(range(len(no_of_frames)), key=lambda l: abs(no_of_frames[l] - analysis_result[i][1]))
+        _indices.append(_index)
         if test_case[_index-1] == analysis_result[i][0]:
             print ('DETECTED CORRECTLY', analysis_result[i][0])
         else:
@@ -126,6 +169,10 @@ def process_threshold(analysis_result):
             position_observer = words.index(analysis_result[i][0])
             missed[position_original][1] += 1
             false_alarms[position_observer][1] += 1
+    for i in range(len(test_case)):
+        if i not in _indices:
+            position_original = words.index(test_case[i])
+            missed[position_original][1] += 1
     print ('OUTSIDE')
     return missed, false_alarms
     
