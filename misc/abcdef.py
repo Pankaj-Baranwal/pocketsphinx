@@ -71,11 +71,13 @@ def analyse_file(dic_path, kwlist_path):
 
     missed.sort(key=lambda x: x[1], reverse=True)
     print (missed)
-    
-    while missed[0][1] > 0:
+
+    #TODO: find element in list of lists
+    smallest_index = missed.index(0)-1
+    while smallest_index > -1:
         print ('IN MISSED WHILE')
-        print (missed[0][0], str(missed[0][1]))
-        position = words.index(missed[0][0])
+        print (missed[smallest_index][0], str(missed[smallest_index][1]))
+        position = words.index(missed[smallest_index][0])
         
         for i in range(frequency[position],50):
             _f = open(kwlist_path, 'w')
@@ -90,19 +92,23 @@ def analyse_file(dic_path, kwlist_path):
             print ('MISSED_NEW')
             
             missed_new.sort(key=lambda x: x[1], reverse=True)
-            print (missed_new) 
+            print (missed)
+
+            #TODO: find element in list of lists
+            smallest_index_new = missed.index(0)-1
+            print (missed_new)
             print (frequency)
 
-            if missed[0][0] == missed_new[0][0] and missed_new[0][1] > 0:
+            if missed[smallest_index][0] == missed_new[smallest_index_new][0] and missed_new[smallest_index_new][1] > -1:
                 print ('Missed Still the same')
-                print (missed_new[0][0], str(missed_new[0][1]))
-                pass
+                print (missed_new[smallest_index_new][0], str(missed_new[smallest_index_new][1]))
             else:
+                smallest_index = smallest_index_new
                 missed = []
                 missed.extend(missed_new)
-                print (missed[0][0], ' missed reign ended')
+                print (missed[smallest_index][0], ' missed reign ended')
                 break
-        if missed[0][1] == 0:
+        if missed[smallest_index][1] == 0:
             break
     print ("All missing detections now detected. New frequency: ")
     print (frequency)
