@@ -21,7 +21,7 @@ history_frequency = []
 history_errors = []
 
 def analyse_file(dic_path, kwlist_path):
-    global frequency
+    global frequency, reversal
     f = open('automated.kwlist', 'w')
     for i in range(len(frequency)):
         f.write(words[i] + ' /1e-' + str(frequency[i]) + '/\n')
@@ -84,8 +84,9 @@ def kws_analysis(kwlist):
         if decoder.hyp() != None:
             for seg in decoder.seg():
                 analysis_result.append([seg.word.rstrip(), seg.start_frame, seg.end_frame])
+
             # Output: [('forward', -617, 63, 121)]
-            print ("Detected keyphrase, restarting search")
+            # print ("Detected keyphrase, restarting search")
             decoder.end_utt()
             decoder.start_utt()
     print (analysis_result)
@@ -93,30 +94,48 @@ def kws_analysis(kwlist):
 
 def process_threshold(analysis_result):
     global frequency, history_errors, history_frequency
+    marked = []
+    _prev = analysis_result[0][2]
+    _next = analysis_result[2][1]
+    if _prev > analysis_result[1][1]:
+        marked.append(0)
+    for i in range(len(analysis_result)-2):
+        i = i + 1
+        if analysis_result[i][1] > _prev and analysis_result[i][2] < _next:
+            pass
+        else:
+            marked.append(i)
+        _prev = analysis_result[i][2]
+        _next = analysis_result[i+2][1]
     j = 0
     counter = 0
     missed = [0 for i in range(len(words))]
     false_alarms = [0 for i in range(len(words))]
     for i in range(len(test_case)-1):
-        if analysis_result[j][2] < no_of_frames[i+1] and analysis_result[j][1] > no_of_frames[i]:
-            if analysis_result[j][0] == test_case[i]:
-                j = j + 1
-                continue
+        if marked.index(j) < 0:
+            if analysis_result[j][2] < no_of_frames[i+1] and analysis_result[j][1] > no_of_frames[i]:
+                if analysis_result[j][0] == test_case[i]:
+                    j = j + 1
+                    continue
+                else:
+                    position_original = words.index(test_case[i])
+                    position_observer = words.index(analysis_result[j][0])
+                    missed[position_original] = missed[position_original] + 1
+                    false_alarms[position_observer] = false_alarms[position_observer] + 1
+                    counter = counter + 2
+                    # print ('adding missed to ' + test_case[i] + ' which is ' + words[words.index(test_case[i])])
+                    # print ('adding false alarm to ' + analysis_result[j][0] + ' which is ' + words[words.index(analysis_result[j][0])])
             else:
                 position_original = words.index(test_case[i])
-                position_observer = words.index(analysis_result[j][0])
-                missed[position_original] = missed[position_original]+1
-                false_alarms[position_observer] = false_alarms[position_observer]+2
-                counter = counter + 2
+                missed[position_original] = missed[position_original] + 1
+                counter = counter + 1
                 # print ('adding missed to ' + test_case[i] + ' which is ' + words[words.index(test_case[i])])
-                # print ('adding false alarm to ' + analysis_result[j][0] + ' which is ' + words[words.index(analysis_result[j][0])])
+                # print (i)
+                # print (str(analysis_result[j][3]) + '  ' + str(no_of_frames[i+1]) + '   ' + str(analysis_result[j][2]) + '   ' + str(no_of_frames[i]))
+            else:
+                print "TIME MISSED"
         else:
-            position_original = words.index(test_case[i])
-            missed[position_original] = missed[position_original]+1
-            counter = counter + 1
-            # print ('adding missed to ' + test_case[i] + ' which is ' + words[words.index(test_case[i])])
-            # print (i)
-            # print (str(analysis_result[j][3]) + '  ' + str(no_of_frames[i+1]) + '   ' + str(analysis_result[j][2]) + '   ' + str(no_of_frames[i]))
+            
     for i in range(len(words)):
         if missed[i] > 0:
             print ('Overall missed words for ' + words[i] + str(missed[i]))

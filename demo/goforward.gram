@@ -6,9 +6,9 @@
 
 grammar goforward;
 
-public <move> = go forward;
+public <move> = move forward;
 
-public <move2> = go <direction> <distance> [meter | meters] ;
+public <move2> = move <direction> <distance> [meter | meters] ;
 
 <direction> = forward | backward;
 
