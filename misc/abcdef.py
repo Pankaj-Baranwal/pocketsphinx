@@ -12,7 +12,7 @@ from sphinxbase.sphinxbase import *
 
 words = ['BACK', 'FORWARD', 'FULL SPEED', 'HALF SPEED', 'LEFT', 'MOVE', 'RIGHT', 'STOP']
 test_case = ['MOVE', 'HALF SPEED', 'FULL SPEED', 'STOP', 'BACK', 'LEFT', 'FULL SPEED', 'RIGHT', 'FORWARD', 'STOP', 'MOVE', 'HALF SPEED', 'LEFT', 'FORWARD', 'BACK', 'RIGHT']
-frequency = [3, 12, 14, 14, 8, 3, 3, 8]
+frequency = [33, 12, 14, 14, 8, 3, 3, 8]
 no_of_frames = [0, 179.3909788131714, 313.7873888015747, 443.70648860931396, 575.8549928665161, 686.6472005844116, 800.2424001693726, 930.3613901138306, 1030.3193807601929, 1142.4673795700073, 1257.0980787277222, 1362.549877166748, 1493.0691957473755, 1609.5585823059082, 1728.8280963897705, 1843.3436870574951, 1958.2996845245361]
 
 def analyse_file(dic_path, kwlist_path):
@@ -26,8 +26,6 @@ def analyse_file(dic_path, kwlist_path):
     print ('ready')
     missed, fa = process_threshold(kws_analysis(kwlist_path))
     print ('FA')
-
-    print ('1 complete')
 
     fa.sort(key=lambda x: x[1], reverse=True)
     print (fa)
@@ -53,18 +51,17 @@ def analyse_file(dic_path, kwlist_path):
             print (fa_new) 
             print (frequency)
 
-            if fa[0][0] == fa_new[0][0]:
+            if fa[0][0] == fa_new[0][0] and fa_new[0][1] > 0:
                 print ('Still the same')
-                print (fa[0][0], str(fa[0][1]))
+                print (fa_new[0][0], str(fa_new[0][1]))
                 pass
             else:
+                fa = []
+                fa.extend(fa_new)
                 print (fa[0][0], ' reign ended')
                 break
-        if fa_new[0][1] == 0:
+        if fa[0][1] == 0:
             break
-        else:
-            fa = []
-            fa.extend(fa_new)
     print (frequency)
     
 
@@ -118,26 +115,17 @@ def process_threshold(analysis_result):
     missed = [[words[i], 0] for i in range(len(words))]
     false_alarms = [[words[i], 0] for i in range(len(words))]
     i = 0
-    
-    while i < len(analysis_result) and j < len(no_of_frames):
-        while no_of_frames[j] < analysis_result[i][1]:
-            print (j)
-            j += 1
-            position_original = words.index(test_case[j-1])
-            missed[position_original][1] += 1
-            print (str(no_of_frames[j]), str(analysis_result[i][1]))
-        if test_case[j-1] == analysis_result[i][0]:
+
+    for i in range(len(analysis_result)):
+        _index = min(range(len(no_of_frames)), key=lambda l: abs(no_of_frames[l] - analysis_result[i][1]))
+        if test_case[_index-1] == analysis_result[i][0]:
             print ('DETECTED CORRECTLY', analysis_result[i][0])
-            i += 1
-            j += 1
         else:
             print ('FA Found', analysis_result[i][0])
-            position_original = words.index(test_case[j-1])
+            position_original = words.index(test_case[_index-1])
             position_observer = words.index(analysis_result[i][0])
             missed[position_original][1] += 1
             false_alarms[position_observer][1] += 1
-            j += 1
-            i += 1
     print ('OUTSIDE')
     return missed, false_alarms
     
