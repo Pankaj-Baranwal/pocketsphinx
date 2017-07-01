@@ -37,12 +37,9 @@ def analyse_file(dic_path, kwlist_path):
         
         for i in range(frequency[position],0,-1):
             _f = open(kwlist_path, 'w')
+            frequency[position] -= 2
             for j in range(len(frequency)):
-                if j == position:
-                    frequency[j] -= 2
-                    _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
-                else:
-                    _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+                _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
             _f.close()
             missed, fa_new = process_threshold(kws_analysis(kwlist_path))
             print ('FA_NEW')
@@ -72,8 +69,10 @@ def analyse_file(dic_path, kwlist_path):
     missed.sort(key=lambda x: x[1], reverse=True)
     print (missed)
 
-    #TODO: find element in list of lists
-    smallest_index = missed.index(0)-1
+    inner_list = [e[1] for e in missed]
+    smallest_index = inner_list.index(0)-1
+    ignore = []
+
     while smallest_index > -1:
         print ('IN MISSED WHILE')
         print (missed[smallest_index][0], str(missed[smallest_index][1]))
@@ -81,21 +80,36 @@ def analyse_file(dic_path, kwlist_path):
         
         for i in range(frequency[position],50):
             _f = open(kwlist_path, 'w')
+            frequency[position] += 1
             for j in range(len(frequency)):
-                if j == position:
-                    frequency[j] += 1
-                    _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
-                else:
-                    _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+                _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
             _f.close()
             missed_new, fa = process_threshold(kws_analysis(kwlist_path))
+            for _i, _value in enumerate(fa):
+                if _value[1] > 0:
+                    _f = open(kwlist_path, 'w')
+                    ignore.append(_value[0])
+                    frequency[_i] -= 1
+                    for j in range(len(frequency)):
+                        _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+                    _f.close()
+
             print ('MISSED_NEW')
             
             missed_new.sort(key=lambda x: x[1], reverse=True)
-            print (missed)
 
-            #TODO: find element in list of lists
-            smallest_index_new = missed.index(0)-1
+            inner_list = [e[1] for e in missed_new]
+
+
+            smallest_index_new = inner_list.index(0)-1
+
+            while missed_new[smallest_index_new][0] in ignore and smallest_index_new > -1:
+                smallest_index_new -= 1
+            if smallest_index_new < 0:
+                smallest_index = smallest_index_new
+                print ('ITS OVER!')
+                break
+            # smallest_index_new = missed.index(0)-1
             print (missed_new)
             print (frequency)
 
@@ -108,7 +122,7 @@ def analyse_file(dic_path, kwlist_path):
                 missed.extend(missed_new)
                 print (missed[smallest_index][0], ' missed reign ended')
                 break
-        if missed[smallest_index][1] == 0:
+        if missed[smallest_index][1] == 0 or smallest_index < 0:
             break
     print ("All missing detections now detected. New frequency: ")
     print (frequency)
