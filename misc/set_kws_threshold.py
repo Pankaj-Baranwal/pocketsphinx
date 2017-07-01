@@ -60,16 +60,13 @@ def analyse_file(dic_path, kwlist_path):
     _f.close()
 
     # Analysis begins
-    
+
     missed, fa = process_threshold(kws_analysis(kwlist_path))
-    print ('FA')
 
     fa.sort(key=lambda x: x[1], reverse=True)
     print (fa)
 
     while fa[0][1] > 0:
-        print ('IN WHILE')
-        print (fa[0][0], str(fa[0][1]))
         position = words.index(fa[0][0])
         
         for i in range(frequency[position],0,-1):
@@ -79,40 +76,31 @@ def analyse_file(dic_path, kwlist_path):
                 _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
             _f.close()
             missed, fa_new = process_threshold(kws_analysis(kwlist_path))
-            print ('FA_NEW')
             
             fa_new.sort(key=lambda x: x[1], reverse=True)
-            print (fa_new) 
-            print (frequency)
 
-            if fa[0][0] == fa_new[0][0] and fa_new[0][1] > 0:
-                print ('Still the same')
-                print (fa_new[0][0], str(fa_new[0][1]))
-                pass
-            else:
+            if fa[0][0] != fa_new[0][0] or fa_new[0][1] < 0:
                 fa = []
                 fa.extend(fa_new)
-                print (fa[0][0], ' reign ended')
+                print (fa[0][0], ' corrected')
                 break
         if fa[0][1] == 0:
             break
     print ("All false alarms removed. New frequency: ")
     print (frequency)
+    time.sleep(1)
+    print ('Moving on to missed detections')
+
 
     missed, fa = process_threshold(kws_analysis(kwlist_path))
 
-    print ('MISSED')
-
     missed.sort(key=lambda x: x[1], reverse=True)
-    print (missed)
 
     inner_list = [e[1] for e in missed]
     smallest_index = inner_list.index(0)-1
     ignore = []
 
     while smallest_index > -1:
-        print ('IN MISSED WHILE')
-        print (missed[smallest_index][0], str(missed[smallest_index][1]))
         position = words.index(missed[smallest_index][0])
         
         for i in range(frequency[position],50):
@@ -130,8 +118,6 @@ def analyse_file(dic_path, kwlist_path):
                     for j in range(len(frequency)):
                         _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
                     _f.close()
-
-            print ('MISSED_NEW')
             
             missed_new.sort(key=lambda x: x[1], reverse=True)
 
@@ -144,20 +130,13 @@ def analyse_file(dic_path, kwlist_path):
                 smallest_index_new -= 1
             if smallest_index_new < 0:
                 smallest_index = smallest_index_new
-                print ('ITS OVER!')
                 break
-            # smallest_index_new = missed.index(0)-1
-            print (missed_new)
-            print (frequency)
 
-            if missed[smallest_index][0] == missed_new[smallest_index_new][0] and missed_new[smallest_index_new][1] > -1:
-                print ('Missed Still the same')
-                print (missed_new[smallest_index_new][0], str(missed_new[smallest_index_new][1]))
-            else:
+            if missed[smallest_index][0] != missed_new[smallest_index_new][0] or missed_new[smallest_index_new][1] <0:
                 smallest_index = smallest_index_new
                 missed = []
                 missed.extend(missed_new)
-                print (missed[smallest_index][0], ' missed reign ended')
+                print (missed[smallest_index][0], ' corrected')
                 break
         if missed[smallest_index][1] == 0 or smallest_index < 0:
             break
@@ -211,9 +190,6 @@ def record(OUTPUT_FILENAME):
 
 
 def kws_analysis(kwlist):
-    """
-    keyword spotting mode similar to the node
-    """
     analysis_result = []
 
     modeldir = "/usr/local/share/pocketsphinx/model/"
@@ -225,10 +201,10 @@ def kws_analysis(kwlist):
     config.set_string('-kws', kwlist)
     config.set_string('-dither', "no")
     config.set_string('-logfn', '/dev/null')
-    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 
-                    'en-us/en-us'), "feat.params"))
+    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 'en-us/en-us'), "feat.params"))
+    print ('INSIDE kws')
 
-    stream = open(os.path.join(OUTPUT_FILENAME), "rb")
+    stream = open("TEST_CASE_audio02.wav", "rb")
 
     # Process audio chunk by chunk. On keyphrase detected perform action and restart search
     decoder = Decoder(config)
@@ -236,73 +212,51 @@ def kws_analysis(kwlist):
     timer = 0
     while True:
         buf = stream.read(1024)
-        timer += 1024
         if buf:
             decoder.process_raw(buf, False, False)
         else:
             break
-        
         if decoder.hyp() != None:
-            # print (timer)
-            for seg in decoder.seg():
-                analysis_result.append([seg.word.rstrip(), timer])
+            print ([(seg.word, timer/320)
+                               for seg in decoder.seg()])
+            analysis_result.append([seg.word.rstrip(), timer/320])
+
+            # Output: [('forward', -617, 63, 121)]
             # print ("Detected keyphrase, restarting search")
-            # print (seg.word.rstrip() + ' ' + str(seg.start_frame) + ' ' + str(seg.end_frame))
             decoder.end_utt()
             decoder.start_utt()
-    print (analysis_result)
-    process_threshold(analysis_result, kwlist)
+        timer += 1024
 
-def process_threshold(analysis_result, kwlist):
-    global FREQUENCY, HISTORY_ERRORS, HISTORY_FREQUENCY
-    j = 0
-    counter = 0
-    missed = [0 for i in range(len(WORDS))]
-    false_alarms = [0 for i in range(len(WORDS))]
-    for i in range(len(TEST_CASE)-1):
-        if analysis_result[j][2] < NO_OF_FRAMES[i+1] and analysis_result[j][1] > NO_OF_FRAMES[i]:
-            if analysis_result[j][0] == TEST_CASE[i]:
-                j = j + 1
-                continue
-            else:
-                position_original = WORDS.index(TEST_CASE[i])
-                position_observer = WORDS.index(analysis_result[j][0])
-                missed[position_original] = missed[position_original]+1
-                false_alarms[position_observer] = false_alarms[position_observer]+2
-                counter = counter + 2
-                # print ('adding missed to ' + TEST_CASE[i] + ' which is ' + WORDS[WORDS.index(TEST_CASE[i])])
-                # print ('adding false alarm to ' + analysis_result[j][0] + ' which is ' + WORDS[WORDS.index(analysis_result[j][0])])
+    print ("analysis result")
+    print (analysis_result)
+    return analysis_result
+
+def process_threshold(analysis_result):
+    _indices = []
+    print ('INSIDE process')
+
+    j = 1
+    missed = [[words[i], 0] for i in range(len(words))]
+    false_alarms = [[words[i], 0] for i in range(len(words))]
+    i = 0
+
+    for i in range(len(analysis_result)):
+        _index = min(range(len(no_of_frames)), key=lambda l: abs(no_of_frames[l] - analysis_result[i][1]))
+        _indices.append(_index)
+        if test_case[_index-1] == analysis_result[i][0]:
+            print ('DETECTED CORRECTLY', analysis_result[i][0])
         else:
-            position_original = WORDS.index(TEST_CASE[i])
-            missed[position_original] = missed[position_original]+1
-            counter = counter + 1
-            # print ('adding missed to ' + TEST_CASE[i] + ' which is ' + WORDS[WORDS.index(TEST_CASE[i])]
-    for i in range(len(WORDS)):
-        if missed[i] > 0:
-            print ('Overall missed WORDS for ' + WORDS[i] + str(missed[i]))
-        if false_alarms[i]/2 > 0:
-            print ('Overall False Alarm for ' + WORDS[i] + str(false_alarms[i]/2))
-        if missed[i] > false_alarms[i]/2:
-            if not REVERSAL:
-                FREQUENCY[i] = FREQUENCY[i] + missed[i] - (false_alarms[i]/2)
-            else:
-                diff = missed[i] - (false_alarms[i]/2)
-                if FREQUENCY[i] > diff:
-                    FREQUENCY[i] = FREQUENCY[i] - missed[i] + (false_alarms[i]/2)
-        elif missed[i] < false_alarms[i]/2:
-            if not REVERSAL:
-                diff = (false_alarms[i]/2) - missed[i]
-                if FREQUENCY[i] > diff:
-                    FREQUENCY[i] = FREQUENCY[i] - (false_alarms[i]/2) + missed[i]
-            else:
-                FREQUENCY[i] = FREQUENCY[i] + (false_alarms[i]/2) - missed[i]
-    HISTORY_FREQUENCY.append(FREQUENCY)
-    HISTORY_ERRORS.append(counter)
-    print (FREQUENCY)
-    _f = open(kwlist, 'w')
-    for i in range(len(FREQUENCY)):
-        _f.write(WORDS[i] + ' /1e-' + str(FREQUENCY[i]) + '/\n')
-    _f.close()
+            print ('FA Found', analysis_result[i][0])
+            position_original = words.index(test_case[_index-1])
+            position_observer = words.index(analysis_result[i][0])
+            missed[position_original][1] += 1
+            false_alarms[position_observer][1] += 1
+    for i in range(len(test_case)):
+        if i not in _indices:
+            position_original = words.index(test_case[i])
+            missed[position_original][1] += 1
+    print ('OUTSIDE')
+    return missed, false_alarms
     
     
 if __name__ == '__main__':
