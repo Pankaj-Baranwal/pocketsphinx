@@ -102,7 +102,10 @@ def analyse_file(dic_path, kwlist_path):
     missed.sort(key=lambda x: x[1], reverse=True)
 
     inner_list = [e[1] for e in missed]
-    smallest_index = inner_list.index(0)-1
+    if 0 in inner_list:
+        smallest_index = inner_list.index(0)-1
+    else:
+        smallest_index = len(inner_list)-1
     ignore = []
 
     while smallest_index > -1:
@@ -150,7 +153,7 @@ def analyse_file(dic_path, kwlist_path):
         if missed[smallest_index][1] == 0 or smallest_index < 0:
             break
     
-    print ("All missing detections now detected. New frequency: ")
+    print ("Frequency tuned to the best of the script's ability. New frequency: ")
     print (FREQUENCY)
 
 @contextlib.contextmanager
