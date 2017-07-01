@@ -1,48 +1,4 @@
-"""
-training_set
-['FORWARD', 'LEFT', 'HALF SPEED', 'BACK', 'BACK', 'LEFT', 'FORWARD', 'MOVE', 'STOP', 'FULL SPEED', 'RIGHT', 'HALF SPEED', 'MOVE', (14)'STOP', 'FULL SPEED', 'RIGHT']
-time
-[0, 192.20919609069824, 318.2703971862793, 469.4032907485962, 588.911509513855, 706.5659046173096, 831.551194190979, 977.9011964797974, 1116.448712348938, 1258.5033893585205, 1394.4540977478027, 1534.2642068862915, 1674.9691009521484, (13)1807.6836109161377, 1995.4078912734985, 2175.194811820984, 2302.3014068603516]
-seg start, end
-[['STOP', 101, 127], ['BACK', 1927, 1977], ['FORWARD', 1858, 1914], ['FORWARD', 1785, 1844], ['BACK', 1938, 1986], ['STOP', 2312, 2357]]
 
-"""
-
-"""
-training_set
-['MOVE', 'HALF SPEED', 'FULL SPEED', 'STOP', 'BACK', 'LEFT', 'FULL SPEED', 'RIGHT', 'FORWARD', 'STOP', 'MOVE', 'HALF SPEED', 'LEFT', 'FORWARD', 'BACK', 'RIGHT']
-time
-[0, 179.3909788131714, 313.7873888015747, 443.70648860931396, 575.8549928665161, 686.6472005844116, 800.2424001693726, 930.3613901138306, 1030.3193807601929, 1142.4673795700073, 1257.0980787277222, 1362.549877166748, 1493.0691957473755, 1609.5585823059082, 1728.8280963897705, 1843.3436870574951, 1958.2996845245361]
-seg start, end
-53248
-LEFT 137 152
-91136
-LEFT 254 267
-177152
-STOP 505 539
-221184
-BACK 630 675
-250880
-LEFT 739 768
-368640
-FORWARD 1306 1359
-396288
-STOP 1196 1223
-443392
-LEFT 1354 1369
-468992
-LEFT 1429 1450
-507904
-LEFT 1552 1571
-556032
-FORWARD 1669 1721
-579584
-BACK 1785 1798
-624640
-LEFT 1924 1938
-
-
-"""
 
 """Script for auto tuning keyword thresholds"""
 import sys
@@ -63,17 +19,11 @@ CONTENT = []
 TEST_CASE = []
 FREQUENCY = []
 NO_OF_FRAMES = []
-# KWLIST_FILENAME = 'automated.kwlist'
-REVERSAL = False
-HISTORY_FREQUENCY = []
-HISTORY_ERRORS = []
 OUTPUT_FILENAME = ''
 
 def analyse_file(dic_path, kwlist_path):
-    """
-    create new kwlist, and loop over test cases for autotuning
-    """
-    global WORDS, TEST_CASE, FREQUENCY, REVERSAL, OUTPUT_FILENAME
+
+    global WORDS, TEST_CASE, FREQUENCY, OUTPUT_FILENAME
     with open(dic_path) as _f:
         CONTENT = _f.readlines()
     CONTENT = [x.strip() for x in CONTENT]
@@ -81,9 +31,6 @@ def analyse_file(dic_path, kwlist_path):
         WORDS = _f.readlines()
     WORDS = [x.strip()[:x.strip().rfind(' ')] for x in WORDS]
     print (WORDS)
-
-    
-    # threshold = ["/1e-1" for i in range(len(CONTENT))]
 
     for i in range(len(WORDS)):
         init_pos = 0
@@ -104,39 +51,118 @@ def analyse_file(dic_path, kwlist_path):
     np.random.shuffle(TEST_CASE)
     print ("HERE IS YOUR TRAINING SET")
     print (TEST_CASE)
-    OUTPUT_FILENAME = 'TEST_CASE_audio02.wav'
-#     print (TEST_CASE)
-#     record_audio()
+    OUTPUT_FILENAME = 'testing_audio.wav'
+
     record(OUTPUT_FILENAME)
     _f = open(kwlist_path, 'w')
     for i in range(len(FREQUENCY)):
         _f.write(WORDS[i] + ' /1e-' + str(FREQUENCY[i]) + '/\n')
     _f.close()
-    ORIGINAL_FREQUENCY = []
-    ORIGINAL_FREQUENCY.extend(FREQUENCY)
-    print (ORIGINAL_FREQUENCY)
-    for i in range(10):
-        kws_analysis('automated.kwlist')
-    _f = open(kwlist_path, 'w')
-    for i in range(len(FREQUENCY)):
-        _f.write(WORDS[i] + ' /1e-' + str(FREQUENCY[i]) + '/\n')
-    _f.close()
-    REVERSAL = True
-    FREQUENCY = []
-    FREQUENCY.extend(ORIGINAL_FREQUENCY)
-    for i in range(10):
-        kws_analysis(kwlist_path)
-    print (HISTORY_ERRORS)
-    min_ = 0
-    for i in range(20):
-        if HISTORY_ERRORS[i]<HISTORY_ERRORS[min_]:
-            min_ = i
-    FREQUENCY = []
-    FREQUENCY.extend(HISTORY_FREQUENCY[min_])
-    _f = open(kwlist_path, 'w')
-    for i in range(len(FREQUENCY)):
-        _f.write(WORDS[i] + ' /1e-' + str(FREQUENCY[i]) + '/\n')
-    _f.close()
+
+    # Analysis begins
+    
+    missed, fa = process_threshold(kws_analysis(kwlist_path))
+    print ('FA')
+
+    fa.sort(key=lambda x: x[1], reverse=True)
+    print (fa)
+
+    while fa[0][1] > 0:
+        print ('IN WHILE')
+        print (fa[0][0], str(fa[0][1]))
+        position = words.index(fa[0][0])
+        
+        for i in range(frequency[position],0,-1):
+            _f = open(kwlist_path, 'w')
+            frequency[position] -= 2
+            for j in range(len(frequency)):
+                _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+            _f.close()
+            missed, fa_new = process_threshold(kws_analysis(kwlist_path))
+            print ('FA_NEW')
+            
+            fa_new.sort(key=lambda x: x[1], reverse=True)
+            print (fa_new) 
+            print (frequency)
+
+            if fa[0][0] == fa_new[0][0] and fa_new[0][1] > 0:
+                print ('Still the same')
+                print (fa_new[0][0], str(fa_new[0][1]))
+                pass
+            else:
+                fa = []
+                fa.extend(fa_new)
+                print (fa[0][0], ' reign ended')
+                break
+        if fa[0][1] == 0:
+            break
+    print ("All false alarms removed. New frequency: ")
+    print (frequency)
+
+    missed, fa = process_threshold(kws_analysis(kwlist_path))
+
+    print ('MISSED')
+
+    missed.sort(key=lambda x: x[1], reverse=True)
+    print (missed)
+
+    inner_list = [e[1] for e in missed]
+    smallest_index = inner_list.index(0)-1
+    ignore = []
+
+    while smallest_index > -1:
+        print ('IN MISSED WHILE')
+        print (missed[smallest_index][0], str(missed[smallest_index][1]))
+        position = words.index(missed[smallest_index][0])
+        
+        for i in range(frequency[position],50):
+            _f = open(kwlist_path, 'w')
+            frequency[position] += 1
+            for j in range(len(frequency)):
+                _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+            _f.close()
+            missed_new, fa = process_threshold(kws_analysis(kwlist_path))
+            for _i, _value in enumerate(fa):
+                if _value[1] > 0:
+                    _f = open(kwlist_path, 'w')
+                    ignore.append(_value[0])
+                    frequency[_i] -= 1
+                    for j in range(len(frequency)):
+                        _f.write(words[j] + ' /1e-' + str(frequency[j]) + '/\n')
+                    _f.close()
+
+            print ('MISSED_NEW')
+            
+            missed_new.sort(key=lambda x: x[1], reverse=True)
+
+            inner_list = [e[1] for e in missed_new]
+
+
+            smallest_index_new = inner_list.index(0)-1
+
+            while missed_new[smallest_index_new][0] in ignore and smallest_index_new > -1:
+                smallest_index_new -= 1
+            if smallest_index_new < 0:
+                smallest_index = smallest_index_new
+                print ('ITS OVER!')
+                break
+            # smallest_index_new = missed.index(0)-1
+            print (missed_new)
+            print (frequency)
+
+            if missed[smallest_index][0] == missed_new[smallest_index_new][0] and missed_new[smallest_index_new][1] > -1:
+                print ('Missed Still the same')
+                print (missed_new[smallest_index_new][0], str(missed_new[smallest_index_new][1]))
+            else:
+                smallest_index = smallest_index_new
+                missed = []
+                missed.extend(missed_new)
+                print (missed[smallest_index][0], ' missed reign ended')
+                break
+        if missed[smallest_index][1] == 0 or smallest_index < 0:
+            break
+    print ("All missing detections now detected. New frequency: ")
+    print (frequency)    
 
 @contextlib.contextmanager
 def raw_mode(file):
