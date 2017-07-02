@@ -8,6 +8,7 @@
     <arg name="threshold" default=":default"/>
     <arg name="hmm" default=":default"/>
     <arg name="gram" default=":default"/>
+    <arg name="grammar" default=":default"/>
     <arg name="rule" default=":default"/>
 
     <!--
@@ -35,6 +36,7 @@
         <param name="dict" value="$(arg dict)"/>
         <param name="hmm" value="$(arg hmm)"/>
         <param name="gram" value="$(arg gram)"/>
+        <param name="grammar" value="$(arg grammar)"/>
         <param name="rule" value="$(arg rule)"/>
     </node>
 

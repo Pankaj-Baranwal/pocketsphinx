@@ -123,6 +123,7 @@ class KWSDetection(object):
         """Audio processing based on decoder config"""
         # For continuous mode
         stop_output = False
+        rate = rospy.Rate(5) # 10hzs
 
         need_continuous = rospy.has_param(self._option_param)
 
@@ -138,6 +139,7 @@ class KWSDetection(object):
                 self.decoder.end_utt()
                 # Publish output to a topic
                 self.pub_.publish(seg.word) #pylint: disable=undefined-loop-variable
+                rate.sleep()
 
                 if need_continuous:
                     stop_output = True
@@ -145,6 +147,7 @@ class KWSDetection(object):
                     self.decoder.start_utt()
         else:
             self.continuous_pub_.publish(data.data)
+            rate.sleep()
 
     @staticmethod
     def shutdown():

@@ -19,7 +19,6 @@ class AudioMessage(object):
 
         # initialize node
         rospy.init_node("audio_control")
-        rate = rospy.Rate(5) # 5hz
         # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
 
