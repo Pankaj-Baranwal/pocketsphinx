@@ -32,6 +32,7 @@ def preprocess_files(dic_path, kwlist_path):
     with open(kwlist_path) as _f:
         WORDS = _f.readlines()
     WORDS = [x.strip()[:x.strip().rfind(' ')] for x in WORDS]
+    WORDS.extend(['[RANDOM]', '[RANDOM]'])
     print (WORDS)
 
     for i, _ in enumerate(WORDS):
@@ -63,6 +64,70 @@ def preprocess_files(dic_path, kwlist_path):
     
     print ("Frequency tuned to the best of the script's ability. New frequency: ")
     print (FREQUENCY)
+
+def write_frequency_to_file(kwlist_path):
+    """
+    update modified frequencies in kwlist file
+    """
+    _f = open(kwlist_path, 'w')
+    for i, val in enumerate(FREQUENCY):
+        _f.write(WORDS[i] + ' /1e-' + str(val) + '/\n')
+    _f.close()
+
+@contextlib.contextmanager
+def raw_mode(_file):
+    """
+    Function handle the button press on successful utterance of word by user
+    """
+    old_attrs = termios.tcgetattr(_file.fileno())
+    new_attrs = old_attrs[:]
+    new_attrs[3] = new_attrs[3] & ~(termios.ECHO | termios.ICANON)
+    try:
+        termios.tcsetattr(_file.fileno(), termios.TCSADRAIN, new_attrs)
+        yield
+    finally:
+        termios.tcsetattr(_file.fileno(), termios.TCSADRAIN, old_attrs)
+
+def record():
+    """
+    Records user's speech with timestamp for each spoken word
+    """
+    global NO_OF_FRAMES
+    # rec -c 1 -r 16000 -b 16 recording.wav
+    if TEST_CASE[0] == '[RANDOM]':
+        print ("-----PRODUCE SOME NOISE-----")
+    else:
+        print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
+        print (TEST_CASE[0])
+    os.system('rec -q -c 1 -r 16000 -b 16 ' + OUTPUT_FILENAME + ' &')
+    NO_OF_FRAMES.append(0)
+    previous = time.time()
+    i = 0
+    with raw_mode(sys.stdin):
+        while True:
+            if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
+                _a = sys.stdin.read(1)
+                if _a == '\n':
+                    if i == len(TEST_CASE)-1:
+                        current = time.time()
+                        NO_OF_FRAMES.append(NO_OF_FRAMES[i] + (current - previous)*100)
+                        previous = current
+                        print ("STOPPING RECORDING")
+                        time.sleep(2)
+                        # stop Recording
+                        os.system('pkill rec')
+                        print (NO_OF_FRAMES)
+                        break
+                    else:
+                        current = time.time()
+                        NO_OF_FRAMES.append(NO_OF_FRAMES[i] + (current - previous)*100)
+                        previous = current
+                        i = i+1
+                        if TEST_CASE[0] == '[RANDOM]':
+                            print ("-----PRODUCE SOME NOISE-----")
+                        else:
+                            print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
+                            print (TEST_CASE[i])
 
 def analyse_fa(kwlist_path):
     """
@@ -147,66 +212,6 @@ def analyse_missed(kwlist_path):
         if _missed[_smallest_index][1] == 0 or _smallest_index < 0:
             break
 
-def write_frequency_to_file(kwlist_path):
-    """
-    update modified frequencies in kwlist file
-    """
-    _f = open(kwlist_path, 'w')
-    for i, val in enumerate(FREQUENCY):
-        _f.write(WORDS[i] + ' /1e-' + str(val) + '/\n')
-    _f.close()
-
-@contextlib.contextmanager
-def raw_mode(_file):
-    """
-    Function handle the button press on successful utterance of word by user
-    """
-    old_attrs = termios.tcgetattr(_file.fileno())
-    new_attrs = old_attrs[:]
-    new_attrs[3] = new_attrs[3] & ~(termios.ECHO | termios.ICANON)
-    try:
-        termios.tcsetattr(_file.fileno(), termios.TCSADRAIN, new_attrs)
-        yield
-    finally:
-        termios.tcsetattr(_file.fileno(), termios.TCSADRAIN, old_attrs)
-
-def record():
-    """
-    Records user's speech with timestamp for each spoken word
-    """
-    global NO_OF_FRAMES
-    # rec -c 1 -r 16000 -b 16 recording.wav
-    print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
-    print (TEST_CASE[0])
-    os.system('rec -q -c 1 -r 16000 -b 16 ' + OUTPUT_FILENAME + ' &')
-    previous = time.time()
-    NO_OF_FRAMES.append(0)
-    i = 0
-    with raw_mode(sys.stdin):
-        while True:
-            if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
-                _a = sys.stdin.read(1)
-                if _a == '\n':
-                    if i == len(TEST_CASE)-1:
-                        current = time.time()
-                        NO_OF_FRAMES.append(NO_OF_FRAMES[i] + (current - previous)*100)
-                        previous = current
-                        print ("STOPPING RECORDING")
-                        time.sleep(2)
-                        # stop Recording
-                        os.system('pkill rec')
-                        print (NO_OF_FRAMES)
-                        break
-                    else:
-                        current = time.time()
-                        NO_OF_FRAMES.append(NO_OF_FRAMES[i] + (current - previous)*100)
-                        previous = current
-                        i = i+1
-                        print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
-                        print (TEST_CASE[i])
-
-
-
 def kws_analysis(kwlist):
     """
     kws analysis on user speech and updated threshold values
@@ -263,6 +268,9 @@ def process_threshold(analysis_result):
     for i, val in enumerate(analysis_result):
         _index = min(range(len(NO_OF_FRAMES)), key=lambda l: abs(NO_OF_FRAMES[l] - val[1]))
         _indices.append(_index)
+        if TEST_CASE[_index-1] == '[RANDOM]':
+            position_observer = WORDS.index(val[0])
+            false_alarms[position_observer][1] += 1
         if TEST_CASE[_index-1] == val[0]:
             print ('DETECTED CORRECTLY', val[0])
         else:
@@ -272,12 +280,11 @@ def process_threshold(analysis_result):
             missed[position_original][1] += 1
             false_alarms[position_observer][1] += 1
     for i, val in enumerate(TEST_CASE):
-        if i+1 not in _indices:
+        if i+1 not in _indices and val != '[RANDOM]':
             position_original = WORDS.index(val)
             missed[position_original][1] += 1
             print ('Missed ', val)
     return missed, false_alarms
-    
     
 if __name__ == '__main__':
 #     if len(argv) > 1:
