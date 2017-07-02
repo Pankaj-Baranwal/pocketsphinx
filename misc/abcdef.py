@@ -21,8 +21,7 @@ def analyse_file(dic_path, kwlist_path):
     for i in range(len(frequency)):
         f.write(words[i] + ' /1e-' + str(frequency[i]) + '/\n')
     f.close()
-    original_frequency = []
-    original_frequency.extend(frequency)
+    
     print ('ready')
     missed, fa = process_threshold(kws_analysis(kwlist_path))
     print ('FA')
