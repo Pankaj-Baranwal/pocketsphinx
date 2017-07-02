@@ -32,7 +32,6 @@ def preprocess_files(dic_path, kwlist_path):
     with open(kwlist_path) as _f:
         WORDS = _f.readlines()
     WORDS = [x.strip()[:x.strip().rfind(' ')] for x in WORDS]
-    WORDS.extend(['[RANDOM]', '[RANDOM]'])
     print (WORDS)
 
     for i, _ in enumerate(WORDS):
@@ -48,8 +47,9 @@ def preprocess_files(dic_path, kwlist_path):
             FREQUENCY.append(spaces)
         else:
             FREQUENCY.append(spaces * 2)
-    TEST_CASE = []
+    TEST_CASE = ['[RANDOM]', '[RANDOM]']
     TEST_CASE.extend(WORDS)
+    TEST_CASE.extend(['[RANDOM]', '[RANDOM]'])
     TEST_CASE.extend(WORDS)
     np.random.shuffle(TEST_CASE)
     print ("HERE IS YOUR TRAINING SET")
@@ -59,8 +59,8 @@ def preprocess_files(dic_path, kwlist_path):
     write_frequency_to_file(kwlist_path)
 
     # Analysis begins
-    analyse_fa(kwlist_path)
-    analyse_missed(kwlist_path)
+    analyse_fa(dic_path, kwlist_path)
+    analyse_missed(dic_path, kwlist_path)
     
     print ("Frequency tuned to the best of the script's ability. New frequency: ")
     print (FREQUENCY)
@@ -94,11 +94,8 @@ def record():
     """
     global NO_OF_FRAMES
     # rec -c 1 -r 16000 -b 16 recording.wav
-    if TEST_CASE[0] == '[RANDOM]':
-        print ("-----PRODUCE SOME NOISE-----")
-    else:
-        print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
-        print (TEST_CASE[0])
+    print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
+    print (TEST_CASE[0])
     os.system('rec -q -c 1 -r 16000 -b 16 ' + OUTPUT_FILENAME + ' &')
     NO_OF_FRAMES.append(0)
     previous = time.time()
@@ -123,18 +120,15 @@ def record():
                         NO_OF_FRAMES.append(NO_OF_FRAMES[i] + (current - previous)*100)
                         previous = current
                         i = i+1
-                        if TEST_CASE[0] == '[RANDOM]':
-                            print ("-----PRODUCE SOME NOISE-----")
-                        else:
-                            print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
-                            print (TEST_CASE[i])
+                        print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
+                        print (TEST_CASE[i])
 
-def analyse_fa(kwlist_path):
+def analyse_fa(dic_path, kwlist_path):
     """
     process false alarms to tune thresholds
     """
 
-    _missed, _fa = process_threshold(kws_analysis(kwlist_path))
+    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
     _fa.sort(key=lambda x: x[1], reverse=True)
     position = 0
 
@@ -142,12 +136,12 @@ def analyse_fa(kwlist_path):
         print ('Working on FA of ', _fa[0][0])
         position = WORDS.index(_fa[0][0])
         
-        for _ in range(FREQUENCY[position], 0, -1):
+        for _ in range(FREQUENCY[position], 1, -1):
             FREQUENCY[position] -= 2
             write_frequency_to_file(kwlist_path)
             print ('UPDATED FREQUENCY:')
             print (FREQUENCY)
-            _missed, _fa_new = process_threshold(kws_analysis(kwlist_path))
+            _missed, _fa_new = process_threshold(kws_analysis(dic_path, kwlist_path))
             
             _fa_new.sort(key=lambda x: x[1], reverse=True)
 
@@ -162,12 +156,12 @@ def analyse_fa(kwlist_path):
     print (FREQUENCY)
     time.sleep(1)
 
-def analyse_missed(kwlist_path):
+def analyse_missed(dic_path, kwlist_path):
     """
     process missed detections to tune thresholds
     """
     print ('Moving on to missed detections')
-    _missed, _fa = process_threshold(kws_analysis(kwlist_path))
+    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
     _missed.sort(key=lambda x: x[1], reverse=True)
     _inner_list = [e[1] for e in _missed]
 
@@ -184,7 +178,7 @@ def analyse_missed(kwlist_path):
         for _ in range(FREQUENCY[_position], 50):
             FREQUENCY[_position] += 1
             write_frequency_to_file(kwlist_path)
-            _missed_new, _fa = process_threshold(kws_analysis(kwlist_path))
+            _missed_new, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
             for _i, _value in enumerate(_fa):
                 if _value[1] > 0:
                     _ignore.append(_value[0])
@@ -212,7 +206,7 @@ def analyse_missed(kwlist_path):
         if _missed[_smallest_index][1] == 0 or _smallest_index < 0:
             break
 
-def kws_analysis(kwlist):
+def kws_analysis(dic, kwlist):
     """
     kws analysis on user speech and updated threshold values
     """
@@ -223,12 +217,11 @@ def kws_analysis(kwlist):
     # Create a decoder with certain model
     config = Decoder.default_config()
     config.set_string('-hmm', os.path.join(modeldir, 'en-us/en-us'))
-    config.set_string('-dict', 'voice_cmd.dic')
+    config.set_string('-dict', dic)
     config.set_string('-kws', kwlist)
     config.set_string('-dither', "no")
     config.set_string('-logfn', '/dev/null')
-    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 
-                                                               'en-us/en-us'), "feat.params"))
+    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 'en-us/en-us'), "feat.params"))
 
     stream = open(OUTPUT_FILENAME, "rb")
 
@@ -271,7 +264,8 @@ def process_threshold(analysis_result):
         if TEST_CASE[_index-1] == '[RANDOM]':
             position_observer = WORDS.index(val[0])
             false_alarms[position_observer][1] += 1
-        if TEST_CASE[_index-1] == val[0]:
+            print ('FA Found', val[0], ' in place of RANDOM TEXT')
+        elif TEST_CASE[_index-1] == val[0]:
             print ('DETECTED CORRECTLY', val[0])
         else:
             print ('FA Found', val[0], ' in place of ', TEST_CASE[_index-1])
