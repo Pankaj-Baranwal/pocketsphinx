@@ -33,6 +33,8 @@ class JSGFTest(object):
         # Name of rule within the grammar
         _rule = "~rule"
 
+        _grammar = "~grammar"
+
         # check if lm or grammar mode. Default = grammar
         self._use_lm = 0
 
@@ -60,6 +62,13 @@ class JSGFTest(object):
         else:
             rospy.logerr(
                 "No dictionary found. Please add an appropriate dictionary argument.")
+            return
+
+        if rospy.has_param(_grammar) and rospy.get_param(_grammar) != ":default":
+            pass
+        else:
+            rospy.logerr(
+                "No grammar found. Please add an appropriate grammar along with gram file.")
             return
 
         if rospy.has_param(_lm_param) and rospy.get_param(_lm_param) != ':default':
@@ -98,7 +107,7 @@ class JSGFTest(object):
 
             # Switch to JSGF grammar
             jsgf = Jsgf(self.gram + '.gram')
-            rule = jsgf.get_rule(self.gram + '.' + self.rule)
+            rule = jsgf.get_rule(rospy.get_param('~grammar') + '.' + self.rule)
             # Using finite state grammar as mentioned in the rule
             fsg = jsgf.build_fsg(rule, self.decoder.get_logmath(), 7.5)
             rospy.loginfo("Writing fsg to " +
