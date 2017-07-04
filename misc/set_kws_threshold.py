@@ -124,7 +124,77 @@ def record():
                         previous = current
                         i = i+1
                         print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
-                        print (TEST_CASE[i])                
+                        print (TEST_CASE[i])
+
+def actual_tuning(dic_path, kwlist_path, _z):
+    """
+    process fa and missed to tune thresholds
+    """
+    minimum_inflection = [FREQUENCY[i] for i, _ in enumerate(WORDS)]
+    processed = [0 for i, _ in enumerate(WORDS)]
+
+    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
+
+    while 0 in processed:
+        if _z == 1:
+            for i, val in enumerate(_fa):
+                if FREQUENCY[i] > 1 and processed[i] == 0:
+                    if val[1] > 0:
+                        FREQUENCY[i] -= 2
+                    else:
+                        processed[i] = 1
+                else:
+                    processed[i] = 1
+        else:
+            for i, val in enumerate(_missed):
+                if FREQUENCY[i] < 49:
+                    if val[1] > 0:
+                        FREQUENCY[i] += 1
+                    else:
+                        processed[i] = 1
+                else:
+                    processed[i] = 1
+
+        write_frequency_to_file(kwlist_path)
+
+        print ('UPDATED FREQUENCY:')
+        print (FREQUENCY)
+
+        _previous_missed = []
+        _previous_missed.extend(_missed)
+        _previous_fa = []
+        _previous_fa.extend(_fa)
+        
+        _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
+
+        if _z == 1:
+            for i, val in enumerate(_missed):
+                if val[1] > _previous_missed[i][1]:
+                    processed[i] = 1
+                    FREQUENCY[i] += 2
+
+            for i, val in enumerate(_fa):
+                if val[1] < _previous_fa[i][1]:
+                    minimum_inflection[i] = FREQUENCY[i]
+
+            for i, val in enumerate(_fa):
+                FREQUENCY[i] = minimum_inflection[i]
+            write_frequency_to_file(kwlist_path)
+
+            time.sleep(1)            
+        else:
+            for i, val in enumerate(_fa):
+                if val[1] > _previous_fa[i][1]:
+                    processed[i] = 1
+                    FREQUENCY[i] -= 1
+            
+            for i, val in enumerate(_missed):
+                if val[1] < _previous_missed[i][1]:
+                    minimum_inflection[i] = FREQUENCY[i]
+
+            for i, val in enumerate(_missed):
+                FREQUENCY[i] = minimum_inflection[i]
+            write_frequency_to_file(kwlist_path)                                    
 
 def analyse_fa(dic_path, kwlist_path):
     """
