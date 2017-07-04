@@ -124,7 +124,7 @@ def record():
                         previous = current
                         i = i+1
                         print ("-----SAY THE FOLLOWING OUT LOUD AND PRESS ENTER-----")
-                        print (TEST_CASE[i])
+                        print (TEST_CASE[i])                
 
 def analyse_fa(dic_path, kwlist_path):
     """
@@ -157,11 +157,15 @@ def analyse_fa(dic_path, kwlist_path):
         _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
 
         for i, val in enumerate(_missed):
-            if val[1] > 
-        
+            if val[1] > _previous_missed[i][1]:
+                processed[i] = 1
+                FREQUENCY[i] += 2
+
+        _previous_minimum_inflection.extend(minimum_inflection)
         for i, val in enumerate(_fa):
             if val[1] < _previous_fa[i][1]:
                 minimum_inflection[i] = FREQUENCY[i]
+
 
 
     for i, val in enumerate(_fa):
@@ -177,7 +181,7 @@ def analyse_missed(dic_path, kwlist_path):
     minimum_inflection = [FREQUENCY[i] for i, _ in enumerate(WORDS)]
     processed = [0 for i, _ in enumerate(WORDS)]
 
-    _missed, _ = process_threshold(kws_analysis(dic_path, kwlist_path))
+    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
     while 0 in processed:
         for i, val in enumerate(_missed):
             if FREQUENCY[i] < 49:
@@ -195,8 +199,15 @@ def analyse_missed(dic_path, kwlist_path):
 
         _previous_missed = []
         _previous_missed.extend(_missed)
+        _previous_fa = []
+        _previous_fa.extend(_fa)
         
-        _missed, _ = process_threshold(kws_analysis(dic_path, kwlist_path))
+        _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
+
+        for i, val in enumerate(_fa):
+            if val[1] > _previous_fa[i][1]:
+                processed[i] = 1
+                FREQUENCY[i] -= 1
         
         for i, val in enumerate(_missed):
             if val[1] < _previous_missed[i][1]:
