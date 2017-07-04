@@ -60,6 +60,9 @@ def preprocess_files(dic_path, kwlist_path):
 
     # Analysis begins
     analyse_fa(dic_path, kwlist_path)
+    print ("Removed many false alarms. New frequency: ")
+    print (FREQUENCY)
+    print ('Moving on to missed detections')
     analyse_missed(dic_path, kwlist_path)
     
     print ("Frequency tuned to the best of the script's ability. New frequency: ")
@@ -127,84 +130,81 @@ def analyse_fa(dic_path, kwlist_path):
     """
     process false alarms to tune thresholds
     """
+    minimum_inflection = [FREQUENCY[i] for i, _ in enumerate(WORDS)]
+    processed = [0 for i, _ in enumerate(WORDS)]
 
     _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
-    _fa.sort(key=lambda x: x[1], reverse=True)
-    position = 0
+    while 0 in processed:
+        for i, val in enumerate(_fa):
+            if FREQUENCY[i] > 1 and processed[i] == 0:
+                if val[1] > 0:
+                    FREQUENCY[i] -= 2
+                else:
+                    processed[i] = 1
+            else:
+                processed[i] = 1
 
-    while _fa[0][1] > 0:
-        print ('Working on FA of ', _fa[0][0])
-        position = WORDS.index(_fa[0][0])
+        write_frequency_to_file(kwlist_path)
+
+        print ('UPDATED FREQUENCY:')
+        print (FREQUENCY)
+
+        _previous_missed = []
+        _previous_missed.extend(_missed)
+        _previous_fa = []
+        _previous_fa.extend(_fa)
         
-        for _ in range(FREQUENCY[position], 1, -1):
-            FREQUENCY[position] -= 2
-            write_frequency_to_file(kwlist_path)
-            print ('UPDATED FREQUENCY:')
-            print (FREQUENCY)
-            _missed, _fa_new = process_threshold(kws_analysis(dic_path, kwlist_path))
-            
-            _fa_new.sort(key=lambda x: x[1], reverse=True)
+        _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
 
-            if _fa[0][0] != _fa_new[0][0] or _fa_new[0][1] < 0:
-                _fa = []
-                _fa.extend(_fa_new)
-                print (_fa[0][0], ' corrected')
-                break
-        if _fa[0][1] == 0:
-            break
-    print ("Removed many false alarms. New frequency: ")
-    print (FREQUENCY)
+        for i, val in enumerate(_missed):
+            if val[1] > 
+        
+        for i, val in enumerate(_fa):
+            if val[1] < _previous_fa[i][1]:
+                minimum_inflection[i] = FREQUENCY[i]
+
+
+    for i, val in enumerate(_fa):
+        FREQUENCY[i] = minimum_inflection[i]
+    write_frequency_to_file(kwlist_path)
+
     time.sleep(1)
 
 def analyse_missed(dic_path, kwlist_path):
     """
     process missed detections to tune thresholds
     """
-    print ('Moving on to missed detections')
-    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
-    _missed.sort(key=lambda x: x[1], reverse=True)
-    _inner_list = [e[1] for e in _missed]
+    minimum_inflection = [FREQUENCY[i] for i, _ in enumerate(WORDS)]
+    processed = [0 for i, _ in enumerate(WORDS)]
 
-    if 0 in _inner_list:
-        _smallest_index = _inner_list.index(0)-1
-    else:
-        _smallest_index = len(_inner_list)-1
-    _ignore = []
+    _missed, _ = process_threshold(kws_analysis(dic_path, kwlist_path))
+    while 0 in processed:
+        for i, val in enumerate(_missed):
+            if FREQUENCY[i] < 49:
+                if val[1] > 0:
+                    FREQUENCY[i] += 1
+                else:
+                    processed[i] = 1
+            else:
+                processed[i] = 1
 
-    while _smallest_index > -1:
-        print (_missed[_smallest_index][0])
-        _position = WORDS.index(_missed[_smallest_index][0])
-        print ('Working on Missed detection of: ', _missed[_smallest_index][0])    
-        for _ in range(FREQUENCY[_position], 50):
-            FREQUENCY[_position] += 1
-            write_frequency_to_file(kwlist_path)
-            _missed_new, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
-            for _i, _value in enumerate(_fa):
-                if _value[1] > 0:
-                    _ignore.append(_value[0])
-                    FREQUENCY[_i] -= 1
-            write_frequency_to_file(kwlist_path)
-            print ('UPDATED FREQUENCY:')
-            print (FREQUENCY)
-            
-            _missed_new.sort(key=lambda x: x[1], reverse=True)
-            _inner_list = [e[1] for e in _missed_new]
-            _smallest_index_new = _inner_list.index(0)-1
+        write_frequency_to_file(kwlist_path)
 
-            while _missed_new[_smallest_index_new][0] in _ignore and _smallest_index_new > -1:
-                _smallest_index_new -= 1
-            if _smallest_index_new < 0:
-                _smallest_index = _smallest_index_new
-                break
-            if (_missed[_smallest_index][0] != _missed_new[_smallest_index_new][0] or 
-                    _missed_new[_smallest_index_new][1] < 0):
-                _smallest_index = _smallest_index_new
-                _missed = []
-                _missed.extend(_missed_new)
-                print (_missed[_smallest_index][0], ' corrected')
-                break
-        if _missed[_smallest_index][1] == 0 or _smallest_index < 0:
-            break
+        print ('UPDATED FREQUENCY:')
+        print (FREQUENCY)
+
+        _previous_missed = []
+        _previous_missed.extend(_missed)
+        
+        _missed, _ = process_threshold(kws_analysis(dic_path, kwlist_path))
+        
+        for i, val in enumerate(_missed):
+            if val[1] < _previous_missed[i][1]:
+                minimum_inflection[i] = FREQUENCY[i]
+
+    for i, val in enumerate(_missed):
+        FREQUENCY[i] = minimum_inflection[i]
+    write_frequency_to_file(kwlist_path)
 
 def kws_analysis(dic, kwlist):
     """
