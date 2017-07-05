@@ -1,5 +1,11 @@
 #!/usr/bin/env python
+"""
+Major portion taken from:
+https://stackoverflow.com/a/11919074
 
+Purpose of this script is to record 
+speech input from user as an audio file
+"""
 import sys, select, os
 import termios
 import contextlib
@@ -9,6 +15,10 @@ import pyaudio
 
 @contextlib.contextmanager
 def raw_mode(file):
+    """
+    Handles enter key press detection 
+    to start or stop recording
+    """
     old_attrs = termios.tcgetattr(file.fileno())
     new_attrs = old_attrs[:]
     new_attrs[3] = new_attrs[3] & ~(termios.ECHO | termios.ICANON)
@@ -19,8 +29,6 @@ def raw_mode(file):
         termios.tcsetattr(file.fileno(), termios.TCSADRAIN, old_attrs)
 
 def record(OUTPUT_FILENAME):
-
-
     _format = pyaudio.paInt16
     _channels = 1
     _rate = 44100
