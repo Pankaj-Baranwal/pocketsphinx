@@ -1,4 +1,4 @@
-"""Script for auto tuning keyword thresholds"""
+"""Script for auto tuning keyword spotting thresholds in pocketsphinx"""
 from __future__ import print_function
 import sys
 import select
@@ -13,40 +13,54 @@ import numpy as np
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
 
+# keyphrases found in kwlist
 WORDS = []
+# test case containing multiple occurances 
+# of words to be used as training audio
 TEST_CASE = []
+# Threshold values
 FREQUENCY = []
+# End frame of each word in input speech
 NO_OF_FRAMES = []
+# Recorded speech input
 OUTPUT_FILENAME = 'testing_audio.wav'
 
 def preprocess_files(dic_path, kwlist_path):
     """
-    Function to tune threshold according to result of kws mode
+    Function to generate required lists and call tuning functions
     """
     global WORDS, TEST_CASE, FREQUENCY
 
+    # words found in dictinary
     _content = []
     with open(dic_path) as _f:
         _content = _f.readlines()
     _content = [x.strip() for x in _content]
+    
     with open(kwlist_path) as _f:
         WORDS = _f.readlines()
     WORDS = [x.strip()[:x.strip().rfind(' ')] for x in WORDS]
     print (WORDS)
 
+    # Loop to find out initial thresholds based on phonetics provided in dictionary
     for i, _ in enumerate(WORDS):
+        # starting position of first phone for a word
         init_pos = 0
+        # Count number of phones based on frequency of spaces
         spaces = 0
+        # In case there is more than one word in a keyphrase, add phones for all words
         for _m in re.finditer(' ', WORDS[i]):
             indices = [j for j, s in enumerate(_content) if WORDS[i][init_pos:_m.start()]+'\t' in s]
             spaces = _content[indices[0]].count(' ') + spaces + 1
             init_pos = _m.start()+1
         indices = [j for j, s in enumerate(_content) if WORDS[i][init_pos:]+'\t' in s]
-        spaces = _content[indices[0]].count(' ') + spaces + 1
+        spaces += _content[indices[0]].count(' ') + 1
+        # Normalizing
         if  spaces <= 3:
             FREQUENCY.append(spaces)
         else:
             FREQUENCY.append(spaces * 2)
+    # Adding random noise in test case for better tuning
     TEST_CASE = ['[RANDOM]', '[RANDOM]']
     TEST_CASE.extend(WORDS)
     TEST_CASE.extend(['[RANDOM]', '[RANDOM]'])
@@ -55,6 +69,7 @@ def preprocess_files(dic_path, kwlist_path):
     print ("HERE IS YOUR TRAINING SET")
     print (TEST_CASE)
 
+    # record audio
     record()
     write_frequency_to_file(kwlist_path)
 
@@ -128,17 +143,25 @@ def record():
 
 def actual_tuning(dic_path, kwlist_path, _z):
     """
-    process fa and missed to tune thresholds
+    process false alarms and missed detections to tune thresholds
+    _z in the paramter is 1 for FA analysis and 0 for missed detection analysis
     """
+    # to store thresholds with minimum mismatches
     minimum_inflection = [FREQUENCY[i] for i, _ in enumerate(WORDS)]
+    # to check whether a word's assessment has been finished or not
     processed = [0 for i, _ in enumerate(WORDS)]
-
+    # get frequency of missed detections and false alarms
     _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
 
+    _least_negative_threshold = 1
+    _most_negative_threshold = 49
+
+    # Loop until there is at least one word whose assessment has not finished
     while 0 in processed:
         if _z == 1:
+            # If there is a False alarm, increase threshold
             for i, val in enumerate(_fa):
-                if FREQUENCY[i] > 1 and processed[i] == 0:
+                if FREQUENCY[i] > _least_negative_threshold and processed[i] == 0:
                     if val[1] > 0:
                         FREQUENCY[i] -= 2
                     else:
@@ -146,8 +169,9 @@ def actual_tuning(dic_path, kwlist_path, _z):
                 else:
                     processed[i] = 1
         else:
+            # If there is a missed detection, decrease threshold
             for i, val in enumerate(_missed):
-                if FREQUENCY[i] < 49 and processed[i] == 0:
+                if FREQUENCY[i] < _most_negative_threshold and processed[i] == 0:
                     if val[1] > 0:
                         FREQUENCY[i] += 1
                     else:
@@ -168,16 +192,21 @@ def actual_tuning(dic_path, kwlist_path, _z):
         _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
 
         if _z == 1:
+            # If current readings show increase in missed detections,
+            # go to previous state and stop
             for i, val in enumerate(_missed):
                 if val[1] > _previous_missed[i][1] and processed[i] == 0:
                     processed[i] = 1
                     FREQUENCY[i] += 2
         else:
+            # If current readings show increase in false alarms,
+            # go to previous state and stop
             for i, val in enumerate(_fa):
                 if val[1] > _previous_fa[i][1] and processed[i] == 0:
                     processed[i] = 1
                     FREQUENCY[i] -= 1
 
+        # If updated thresholds caused better accuracy, save them
         for i, val in enumerate([_fa, _missed][_z == 0]):
             if val[1] < [_previous_fa[i][1], _previous_missed][_z == 0]:
                 minimum_inflection[i] = FREQUENCY[i]
@@ -185,8 +214,6 @@ def actual_tuning(dic_path, kwlist_path, _z):
     for i, val in enumerate([_fa, _missed][_z == 0]):
         FREQUENCY[i] = minimum_inflection[i]
     write_frequency_to_file(kwlist_path)
-
-    time.sleep(1)
 
 def kws_analysis(dic, kwlist):
     """
@@ -226,15 +253,14 @@ def kws_analysis(dic, kwlist):
             decoder.end_utt()
             decoder.start_utt()
         timer += 1024
-
-    # print ("Result on kws analysis:")
-    # print (analysis_result)
     return analysis_result
 
 def process_threshold(analysis_result):
     """
     calculate missed detections and false alarms
+    Argument: analysis result = kws result
     """
+    # stores timestamp of words which matche in both speech and kws result
     _indices = []
 
     missed = [[WORDS[i], 0] for i in range(len(WORDS))]
@@ -242,8 +268,10 @@ def process_threshold(analysis_result):
     i = 0
 
     for i, val in enumerate(analysis_result):
+        # Calculate the timestamp in speech closest to timestamp of word found by kws result
         _index = min(range(len(NO_OF_FRAMES)), key=lambda l: abs(NO_OF_FRAMES[l] - val[1]))
         _indices.append(_index)
+
         if TEST_CASE[_index-1] == '[RANDOM]':
             position_observer = WORDS.index(val[0])
             false_alarms[position_observer][1] += 1
@@ -256,6 +284,7 @@ def process_threshold(analysis_result):
             position_observer = WORDS.index(val[0])
             missed[position_original][1] += 1
             false_alarms[position_observer][1] += 1
+    # If speech had timestamp not mentioned in kws result, then its detection was missed
     for i, val in enumerate(TEST_CASE):
         if i+1 not in _indices and val != '[RANDOM]':
             position_original = WORDS.index(val)
@@ -264,8 +293,6 @@ def process_threshold(analysis_result):
     return missed, false_alarms
     
 if __name__ == '__main__':
-#     if len(argv) > 1:
-#     FILE_NAME = argv[1]
     DIC_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic"
     KWLIST_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/automated.kwlist"
     if len(sys.argv) == 3:
