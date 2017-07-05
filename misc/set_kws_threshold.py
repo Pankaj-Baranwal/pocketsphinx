@@ -59,14 +59,14 @@ def preprocess_files(dic_path, kwlist_path):
     write_frequency_to_file(kwlist_path)
 
     # Analysis begins
-    analyse_fa(dic_path, kwlist_path)
+    actual_tuning(dic_path, kwlist_path, 1)
     print ("Removed many false alarms. New frequency: ")
     print (FREQUENCY)
     print ('Moving on to missed detections')
-    analyse_missed(dic_path, kwlist_path)
-    
+    actual_tuning(dic_path, kwlist_path, 0)
     print ("Frequency tuned to the best of the script's ability. New frequency: ")
     print (FREQUENCY)
+    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
 
 def write_frequency_to_file(kwlist_path):
     """
@@ -147,7 +147,7 @@ def actual_tuning(dic_path, kwlist_path, _z):
                     processed[i] = 1
         else:
             for i, val in enumerate(_missed):
-                if FREQUENCY[i] < 49:
+                if FREQUENCY[i] < 49 and processed[i] == 0:
                     if val[1] > 0:
                         FREQUENCY[i] += 1
                     else:
@@ -169,123 +169,24 @@ def actual_tuning(dic_path, kwlist_path, _z):
 
         if _z == 1:
             for i, val in enumerate(_missed):
-                if val[1] > _previous_missed[i][1]:
+                if val[1] > _previous_missed[i][1] and processed[i] == 0:
                     processed[i] = 1
                     FREQUENCY[i] += 2
-
-            for i, val in enumerate(_fa):
-                if val[1] < _previous_fa[i][1]:
-                    minimum_inflection[i] = FREQUENCY[i]
-
-            for i, val in enumerate(_fa):
-                FREQUENCY[i] = minimum_inflection[i]
-            write_frequency_to_file(kwlist_path)
-
-            time.sleep(1)            
         else:
             for i, val in enumerate(_fa):
-                if val[1] > _previous_fa[i][1]:
+                if val[1] > _previous_fa[i][1] and processed[i] == 0:
                     processed[i] = 1
                     FREQUENCY[i] -= 1
-            
-            for i, val in enumerate(_missed):
-                if val[1] < _previous_missed[i][1]:
-                    minimum_inflection[i] = FREQUENCY[i]
 
-            for i, val in enumerate(_missed):
-                FREQUENCY[i] = minimum_inflection[i]
-            write_frequency_to_file(kwlist_path)                                    
-
-def analyse_fa(dic_path, kwlist_path):
-    """
-    process false alarms to tune thresholds
-    """
-    minimum_inflection = [FREQUENCY[i] for i, _ in enumerate(WORDS)]
-    processed = [0 for i, _ in enumerate(WORDS)]
-
-    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
-    while 0 in processed:
-        for i, val in enumerate(_fa):
-            if FREQUENCY[i] > 1 and processed[i] == 0:
-                if val[1] > 0:
-                    FREQUENCY[i] -= 2
-                else:
-                    processed[i] = 1
-            else:
-                processed[i] = 1
-
-        write_frequency_to_file(kwlist_path)
-
-        print ('UPDATED FREQUENCY:')
-        print (FREQUENCY)
-
-        _previous_missed = []
-        _previous_missed.extend(_missed)
-        _previous_fa = []
-        _previous_fa.extend(_fa)
-        
-        _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
-
-        for i, val in enumerate(_missed):
-            if val[1] > _previous_missed[i][1]:
-                processed[i] = 1
-                FREQUENCY[i] += 2
-
-        _previous_minimum_inflection.extend(minimum_inflection)
-        for i, val in enumerate(_fa):
-            if val[1] < _previous_fa[i][1]:
+        for i, val in enumerate([_fa, _missed][_z == 0]):
+            if val[1] < [_previous_fa[i][1], _previous_missed][_z == 0]:
                 minimum_inflection[i] = FREQUENCY[i]
 
-
-
-    for i, val in enumerate(_fa):
+    for i, val in enumerate([_fa, _missed][_z == 0]):
         FREQUENCY[i] = minimum_inflection[i]
     write_frequency_to_file(kwlist_path)
 
     time.sleep(1)
-
-def analyse_missed(dic_path, kwlist_path):
-    """
-    process missed detections to tune thresholds
-    """
-    minimum_inflection = [FREQUENCY[i] for i, _ in enumerate(WORDS)]
-    processed = [0 for i, _ in enumerate(WORDS)]
-
-    _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
-    while 0 in processed:
-        for i, val in enumerate(_missed):
-            if FREQUENCY[i] < 49:
-                if val[1] > 0:
-                    FREQUENCY[i] += 1
-                else:
-                    processed[i] = 1
-            else:
-                processed[i] = 1
-
-        write_frequency_to_file(kwlist_path)
-
-        print ('UPDATED FREQUENCY:')
-        print (FREQUENCY)
-
-        _previous_missed = []
-        _previous_missed.extend(_missed)
-        _previous_fa = []
-        _previous_fa.extend(_fa)
-        
-        _missed, _fa = process_threshold(kws_analysis(dic_path, kwlist_path))
-
-        for i, val in enumerate(_fa):
-            if val[1] > _previous_fa[i][1]:
-                processed[i] = 1
-                FREQUENCY[i] -= 1
-        
-        for i, val in enumerate(_missed):
-            if val[1] < _previous_missed[i][1]:
-                minimum_inflection[i] = FREQUENCY[i]
-
-    for i, val in enumerate(_missed):
-        FREQUENCY[i] = minimum_inflection[i]
-    write_frequency_to_file(kwlist_path)
 
 def kws_analysis(dic, kwlist):
     """
@@ -302,7 +203,8 @@ def kws_analysis(dic, kwlist):
     config.set_string('-kws', kwlist)
     config.set_string('-dither', "no")
     config.set_string('-logfn', '/dev/null')
-    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 'en-us/en-us'), "feat.params"))
+    config.set_string('-featparams', os.path.join(os.path.join(modeldir, 
+                                                               'en-us/en-us'), "feat.params"))
 
     stream = open(OUTPUT_FILENAME, "rb")
 
@@ -364,5 +266,9 @@ def process_threshold(analysis_result):
 if __name__ == '__main__':
 #     if len(argv) > 1:
 #     FILE_NAME = argv[1]
-    preprocess_files("/home/pankaj/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic", 
-                     "/home/pankaj/catkin_ws/src/pocketsphinx/demo/automated.kwlist")
+    DIC_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic"
+    KWLIST_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/automated.kwlist"
+    if len(sys.argv) == 3:
+        DIC_FILE = sys.argv[1]
+        KWLIST_FILE = sys.argv[2]
+    preprocess_files(DIC_FILE, KWLIST_FILE)
