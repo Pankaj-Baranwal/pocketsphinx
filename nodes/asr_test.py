@@ -8,7 +8,7 @@ from std_msgs.msg import String
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
 
-class JSGFTest(object):
+class ASRTest(object):
     """Class to add jsgf grammar functionality."""
 
     def __init__(self):
@@ -16,7 +16,7 @@ class JSGFTest(object):
         # Initializing publisher with buffer size of 10 messages
         self.pub_ = rospy.Publisher("grammar_data", String, queue_size=10)
         # initialize node
-        rospy.init_node("jsgf_control")
+        rospy.init_node("asr_control")
         # Call custom function on node shutdown
         rospy.on_shutdown(self.shutdown)
 
@@ -109,10 +109,13 @@ class JSGFTest(object):
             jsgf = Jsgf(self.gram + '.gram')
             rule = jsgf.get_rule(rospy.get_param('~grammar') + '.' + self.rule)
             # Using finite state grammar as mentioned in the rule
+            rospy.loginfo(rospy.get_param('~grammar') + '.' + self.rule)
             fsg = jsgf.build_fsg(rule, self.decoder.get_logmath(), 7.5)
             rospy.loginfo("Writing fsg to " +
                           self.gram + '.fsg')
+            rospy.loginfo('1234567')
             fsg.writefile(self.gram + '.fsg')
+            rospy.loginfo('1234567')
 
             self.decoder.set_fsg(self.gram, fsg)
             self.decoder.set_search(self.gram)
@@ -147,4 +150,4 @@ class JSGFTest(object):
 
 
 if __name__ == "__main__":
-    JSGFTest()
+    ASRTest()
