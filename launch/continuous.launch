@@ -27,9 +27,9 @@
     Node for handling jsgf grammar mode
     -->
     <node
-        name="jsgf_control"
+        name="asr_control"
         pkg="pocketsphinx"
-        type="jsgf_test.py"
+        type="asr_test.py"
         output="screen"
         >
         <param name="lm" value="$(arg lm)"/>
