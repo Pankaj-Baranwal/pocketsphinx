@@ -1,0 +1,38 @@
+Current configuration:
+[NAME]		[DEFLT]			[VALUE]
+-example	no			no
+-fullvar	no			no
+-help		no			no
+-meanfn					/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/means
+-mixwfn					/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/mixture_weights
+-moddeffn				/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
+-niter		0			1
+-npermute	6			12
+-qstperstt	8			20
+-questfn				/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
+-tempfn		/tmp/TEMP.QUESTS	/tmp/TEMP.QUESTS
+-type					.cont.
+-varfloor	1.0e-08			1.000000e-08
+-varfn					/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/variances
+
+INFO: main.c(792): Reading: /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
+INFO: model_def_io.c(573): Model definition info:
+INFO: model_def_io.c(574): 2 total models defined (2 base, 0 tri)
+INFO: model_def_io.c(575): 8 total states
+INFO: model_def_io.c(576): 6 total tied states
+INFO: model_def_io.c(577): 6 total tied CI states
+INFO: model_def_io.c(578): 2 total tied transition matrices
+INFO: model_def_io.c(579): 4 max state/model
+INFO: model_def_io.c(580): 4 min state/model
+INFO: main.c(811): Reading: /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/mixture_weights
+INFO: s3mixw_io.c(117): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/mixture_weights [6x1x1 array]
+INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/means [6x1x1 array]
+INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/variances [6x1x1 array]
+INFO: main.c(1109): Done building questions using state 0
+INFO: main.c(1110):  0 questions from state 0
+INFO: main.c(1109): Done building questions using state 1
+INFO: main.c(1110):  0 questions from state 1
+INFO: main.c(1109): Done building questions using state 2
+INFO: main.c(1110):  0 questions from state 2
+INFO: main.c(1115): Stored questions in /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
+Fri Jul 28 03:08:17 2017

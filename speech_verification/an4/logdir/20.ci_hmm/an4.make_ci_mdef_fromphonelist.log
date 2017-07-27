@@ -1,0 +1,28 @@
+Current configuration:
+[NAME]		[DEFLT]	[VALUE]
+-dictfn			
+-example	no	no
+-fdictfn		
+-help		no	no
+-ignorewpos	no	no
+-inCDmdef		
+-inCImdef		
+-lsnfn			
+-maxtriphones	100000	100000
+-minocc		1	1
+-n_state_pm	3	3
+-oalltphnmdef		
+-ocimdef		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
+-ocountfn		
+-ountiedmdef		
+-phnlstfn		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.phonelist
+-triphnlstfn		
+
+INFO: main.c(92): Will write CI mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
+INFO: mk_mdef_gen.c(189): 0 single word triphones in input phone list
+INFO: mk_mdef_gen.c(190): 0 word beginning triphones in input phone list
+INFO: mk_mdef_gen.c(191): 0 word internal triphones in input phone list
+INFO: mk_mdef_gen.c(192): 0 word ending triphones in input phone list
+INFO: mk_mdef_gen.c(897): 2 n_base, 0 n_tri
+INFO: mk_mdef_gen.c(969): Wrote mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
+Fri Jul 28 03:08:10 2017

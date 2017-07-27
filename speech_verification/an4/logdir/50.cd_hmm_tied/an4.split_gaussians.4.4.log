@@ -1,0 +1,33 @@
+Current configuration:
+[NAME]		[DEFLT]	[VALUE]
+-dcountfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights
+-example	no	no
+-fullvar	no	no
+-help		no	no
+-inmeanfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/means
+-inmixwfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights
+-invarfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances
+-ninc		1	4
+-outmeanfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/means
+-outmixwfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/mixture_weights
+-outvarfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/variances
+
+INFO: main.c(86): Reading mixing weight file /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights.
+INFO: s3mixw_io.c(117): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [9x1x4 array]
+INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/means [9x1x4 array]
+INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances [9x1x4 array]
+INFO: s3gau_io.c(553): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [9x1x4 array]
+INFO: main.c(151): output n_density == 8
+0:0(1.28e+04)2(1.19e+04)1(9.61e+03)3(7.80e+03)
+1:1(1.14e+04)2(8.30e+03)3(7.75e+03)0(6.39e+03)
+2:2(2.42e+04)0(2.25e+04)1(2.22e+04)3(1.82e+04)
+3:0(3.52e+03)2(3.41e+03)1(2.46e+03)3(2.08e+03)
+4:0(4.24e+03)2(3.82e+03)3(3.02e+03)1(2.32e+03)
+5:1(1.46e+04)3(1.38e+04)2(1.38e+04)0(1.09e+04)
+6:0(3.52e+03)2(3.41e+03)1(2.46e+03)3(2.08e+03)
+7:0(4.24e+03)2(3.82e+03)3(3.02e+03)1(2.32e+03)
+8:1(1.46e+04)3(1.38e+04)2(1.38e+04)0(1.09e+04)INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/mixture_weights [9x1x8 array]
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/means [9x1x8 array]
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/variances [9x1x8 array]
+
+Fri Jul 28 03:08:34 2017

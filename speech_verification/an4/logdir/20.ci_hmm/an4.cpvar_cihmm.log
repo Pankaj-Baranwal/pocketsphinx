@@ -1,0 +1,26 @@
+Current configuration:
+[NAME]		[DEFLT]	[VALUE]
+-cpopsfn		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.cpmeanvar
+-example	no	no
+-help		no	no
+-ifullgaufn		
+-igaufn			/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/globalvar
+-imixwfn		
+-itmatfn		
+-ncbout			6
+-nmixwout		0
+-ntmatout		0
+-ofullgaufn		
+-ogaufn			/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/variances
+-omixwfn		
+-otmatfn		
+
+INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/globalvar [1x1x1 array]
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/variances [6x1x1 array]
+gau 0 <= 0
+gau 1 <= 0
+gau 2 <= 0
+gau 3 <= 0
+gau 4 <= 0
+gau 5 <= 0
+Fri Jul 28 03:08:10 2017

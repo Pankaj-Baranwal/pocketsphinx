@@ -1,0 +1,24 @@
+Current configuration:
+[NAME]		[DEFLT]	[VALUE]
+-allphones	no	no
+-example	no	no
+-help		no	no
+-imoddeffn		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.alltriphones.mdef
+-omoddeffn		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.200.mdef
+-psetfn			/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
+-treedir		/home/pankaj/GSoC/New_an4/an4/trees/an4.200
+
+INFO: model_def_io.c(573): Model definition info:
+INFO: model_def_io.c(574): 6 total models defined (2 base, 4 tri)
+INFO: model_def_io.c(575): 24 total states
+INFO: model_def_io.c(576): 18 total tied states
+INFO: model_def_io.c(577): 6 total tied CI states
+INFO: model_def_io.c(578): 2 total tied transition matrices
+INFO: model_def_io.c(579): 4 max state/model
+INFO: model_def_io.c(580): 4 min state/model
+INFO: main.c(93): Reading: /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
+INFO: main.c(124): sp-0: offset 6
+INFO: main.c(124): sp-1: offset 7
+INFO: main.c(124): sp-2: offset 8
+INFO: main.c(145): n_seno= 9
+Fri Jul 28 03:08:17 2017

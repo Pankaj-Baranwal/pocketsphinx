@@ -1,0 +1,24 @@
+Current configuration:
+[NAME]		[DEFLT]	[VALUE]
+-example	no	no
+-help		no	no
+-mixwfn			/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/mixture_weights
+-moddeffn		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
+-ndensity	256	1
+-nstream	4	1
+-tmatfn			/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/transition_matrices
+-topo			/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.topology
+
+INFO: model_def_io.c(573): Model definition info:
+INFO: model_def_io.c(574): 2 total models defined (2 base, 0 tri)
+INFO: model_def_io.c(575): 8 total states
+INFO: model_def_io.c(576): 6 total tied states
+INFO: model_def_io.c(577): 6 total tied CI states
+INFO: model_def_io.c(578): 2 total tied transition matrices
+INFO: model_def_io.c(579): 4 max state/model
+INFO: model_def_io.c(580): 4 min state/model
+INFO: s3tmat_io.c(176): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/transition_matrices [2x3x4 array]
+INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/mixture_weights [6x1x1 array]
+main.c(83): Reading model definition file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
+main.c(90): 2 models defined
+Fri Jul 28 03:08:10 2017

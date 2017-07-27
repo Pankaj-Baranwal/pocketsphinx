@@ -1,0 +1,37 @@
+Current configuration:
+[NAME]		[DEFLT]	[VALUE]
+-dictfn			/home/pankaj/GSoC/New_an4/an4/etc/an4.dic
+-example	no	no
+-fdictfn		/home/pankaj/GSoC/New_an4/an4/etc/an4.filler
+-help		no	no
+-ignorewpos	no	no
+-inCDmdef		
+-inCImdef		
+-lsnfn			
+-maxtriphones	100000	100000
+-minocc		1	1
+-n_state_pm	3	3
+-oalltphnmdef		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.alltriphones.mdef
+-ocimdef		
+-ocountfn		
+-ountiedmdef		
+-phnlstfn		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.phonelist
+-triphnlstfn		
+
+INFO: main.c(94): Will write alltriphone mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.alltriphones.mdef
+INFO: mk_mdef_gen.c(189): 0 single word triphones in input phone list
+INFO: mk_mdef_gen.c(190): 0 word beginning triphones in input phone list
+INFO: mk_mdef_gen.c(191): 0 word internal triphones in input phone list
+INFO: mk_mdef_gen.c(192): 0 word ending triphones in input phone list
+INFO: mk_mdef_gen.c(280): Reading dict /home/pankaj/GSoC/New_an4/an4/etc/an4.dic
+INFO: mk_mdef_gen.c(322): 1 words in dict /home/pankaj/GSoC/New_an4/an4/etc/an4.dic
+INFO: mk_mdef_gen.c(280): Reading dict /home/pankaj/GSoC/New_an4/an4/etc/an4.filler
+INFO: mk_mdef_gen.c(322): 3 words in dict /home/pankaj/GSoC/New_an4/an4/etc/an4.filler
+INFO: mk_mdef_gen.c(442): 4 words in dictionary
+INFO: mk_mdef_gen.c(443): 4 unique single word triphones in dictionary
+INFO: mk_mdef_gen.c(444): 0 unique word beginning triphones in dictionary
+INFO: mk_mdef_gen.c(445): 0 unique word internal triphones in dictionary
+INFO: mk_mdef_gen.c(446): 0 unique word ending triphones in dictionary
+INFO: mk_mdef_gen.c(897): 2 n_base, 4 n_tri
+INFO: mk_mdef_gen.c(969): Wrote mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.alltriphones.mdef
+Fri Jul 28 03:08:17 2017

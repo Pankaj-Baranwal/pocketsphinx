@@ -1,0 +1,32 @@
+Current configuration:
+[NAME]		[DEFLT]	[VALUE]
+-allphones	no	no
+-example	no	no
+-help		no	no
+-itreedir		/home/pankaj/GSoC/New_an4/an4/trees/an4.unpruned
+-minocc		0.0	0.000000e+00
+-moddeffn		/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.alltriphones.mdef
+-nseno			200
+-otreedir		/home/pankaj/GSoC/New_an4/an4/trees/an4.200
+-psetfn			/home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
+
+INFO: main.c(76): Reading: /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.alltriphones.mdef
+INFO: model_def_io.c(573): Model definition info:
+INFO: model_def_io.c(574): 6 total models defined (2 base, 4 tri)
+INFO: model_def_io.c(575): 24 total states
+INFO: model_def_io.c(576): 18 total tied states
+INFO: model_def_io.c(577): 6 total tied CI states
+INFO: model_def_io.c(578): 2 total tied transition matrices
+INFO: model_def_io.c(579): 4 max state/model
+INFO: model_def_io.c(580): 4 min state/model
+INFO: main.c(82): Reading: /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
+INFO: main.c(185): sp-0	1 [0 < 0.000000e+00]
+INFO: main.c(185): sp-1	1 [0 < 0.000000e+00]
+INFO: main.c(185): sp-2	1 [0 < 0.000000e+00]
+INFO: main.c(270): Prior to pruning n_seno= 3
+WARN: "main.c", line 275: n_seno_wanted= 200, but only 3 defined by trees
+INFO: main.c(278): n_twig= 0
+INFO: main.c(386): sp-0	1
+INFO: main.c(386): sp-1	1
+INFO: main.c(386): sp-2	1
+Fri Jul 28 03:08:17 2017

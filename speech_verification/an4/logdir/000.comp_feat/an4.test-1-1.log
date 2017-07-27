@@ -1,0 +1,190 @@
+Current configuration:
+[NAME]			[DEFLT]		[VALUE]
+-alpha			0.97		9.700000e-01
+-argfile				
+-blocksize		2048		2048
+-build_outdirs		yes		yes
+-c					/home/pankaj/GSoC/New_an4/an4/etc/an4_test.fileids
+-cep2spec		no		no
+-di					/home/pankaj/GSoC/New_an4/an4/wav
+-dither			no		no
+-do					/home/pankaj/GSoC/New_an4/an4/feat
+-doublebw		no		no
+-ei					sph
+-eo					mfc
+-example		no		no
+-frate			100		100
+-help			no		no
+-i					
+-input_endian		little		little
+-lifter			0		22
+-logspec		no		no
+-lowerf			133.33334	1.300000e+02
+-mach_endian		little		little
+-mswav			no		no
+-ncep			13		13
+-nchans			1		1
+-nfft			512		512
+-nfilt			40		25
+-nist			no		yes
+-npart			0		1
+-nskip			0		0
+-o					
+-ofmt			sphinx		sphinx
+-part			0		1
+-raw			no		no
+-remove_dc		no		no
+-remove_noise		yes		yes
+-remove_silence		yes		yes
+-round_filters		yes		yes
+-runlen			-1		-1
+-samprate		16000		1.600000e+04
+-seed			-1		-1
+-smoothspec		no		no
+-spec2cep		no		no
+-sph2pipe		no		no
+-transform		legacy		dct
+-unit_area		yes		yes
+-upperf			6855.4976	6.800000e+03
+-vad_postspeech		50		50
+-vad_prespeech		20		20
+-vad_startspeech	10		10
+-vad_threshold		3.0		3.000000e+00
+-verbose		no		no
+-warp_params				
+-warp_type		inverse_linear	inverse_linear
+-whichchan		0		0
+-wlen			0.025625	2.562500e-02
+
+INFO: sphinx_fe.c(971): Processing all remaining utterances at position 0
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/an406-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/an406-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/an407-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/an407-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/an408-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/an408-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/an409-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/an409-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/an410-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/an410-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen1-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen1-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen2-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen2-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen3-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen3-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen4-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen4-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen5-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen5-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen6-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen6-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen7-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen7-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fcaw/cen8-fcaw-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fcaw/cen8-fcaw-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/an416-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/an416-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/an417-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/an417-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/an418-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/an418-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/an419-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/an419-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/an420-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/an420-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen1-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen1-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen2-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen2-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen3-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen3-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen4-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen4-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen5-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen5-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen6-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen6-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen7-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen7-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fjlp/cen8-fjlp-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fjlp/cen8-fjlp-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/an426-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/an426-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/an427-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/an427-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/an428-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/an428-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/an429-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/an429-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/an430-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/an430-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen1-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen1-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen2-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen2-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen3-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen3-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen4-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen4-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen5-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen5-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen6-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen6-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen7-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen7-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/fvap/cen8-fvap-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/fvap/cen8-fvap-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/an431-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/an431-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/an432-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/an432-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/an433-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/an433-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/an434-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/an434-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/an435-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/an435-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen1-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen1-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen2-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen2-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen3-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen3-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen4-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen4-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen5-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen5-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen6-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen6-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen7-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen7-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/marh/cen8-marh-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/marh/cen8-marh-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/an401-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/an401-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/an402-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/an402-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/an403-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/an403-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/an404-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/an404-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/an405-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/an405-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen1-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen1-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen2-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen2-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen3-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen3-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen4-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen4-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen5-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen5-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen6-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen6-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen7-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen7-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mdms2/cen8-mdms2-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mdms2/cen8-mdms2-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/an421-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/an421-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/an422-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/an422-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/an423-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/an423-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/an424-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/an424-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/an425-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/an425-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen1-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen1-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen2-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen2-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen3-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen3-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen4-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen4-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen5-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen5-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen6-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen6-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen7-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen7-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/menk/cen8-menk-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/menk/cen8-menk-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/an396-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/an396-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/an397-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/an397-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/an398-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/an398-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/an399-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/an399-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/an400-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/an400-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen1-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen1-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen2-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen2-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen3-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen3-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen4-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen4-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen5-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen5-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen6-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen6-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen7-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen7-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/miry/cen8-miry-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/miry/cen8-miry-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/an436-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/an436-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/an437-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/an437-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/an438-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/an438-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/an439-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/an439-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/an440-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/an440-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen1-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen1-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen2-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen2-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen3-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen3-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen4-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen4-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen5-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen5-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen6-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen6-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen7-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen7-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjgm/cen8-mjgm-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjgm/cen8-mjgm-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/an391-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/an391-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/an392-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/an392-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/an393-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/an393-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/an394-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/an394-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/an395-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/an395-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen1-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen1-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen2-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen2-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen3-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen3-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen4-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen4-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen5-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen5-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen6-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen6-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen7-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen7-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mjwl/cen8-mjwl-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mjwl/cen8-mjwl-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/an441-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/an441-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/an442-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/an442-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/an443-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/an443-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/an444-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/an444-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/an445-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/an445-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen1-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen1-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen2-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen2-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen3-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen3-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen4-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen4-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen5-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen5-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen6-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen6-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen7-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen7-mmxg-b.mfc
+INFO: sphinx_fe.c(791): Converting /home/pankaj/GSoC/New_an4/an4/wav/an4test_clstk/mmxg/cen8-mmxg-b.sph to /home/pankaj/GSoC/New_an4/an4/feat/an4test_clstk/mmxg/cen8-mmxg-b.mfc
+Fri Jul 28 03:08:10 2017
