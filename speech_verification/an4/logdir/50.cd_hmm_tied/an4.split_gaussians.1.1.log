@@ -30,4 +30,4 @@ INFO: main.c(151): output n_density == 2
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/means [9x1x2 array]
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/variances [9x1x2 array]
 
-Fri Jul 28 03:08:18 2017
+Fri Jul 28 06:12:46 2017

@@ -26,4 +26,4 @@ INFO: s3gau_io.c(386): Read /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/
 INFO: main.c(321): -2passvar yes
 INFO: main.c(414): Normalizing var
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/globalvar [1x1x1 array]
-Fri Jul 28 03:08:10 2017
+Fri Jul 28 06:12:37 2017

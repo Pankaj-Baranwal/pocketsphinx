@@ -21,4 +21,4 @@ INFO: s3tmat_io.c(176): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4
 INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont_flatinitial/mixture_weights [6x1x1 array]
 main.c(83): Reading model definition file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
 main.c(90): 2 models defined
-Fri Jul 28 03:08:10 2017
+Fri Jul 28 06:12:37 2017

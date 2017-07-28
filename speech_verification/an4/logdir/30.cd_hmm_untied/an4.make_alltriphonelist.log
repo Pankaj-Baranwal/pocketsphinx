@@ -47,4 +47,4 @@ INFO: mk_mdef_gen.c(645): The rest of the triphones occur more than three times
 INFO: mk_mdef_gen.c(646): Count threshold is 1
 INFO: mk_mdef_gen.c(897): 2 n_base, 1 n_tri
 INFO: mk_mdef_gen.c(969): Wrote mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.untied.mdef
-Fri Jul 28 03:08:15 2017
+Fri Jul 28 06:12:42 2017

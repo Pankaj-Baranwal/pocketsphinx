@@ -61,4 +61,4 @@ INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.
 INFO: main.c(561): Writing dest /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/variances
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/variances [9x1x1 array]
 [mx     6(0) +=     3] [mg     6(0) <-     3] [mx     7(1) +=     4] [mg     7(1) <-     4] [mx     8(2) +=     5] [mg     8(2) <-     5] 
-Fri Jul 28 03:08:15 2017
+Fri Jul 28 06:12:42 2017

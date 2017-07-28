@@ -983,4 +983,4 @@ INFO: cmn.c(133): CMN: 40.45 17.32 -2.03  0.91 -14.96  2.86 -10.53  0.26  3.34 -
 INFO: cmn.c(133): CMN: 44.32  3.07 -4.43  1.44 -9.27  5.43 -13.52 -0.86  4.11 -5.50  6.12 -4.71  0.16 
 INFO: cmn.c(133): CMN: 41.37  4.92 -0.45 13.60 -7.93  5.74 -4.84 -0.35 -0.66 -9.77 14.09 -6.43 -0.11 
 INFO: s3gau_io.c(485): Wrote /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/gauden_counts with means [1x1x1 vector arrays]
-Fri Jul 28 03:08:10 2017
+Fri Jul 28 06:12:37 2017

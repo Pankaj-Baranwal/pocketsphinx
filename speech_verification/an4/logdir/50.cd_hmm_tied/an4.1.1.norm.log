@@ -28,5 +28,5 @@ INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4
 INFO: s3tmat_io.c(176): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/transition_matrices [2x3x4 array]
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/means [9x1x1 array]
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances [9x1x1 array]
-Fri Jul 28 03:08:18 2017
+Fri Jul 28 06:12:45 2017
 Current Overall Likelihood Per Frame = -154.561900809297

@@ -35,4 +35,4 @@ INFO: main.c(1110):  0 questions from state 1
 INFO: main.c(1109): Done building questions using state 2
 INFO: main.c(1110):  0 questions from state 2
 INFO: main.c(1115): Stored questions in /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
-Fri Jul 28 03:08:17 2017
+Fri Jul 28 06:12:44 2017

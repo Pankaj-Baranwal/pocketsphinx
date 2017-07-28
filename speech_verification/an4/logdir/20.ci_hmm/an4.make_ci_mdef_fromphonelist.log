@@ -25,4 +25,4 @@ INFO: mk_mdef_gen.c(191): 0 word internal triphones in input phone list
 INFO: mk_mdef_gen.c(192): 0 word ending triphones in input phone list
 INFO: mk_mdef_gen.c(897): 2 n_base, 0 n_tri
 INFO: mk_mdef_gen.c(969): Wrote mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.ci.mdef
-Fri Jul 28 03:08:10 2017
+Fri Jul 28 06:12:37 2017

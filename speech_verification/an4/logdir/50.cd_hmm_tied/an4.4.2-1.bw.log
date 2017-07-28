@@ -2009,4 +2009,4 @@ INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_
 INFO: s3tmat_io.c(176): Wrote /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/tmat_counts [2x3x4 array]
 INFO: s3gau_io.c(485): Wrote /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/gauden_counts with means with vars (2pass) [9x1x4 vector arrays]
 INFO: main.c(999): Counts saved to /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1
-Fri Jul 28 03:08:27 2017
+Fri Jul 28 06:12:55 2017
