@@ -33,18 +33,18 @@ INFO: mk_mdef_gen.c(444): 0 unique word beginning triphones in dictionary
 INFO: mk_mdef_gen.c(445): 0 unique word internal triphones in dictionary
 INFO: mk_mdef_gen.c(446): 0 unique word ending triphones in dictionary
 INFO: mk_mdef_gen.c(479): Out of vocabulary words in transcript will be mapped to SIL!
-INFO: mk_mdef_gen.c(593): 3792 words in transcripts
-INFO: mk_mdef_gen.c(594): 948 single word triphones in transcripts
+INFO: mk_mdef_gen.c(593): 8286 words in transcripts
+INFO: mk_mdef_gen.c(594): 5442 single word triphones in transcripts
 INFO: mk_mdef_gen.c(595): 0 word beginning triphones in transcripts
 INFO: mk_mdef_gen.c(596): 0 word internal triphones in transcripts
 INFO: mk_mdef_gen.c(597): 0 word ending triphones in transcripts
-INFO: mk_mdef_gen.c(640): 948 triphones extracted from transcripts
-INFO: mk_mdef_gen.c(641): 1 unique triphones extracted from transcripts
+INFO: mk_mdef_gen.c(640): 5442 triphones extracted from transcripts
+INFO: mk_mdef_gen.c(641): 4 unique triphones extracted from transcripts
 INFO: mk_mdef_gen.c(642): 0 triphones occur once in the transcripts
 INFO: mk_mdef_gen.c(643): 0 triphones occur twice in the transcripts
 INFO: mk_mdef_gen.c(644): 0 triphones occur thrice in the transcripts
 INFO: mk_mdef_gen.c(645): The rest of the triphones occur more than three times
 INFO: mk_mdef_gen.c(646): Count threshold is 1
-INFO: mk_mdef_gen.c(897): 2 n_base, 1 n_tri
+INFO: mk_mdef_gen.c(897): 2 n_base, 4 n_tri
 INFO: mk_mdef_gen.c(969): Wrote mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.untied.mdef
-Fri Jul 28 06:12:42 2017
+Sun Jul 30 19:03:53 2017

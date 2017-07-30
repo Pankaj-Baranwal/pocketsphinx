@@ -36,9 +36,9 @@ INFO: main.c(342): Reading src /home/pankaj/GSoC/New_an4/an4/model_parameters/an
 INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/variances [6x1x1 array]
 INFO: main.c(391): Reading dest /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.untied.mdef
 INFO: model_def_io.c(573): Model definition info:
-INFO: model_def_io.c(574): 3 total models defined (2 base, 1 tri)
-INFO: model_def_io.c(575): 12 total states
-INFO: model_def_io.c(576): 9 total tied states
+INFO: model_def_io.c(574): 6 total models defined (2 base, 4 tri)
+INFO: model_def_io.c(575): 24 total states
+INFO: model_def_io.c(576): 18 total tied states
 INFO: model_def_io.c(577): 6 total tied CI states
 INFO: model_def_io.c(578): 2 total tied transition matrices
 INFO: model_def_io.c(579): 4 max state/model
@@ -46,19 +46,22 @@ INFO: model_def_io.c(580): 4 min state/model
 INFO: main.c(407): Generating continous ts2cb mapping
 INFO: main.c(431): Calculating initial model parameters
 INFO: main.c(439): Alloc 2x3x4 dest tmat
-INFO: main.c(450): Alloc 9x1x1 dest mixw
-INFO: main.c(463): Alloc 9x1x1 dest mean and var
+INFO: main.c(450): Alloc 18x1x1 dest mixw
+INFO: main.c(463): Alloc 18x1x1 dest mean and var
        SIL <- SIL       : [tm     0 +=     0]
 [mx     0(0) +=     0] [mg     0(0) <-     0] [mx     1(1) +=     1] [mg     1(1) <-     1] [mx     2(2) +=     2] [mg     2(2) <-     2] 
         sp <- sp        : [tm     1 +=     1]
 [mx     3(0) +=     3] [mg     3(0) <-     3] [mx     4(1) +=     4] [mg     4(1) <-     4] [mx     5(2) +=     5] [mg     5(2) <-     5] 
-sp SIL SIL s <- sp        : INFO: main.c(529): Writing dest /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/transition_matrices
+sp SIL SIL s <- sp        : [mx     6(0) +=     3] [mg     6(0) <-     3] [mx     7(1) +=     4] [mg     7(1) <-     4] [mx     8(2) +=     5] [mg     8(2) <-     5] 
+sp SIL sp s <- sp        : [mx     9(0) +=     3] [mg     9(0) <-     3] [mx    10(1) +=     4] [mg    10(1) <-     4] [mx    11(2) +=     5] [mg    11(2) <-     5] 
+sp sp SIL s <- sp        : [mx    12(0) +=     3] [mg    12(0) <-     3] [mx    13(1) +=     4] [mg    13(1) <-     4] [mx    14(2) +=     5] [mg    14(2) <-     5] 
+sp sp sp s <- sp        : INFO: main.c(529): Writing dest /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/transition_matrices
 INFO: s3tmat_io.c(176): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/transition_matrices [2x3x4 array]
 INFO: main.c(540): Writing dest /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/mixture_weights
-INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/mixture_weights [9x1x1 array]
+INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/mixture_weights [18x1x1 array]
 INFO: main.c(549): Writing dest /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/means
-INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/means [9x1x1 array]
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/means [18x1x1 array]
 INFO: main.c(561): Writing dest /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/variances
-INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/variances [9x1x1 array]
-[mx     6(0) +=     3] [mg     6(0) <-     3] [mx     7(1) +=     4] [mg     7(1) <-     4] [mx     8(2) +=     5] [mg     8(2) <-     5] 
-Fri Jul 28 06:12:42 2017
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_untied/variances [18x1x1 array]
+[mx    15(0) +=     3] [mg    15(0) <-     3] [mx    16(1) +=     4] [mg    16(1) <-     4] [mx    17(2) +=     5] [mg    17(2) <-     5] 
+Sun Jul 30 19:03:53 2017

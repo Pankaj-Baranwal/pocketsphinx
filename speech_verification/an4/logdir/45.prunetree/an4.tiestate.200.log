@@ -18,7 +18,7 @@ INFO: model_def_io.c(579): 4 max state/model
 INFO: model_def_io.c(580): 4 min state/model
 INFO: main.c(93): Reading: /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
 INFO: main.c(124): sp-0: offset 6
-INFO: main.c(124): sp-1: offset 7
-INFO: main.c(124): sp-2: offset 8
-INFO: main.c(145): n_seno= 9
-Fri Jul 28 06:12:44 2017
+INFO: main.c(124): sp-1: offset 10
+INFO: main.c(124): sp-2: offset 14
+INFO: main.c(145): n_seno= 18
+Sun Jul 30 19:03:57 2017

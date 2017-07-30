@@ -12006,4 +12006,2040 @@ span.status {
 <p class='result'>pocketsphinx_batch <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/decode/an4-1-1.log">Log File</a></p><span class='status completed'>completed</span>
 <p>        Aligning results to find error rate</p>
 <p class='result'>SENTENCE ERROR: 100.0% (130/130)   WORD ERROR RATE: 100.0% (130/130)</p>
+<p class='result'><hr>
+<h3>MODULE: 000 Computing feature from audio files	(2017-07-28 21:16)</h3>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.train-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.test-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>Feature extraction is done</p>
+<hr>
+<h3>MODULE: 00 verify training files	(2017-07-28 21:16)</h3>
+<p class='phase'>Phase 1: Checking to see if the dict and filler dict agrees with the phonelist file.</p>
+<p class='result'>Found 4 words using 2 phones</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 2: Checking to make sure there are not duplicate entries in the dictionary</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 3: Check general format for the fileids file; utterance length (must be positive); files exist</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 4: Checking number of lines in the transcript file should match lines in fileids file</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 5: Determine amount of training data, see if n_tied_states seems reasonable.</p>
+<p class='result'>Estimated Total Hours Training: 0.669305555555556</p>
+<p class='result'>This is a small amount of data, no comment at this time</p>
+<span class='status WARNING'>WARNING</span>
+<p class='phase'>Phase 6: Checking that all the words in the transcript are in the dictionary</p>
+<p class='result'>Words in dictionary: 1</p>
+<p class='result'>Words in filler dictionary: 3</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 7: Checking that all the phones in the transcript are in the phonelist, and all phones in the phonelist appear at least once</p>
+<span class='status passed'>passed</span>
+<hr>
+<h3>MODULE: 0000 train grapheme-to-phoneme model	(2017-07-28 21:16)</h3>
+<p>Skipped (set $CFG_G2P_MODEL = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 01 Train LDA transformation	(2017-07-28 21:16)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 02 Train MLLT transformation	(2017-07-28 21:16)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 05 Vector Quantization	(2017-07-28 21:16)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: 10 Training Context Independent models for forced alignment and VTLN	(2017-07-28 21:16)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 11 Force-aligning transcripts	(2017-07-28 21:16)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 12 Force-aligning data for VTLN	(2017-07-28 21:16)</h3>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 20 Training Context Independent models	(2017-07-28 21:16)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...</span>
+<span class='progress'>models...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Flat initialize</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.make_ci_mdef_fromphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>mk_flat <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.makeflat_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -156.597551359203</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -156.072670678564</p>
+<p class='result'>Convergence Ratio = 0.524880680639001</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.995683751816</p>
+<p class='result'>Convergence Ratio = 1.07698692674828</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.685038389707</p>
+<p class='result'>Convergence Ratio = 0.310645362108573</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.608715501141</p>
+<p class='result'>Training completed after 5 iterations</p>
+<hr>
+<h3>MODULE: 30 Training Context Dependent models	(2017-07-28 21:16)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Initialization</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.make_alltriphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.copycitocd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for iteration: 1 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.561900809297</p>
+<p class='result'>Baum welch starting for iteration: 2 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.517825274953</p>
+<p class='result'>Training completed after 2 iterations</p>
+<hr>
+<h3>MODULE: 40 Build Trees	(2017-07-28 21:16)</h3>
+<p class='phase'>Phase 1: Cleaning up old log files...</p>
+<p class='phase'>Phase 2: Make Questions</p>
+<p class='result'>make_quests <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.make_questions.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Tree building</p>
+<p class='result'>Processing each phone with each state</p>
+<p class='result'>sp 0 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.0.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 1 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 2 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Skipping SIL</p>
+<hr>
+<h3>MODULE: 45 Prune Trees	(2017-07-28 21:16)</h3>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.build.alltriphones.mdef.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 1: Tree Pruning</p>
+<p class='result'>prunetree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.prunetree.200.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 2: State Tying</p>
+<p class='result'>tiestate <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.tiestate.200.log">Log File</a></p><span class='status completed'>completed</span>
+<hr>
+<h3>MODULE: 50 Training Context dependent models	(2017-07-28 21:16)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Copy CI to CD initialize</p>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.copy.ci.2.cd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.561900809297</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.517576260635</p>
+<p class='result'>Split Gaussians, increase by 1</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.1.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.517576260635</p>
+<p class='result'>Convergence Ratio = 0.0443245486619901</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.956048972816</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.438555716954</p>
+<p class='result'>Convergence Ratio = 0.517493255862291</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.114380576883</p>
+<p class='result'>Convergence Ratio = 0.324175140070821</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.252459016393</p>
+<p class='result'>Convergence Ratio = 0.861921560489577</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.95451338452</p>
+<p class='result'>Convergence Ratio = 0.297945631873404</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.879518572318</p>
+<p class='result'>Split Gaussians, increase by 2</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.2.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.879518572318</p>
+<p class='result'>Convergence Ratio = 0.0749948122020783</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.309815314381</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.836107076157</p>
+<p class='result'>Convergence Ratio = 0.473708238224134</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.732060593484</p>
+<p class='result'>Convergence Ratio = 0.104046482672857</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.530109981324</p>
+<p class='result'>Convergence Ratio = 0.201950612160061</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.315501141316</p>
+<p class='result'>Convergence Ratio = 0.214608840008367</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.193069101473</p>
+<p class='result'>Convergence Ratio = 0.122432039842664</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.129653455074</p>
+<p class='result'>Split Gaussians, increase by 4</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.4.4.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.129653455074</p>
+<p class='result'>Convergence Ratio = 0.0634156463993065</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.538493463374</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.056733762191</p>
+<p class='result'>Convergence Ratio = 0.481759701182682</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.94256069724</p>
+<p class='result'>Convergence Ratio = 0.114173064950904</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.734799750986</p>
+<p class='result'>Convergence Ratio = 0.207760946254325</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.487155011413</p>
+<p class='result'>Convergence Ratio = 0.247644739572848</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.318862834613</p>
+<p class='result'>Convergence Ratio = 0.168292176800009</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.211579165802</p>
+<p class='result'>Convergence Ratio = 0.107283668810965</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 8 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.8-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 8</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.8.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.134841253372</p>
+<p>Training for 8 Gaussian(s) completed after 8 iterations</p>
+<hr>
+<h3>MODULE: 60 Lattice Generation	(2017-07-28 21:17)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 61 Lattice Pruning	(2017-07-28 21:17)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 62 Lattice Format Conversion	(2017-07-28 21:17)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 65 MMIE Training	(2017-07-28 21:17)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 90 deleted interpolation	(2017-07-28 21:17)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: DECODE Decoding using models previously trained	(2017-07-28 21:17)</h3>
+<p class='result'>Decoding 130 segments starting at 0 (part 1 of 1) </p>
+<p class='result'>pocketsphinx_batch <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/decode/an4-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>        Aligning results to find error rate</p>
+<p class='result'>SENTENCE ERROR: 100.0% (130/130)   WORD ERROR RATE: 100.0% (130/130)</p>
+<p class='result'><hr>
+<h3>MODULE: 000 Computing feature from audio files	(2017-07-29 11:12)</h3>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.train-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.test-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>Feature extraction is done</p>
+<hr>
+<h3>MODULE: 00 verify training files	(2017-07-29 11:13)</h3>
+<p class='phase'>Phase 1: Checking to see if the dict and filler dict agrees with the phonelist file.</p>
+<p class='result'>Found 4 words using 2 phones</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 2: Checking to make sure there are not duplicate entries in the dictionary</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 3: Check general format for the fileids file; utterance length (must be positive); files exist</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 4: Checking number of lines in the transcript file should match lines in fileids file</p>
+<p class='warning'>WARNING: Transcript file missing a newline at end of file</p>
+<span class='status FAILED'>FAILED</span>
+<p class='phase'>Phase 5: Determine amount of training data, see if n_tied_states seems reasonable.</p>
+<p class='result'>Estimated Total Hours Training: 0.669305555555556</p>
+<p class='result'>This is a small amount of data, no comment at this time</p>
+<span class='status WARNING'>WARNING</span>
+<p class='phase'>Phase 6: Checking that all the words in the transcript are in the dictionary</p>
+<p class='result'>Words in dictionary: 1</p>
+<p class='result'>Words in filler dictionary: 3</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 7: Checking that all the phones in the transcript are in the phonelist, and all phones in the phonelist appear at least once</p>
+<span class='status passed'>passed</span>
+<hr>
+<h3>MODULE: 0000 train grapheme-to-phoneme model	(2017-07-29 11:13)</h3>
+<p>Skipped (set $CFG_G2P_MODEL = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 01 Train LDA transformation	(2017-07-29 11:13)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 02 Train MLLT transformation	(2017-07-29 11:13)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 05 Vector Quantization	(2017-07-29 11:13)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: 10 Training Context Independent models for forced alignment and VTLN	(2017-07-29 11:13)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 11 Force-aligning transcripts	(2017-07-29 11:13)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 12 Force-aligning data for VTLN	(2017-07-29 11:13)</h3>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 20 Training Context Independent models	(2017-07-29 11:13)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...</span>
+<span class='progress'>models...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Flat initialize</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.make_ci_mdef_fromphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>mk_flat <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.makeflat_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -156.502842913468</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -155.825150446151</p>
+<p class='result'>Convergence Ratio = 0.677692467317343</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.587424776925</p>
+<p class='result'>Convergence Ratio = 1.23772566922634</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.513343017223</p>
+<p class='result'>Convergence Ratio = 1.0740817597015</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.258269350488</p>
+<p class='result'>Convergence Ratio = 0.255073666735342</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.182319983399</p>
+<p class='result'>Training completed after 6 iterations</p>
+<hr>
+<h3>MODULE: 30 Training Context Dependent models	(2017-07-29 11:13)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Initialization</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.make_alltriphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.copycitocd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for iteration: 1 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for iteration: 2 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.022120771944</p>
+<p class='result'>Convergence Ratio = 0.10910977381161</p>
+<p class='result'>Baum welch starting for iteration: 3 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992944594314</p>
+<p class='result'>Training completed after 3 iterations</p>
+<hr>
+<h3>MODULE: 40 Build Trees	(2017-07-29 11:13)</h3>
+<p class='phase'>Phase 1: Cleaning up old log files...</p>
+<p class='phase'>Phase 2: Make Questions</p>
+<p class='result'>make_quests <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.make_questions.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Tree building</p>
+<p class='result'>Processing each phone with each state</p>
+<p class='result'>sp 0 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.0.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 1 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 2 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Skipping SIL</p>
+<hr>
+<h3>MODULE: 45 Prune Trees	(2017-07-29 11:13)</h3>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.build.alltriphones.mdef.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 1: Tree Pruning</p>
+<p class='result'>prunetree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.prunetree.200.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 2: State Tying</p>
+<p class='result'>tiestate <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.tiestate.200.log">Log File</a></p><span class='status completed'>completed</span>
+<hr>
+<h3>MODULE: 50 Training Context dependent models	(2017-07-29 11:13)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Copy CI to CD initialize</p>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.copy.ci.2.cd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.019215604897</p>
+<p class='result'>Convergence Ratio = 0.112014940858728</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Split Gaussians, increase by 1</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.1.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Convergence Ratio = 0.0264370201283839</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.451255447188</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.96679809089</p>
+<p class='result'>Convergence Ratio = 0.484457356297781</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.796015770907</p>
+<p class='result'>Convergence Ratio = 0.170782319983175</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.498485162897</p>
+<p class='result'>Convergence Ratio = 0.297530608010135</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.298360655738</p>
+<p class='result'>Convergence Ratio = 0.200124507159302</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.188379331812</p>
+<p class='result'>Convergence Ratio = 0.109981323926434</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Split Gaussians, increase by 2</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.2.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Convergence Ratio = 0.0695164971990039</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.522722556547</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.012243203984</p>
+<p class='result'>Convergence Ratio = 0.510479352562754</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.839510271841</p>
+<p class='result'>Convergence Ratio = 0.17273293214339</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.576924673169</p>
+<p class='result'>Convergence Ratio = 0.262585598672274</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.35496991077</p>
+<p class='result'>Convergence Ratio = 0.221954762399122</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.208466486823</p>
+<p class='result'>Convergence Ratio = 0.146503423946996</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.099896244034</p>
+<p class='result'>Convergence Ratio = 0.108570242788971</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 8 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 8</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Split Gaussians, increase by 4</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.4.4.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Convergence Ratio = 0.0810956630005819</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.419049595352</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.920979456319</p>
+<p class='result'>Convergence Ratio = 0.498070139033246</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.778128242374</p>
+<p class='result'>Convergence Ratio = 0.142851213945079</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.560157709068</p>
+<p class='result'>Convergence Ratio = 0.217970533305731</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.370865324756</p>
+<p class='result'>Convergence Ratio = 0.189292384311813</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.245445113094</p>
+<p class='result'>Convergence Ratio = 0.125420211662004</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.162274330774</p>
+<p>Training for 8 Gaussian(s) completed after 7 iterations</p>
+<hr>
+<h3>MODULE: 60 Lattice Generation	(2017-07-29 11:14)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 61 Lattice Pruning	(2017-07-29 11:14)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 62 Lattice Format Conversion	(2017-07-29 11:14)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 65 MMIE Training	(2017-07-29 11:14)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 90 deleted interpolation	(2017-07-29 11:14)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: DECODE Decoding using models previously trained	(2017-07-29 11:14)</h3>
+<p class='result'>Decoding 130 segments starting at 0 (part 1 of 1) </p>
+<p class='result'>pocketsphinx_batch <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/decode/an4-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>        Aligning results to find error rate</p>
+<p class='result'>SENTENCE ERROR: 100.0% (130/130)   WORD ERROR RATE: 100.0% (773/773)</p>
+<p class='result'><hr>
+<h3>MODULE: 000 Computing feature from audio files	(2017-07-30 18:53)</h3>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.train-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.test-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>Feature extraction is done</p>
+<hr>
+<h3>MODULE: 00 verify training files	(2017-07-30 18:53)</h3>
+<p class='phase'>Phase 1: Checking to see if the dict and filler dict agrees with the phonelist file.</p>
+<p class='result'>Found 4 words using 2 phones</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 2: Checking to make sure there are not duplicate entries in the dictionary</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 3: Check general format for the fileids file; utterance length (must be positive); files exist</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 4: Checking number of lines in the transcript file should match lines in fileids file</p>
+<p class='warning'>WARNING: Transcript file missing a newline at end of file</p>
+<span class='status FAILED'>FAILED</span>
+<p class='phase'>Phase 5: Determine amount of training data, see if n_tied_states seems reasonable.</p>
+<p class='result'>Estimated Total Hours Training: 0.669305555555556</p>
+<p class='result'>This is a small amount of data, no comment at this time</p>
+<span class='status WARNING'>WARNING</span>
+<p class='phase'>Phase 6: Checking that all the words in the transcript are in the dictionary</p>
+<p class='result'>Words in dictionary: 1</p>
+<p class='result'>Words in filler dictionary: 3</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 7: Checking that all the phones in the transcript are in the phonelist, and all phones in the phonelist appear at least once</p>
+<span class='status passed'>passed</span>
+<hr>
+<h3>MODULE: 0000 train grapheme-to-phoneme model	(2017-07-30 18:53)</h3>
+<p>Skipped (set $CFG_G2P_MODEL = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 01 Train LDA transformation	(2017-07-30 18:53)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 02 Train MLLT transformation	(2017-07-30 18:53)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 05 Vector Quantization	(2017-07-30 18:53)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: 10 Training Context Independent models for forced alignment and VTLN	(2017-07-30 18:53)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 11 Force-aligning transcripts	(2017-07-30 18:53)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 12 Force-aligning data for VTLN	(2017-07-30 18:53)</h3>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 20 Training Context Independent models	(2017-07-30 18:53)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...</span>
+<span class='progress'>models...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Flat initialize</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.make_ci_mdef_fromphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>mk_flat <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.makeflat_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -156.502842913468</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -155.825150446151</p>
+<p class='result'>Convergence Ratio = 0.677692467317343</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.587424776925</p>
+<p class='result'>Convergence Ratio = 1.23772566922634</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.513343017223</p>
+<p class='result'>Convergence Ratio = 1.0740817597015</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.258269350488</p>
+<p class='result'>Convergence Ratio = 0.255073666735342</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.182319983399</p>
+<p class='result'>Training completed after 6 iterations</p>
+<hr>
+<h3>MODULE: 30 Training Context Dependent models	(2017-07-30 18:53)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Initialization</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.make_alltriphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.copycitocd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for iteration: 1 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for iteration: 2 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.022120771944</p>
+<p class='result'>Convergence Ratio = 0.10910977381161</p>
+<p class='result'>Baum welch starting for iteration: 3 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992944594314</p>
+<p class='result'>Training completed after 3 iterations</p>
+<hr>
+<h3>MODULE: 40 Build Trees	(2017-07-30 18:53)</h3>
+<p class='phase'>Phase 1: Cleaning up old log files...</p>
+<p class='phase'>Phase 2: Make Questions</p>
+<p class='result'>make_quests <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.make_questions.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Tree building</p>
+<p class='result'>Processing each phone with each state</p>
+<p class='result'>sp 0 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.0.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 1 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 2 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Skipping SIL</p>
+<hr>
+<h3>MODULE: 45 Prune Trees	(2017-07-30 18:53)</h3>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.build.alltriphones.mdef.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 1: Tree Pruning</p>
+<p class='result'>prunetree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.prunetree.200.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 2: State Tying</p>
+<p class='result'>tiestate <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.tiestate.200.log">Log File</a></p><span class='status completed'>completed</span>
+<hr>
+<h3>MODULE: 50 Training Context dependent models	(2017-07-30 18:53)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Copy CI to CD initialize</p>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.copy.ci.2.cd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.019215604897</p>
+<p class='result'>Convergence Ratio = 0.112014940858728</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Split Gaussians, increase by 1</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.1.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Convergence Ratio = 0.0264370201283839</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.451255447188</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.96679809089</p>
+<p class='result'>Convergence Ratio = 0.484457356297781</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.796015770907</p>
+<p class='result'>Convergence Ratio = 0.170782319983175</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.498485162897</p>
+<p class='result'>Convergence Ratio = 0.297530608010135</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.298360655738</p>
+<p class='result'>Convergence Ratio = 0.200124507159302</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.188379331812</p>
+<p class='result'>Convergence Ratio = 0.109981323926434</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Split Gaussians, increase by 2</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.2.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Convergence Ratio = 0.0695164971990039</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.522722556547</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.012243203984</p>
+<p class='result'>Convergence Ratio = 0.510479352562754</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.839510271841</p>
+<p class='result'>Convergence Ratio = 0.17273293214339</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.576924673169</p>
+<p class='result'>Convergence Ratio = 0.262585598672274</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.35496991077</p>
+<p class='result'>Convergence Ratio = 0.221954762399122</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.208466486823</p>
+<p class='result'>Convergence Ratio = 0.146503423946996</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.099896244034</p>
+<p class='result'>Convergence Ratio = 0.108570242788971</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 8 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 8</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Split Gaussians, increase by 4</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.4.4.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Convergence Ratio = 0.0810956630005819</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.419049595352</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.920979456319</p>
+<p class='result'>Convergence Ratio = 0.498070139033246</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.778128242374</p>
+<p class='result'>Convergence Ratio = 0.142851213945079</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.560157709068</p>
+<p class='result'>Convergence Ratio = 0.217970533305731</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.370865324756</p>
+<p class='result'>Convergence Ratio = 0.189292384311813</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.245445113094</p>
+<p class='result'>Convergence Ratio = 0.125420211662004</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.162274330774</p>
+<p>Training for 8 Gaussian(s) completed after 7 iterations</p>
+<hr>
+<h3>MODULE: 60 Lattice Generation	(2017-07-30 18:54)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 61 Lattice Pruning	(2017-07-30 18:54)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 62 Lattice Format Conversion	(2017-07-30 18:54)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 65 MMIE Training	(2017-07-30 18:54)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 90 deleted interpolation	(2017-07-30 18:54)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: DECODE Decoding using models previously trained	(2017-07-30 18:54)</h3>
+<p class='result'>Decoding 130 segments starting at 0 (part 1 of 1) </p>
+<p class='result'>pocketsphinx_batch <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/decode/an4-1-1.log">Log File</a></p><p class='error'>ERROR: FATAL: "batch.c", line 822: PocketSphinx decoder init failed</p>
+<p class='error'>ERROR: This step had 1 ERROR messages and 0 WARNING messages.  Please check the log file for details.</p>
+<span class='status FAILED'>FAILED</span>
+<p class='error'>ERROR: Failed to start pocketsphinx_batch</p>
+<p>        Aligning results to find error rate</p>
+<p class='result'>SENTENCE ERROR: 100.0% (130/130)   WORD ERROR RATE: 100.0% (773/773)</p>
+<p class='result'><hr>
+<h3>MODULE: 000 Computing feature from audio files	(2017-07-30 18:57)</h3>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.train-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.test-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>Feature extraction is done</p>
+<hr>
+<h3>MODULE: 00 verify training files	(2017-07-30 18:57)</h3>
+<p class='phase'>Phase 1: Checking to see if the dict and filler dict agrees with the phonelist file.</p>
+<p class='result'>Found 4 words using 2 phones</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 2: Checking to make sure there are not duplicate entries in the dictionary</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 3: Check general format for the fileids file; utterance length (must be positive); files exist</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 4: Checking number of lines in the transcript file should match lines in fileids file</p>
+<p class='warning'>WARNING: Transcript file missing a newline at end of file</p>
+<span class='status FAILED'>FAILED</span>
+<p class='phase'>Phase 5: Determine amount of training data, see if n_tied_states seems reasonable.</p>
+<p class='result'>Estimated Total Hours Training: 0.669305555555556</p>
+<p class='result'>This is a small amount of data, no comment at this time</p>
+<span class='status WARNING'>WARNING</span>
+<p class='phase'>Phase 6: Checking that all the words in the transcript are in the dictionary</p>
+<p class='result'>Words in dictionary: 1</p>
+<p class='result'>Words in filler dictionary: 3</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 7: Checking that all the phones in the transcript are in the phonelist, and all phones in the phonelist appear at least once</p>
+<span class='status passed'>passed</span>
+<hr>
+<h3>MODULE: 0000 train grapheme-to-phoneme model	(2017-07-30 18:57)</h3>
+<p>Skipped (set $CFG_G2P_MODEL = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 01 Train LDA transformation	(2017-07-30 18:57)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 02 Train MLLT transformation	(2017-07-30 18:57)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 05 Vector Quantization	(2017-07-30 18:57)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: 10 Training Context Independent models for forced alignment and VTLN	(2017-07-30 18:57)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 11 Force-aligning transcripts	(2017-07-30 18:57)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 12 Force-aligning data for VTLN	(2017-07-30 18:57)</h3>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 20 Training Context Independent models	(2017-07-30 18:57)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...</span>
+<span class='progress'>models...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Flat initialize</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.make_ci_mdef_fromphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>mk_flat <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.makeflat_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -156.502842913468</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -155.825150446151</p>
+<p class='result'>Convergence Ratio = 0.677692467317343</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.587424776925</p>
+<p class='result'>Convergence Ratio = 1.23772566922634</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.513343017223</p>
+<p class='result'>Convergence Ratio = 1.0740817597015</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.258269350488</p>
+<p class='result'>Convergence Ratio = 0.255073666735342</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.182319983399</p>
+<p class='result'>Training completed after 6 iterations</p>
+<hr>
+<h3>MODULE: 30 Training Context Dependent models	(2017-07-30 18:57)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Initialization</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.make_alltriphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.copycitocd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for iteration: 1 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for iteration: 2 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.022120771944</p>
+<p class='result'>Convergence Ratio = 0.10910977381161</p>
+<p class='result'>Baum welch starting for iteration: 3 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992944594314</p>
+<p class='result'>Training completed after 3 iterations</p>
+<hr>
+<h3>MODULE: 40 Build Trees	(2017-07-30 18:57)</h3>
+<p class='phase'>Phase 1: Cleaning up old log files...</p>
+<p class='phase'>Phase 2: Make Questions</p>
+<p class='result'>make_quests <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.make_questions.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Tree building</p>
+<p class='result'>Processing each phone with each state</p>
+<p class='result'>sp 0 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.0.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 1 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 2 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Skipping SIL</p>
+<hr>
+<h3>MODULE: 45 Prune Trees	(2017-07-30 18:57)</h3>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.build.alltriphones.mdef.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 1: Tree Pruning</p>
+<p class='result'>prunetree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.prunetree.200.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 2: State Tying</p>
+<p class='result'>tiestate <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.tiestate.200.log">Log File</a></p><span class='status completed'>completed</span>
+<hr>
+<h3>MODULE: 50 Training Context dependent models	(2017-07-30 18:57)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Copy CI to CD initialize</p>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.copy.ci.2.cd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.019215604897</p>
+<p class='result'>Convergence Ratio = 0.112014940858728</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Split Gaussians, increase by 1</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.1.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Convergence Ratio = 0.0264370201283839</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.451255447188</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.96679809089</p>
+<p class='result'>Convergence Ratio = 0.484457356297781</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.796015770907</p>
+<p class='result'>Convergence Ratio = 0.170782319983175</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.498485162897</p>
+<p class='result'>Convergence Ratio = 0.297530608010135</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.298360655738</p>
+<p class='result'>Convergence Ratio = 0.200124507159302</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.188379331812</p>
+<p class='result'>Convergence Ratio = 0.109981323926434</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Split Gaussians, increase by 2</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.2.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Convergence Ratio = 0.0695164971990039</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.522722556547</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.012243203984</p>
+<p class='result'>Convergence Ratio = 0.510479352562754</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.839510271841</p>
+<p class='result'>Convergence Ratio = 0.17273293214339</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.576924673169</p>
+<p class='result'>Convergence Ratio = 0.262585598672274</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.35496991077</p>
+<p class='result'>Convergence Ratio = 0.221954762399122</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.208466486823</p>
+<p class='result'>Convergence Ratio = 0.146503423946996</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.099896244034</p>
+<p class='result'>Convergence Ratio = 0.108570242788971</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 8 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 8</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Split Gaussians, increase by 4</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.4.4.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Convergence Ratio = 0.0810956630005819</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.419049595352</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.920979456319</p>
+<p class='result'>Convergence Ratio = 0.498070139033246</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.778128242374</p>
+<p class='result'>Convergence Ratio = 0.142851213945079</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.560157709068</p>
+<p class='result'>Convergence Ratio = 0.217970533305731</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.370865324756</p>
+<p class='result'>Convergence Ratio = 0.189292384311813</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.245445113094</p>
+<p class='result'>Convergence Ratio = 0.125420211662004</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.162274330774</p>
+<p>Training for 8 Gaussian(s) completed after 7 iterations</p>
+<hr>
+<h3>MODULE: 60 Lattice Generation	(2017-07-30 18:58)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 61 Lattice Pruning	(2017-07-30 18:58)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 62 Lattice Format Conversion	(2017-07-30 18:58)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 65 MMIE Training	(2017-07-30 18:58)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 90 deleted interpolation	(2017-07-30 18:58)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: DECODE Decoding using models previously trained	(2017-07-30 18:58)</h3>
+<p class='result'>Decoding 130 segments starting at 0 (part 1 of 1) </p>
+<p class='result'>pocketsphinx_batch <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/decode/an4-1-1.log">Log File</a></p><p class='error'>ERROR: FATAL: "batch.c", line 822: PocketSphinx decoder init failed</p>
+<p class='error'>ERROR: This step had 1 ERROR messages and 0 WARNING messages.  Please check the log file for details.</p>
+<span class='status FAILED'>FAILED</span>
+<p class='error'>ERROR: Failed to start pocketsphinx_batch</p>
+<p>        Aligning results to find error rate</p>
+<p class='result'>SENTENCE ERROR: 100.0% (130/130)   WORD ERROR RATE: 100.0% (773/773)</p>
+<p class='result'><hr>
+<h3>MODULE: 000 Computing feature from audio files	(2017-07-30 19:01)</h3>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.train-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.test-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>Feature extraction is done</p>
+<hr>
+<h3>MODULE: 00 verify training files	(2017-07-30 19:01)</h3>
+<p class='phase'>Phase 1: Checking to see if the dict and filler dict agrees with the phonelist file.</p>
+<p class='result'>Found 4 words using 2 phones</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 2: Checking to make sure there are not duplicate entries in the dictionary</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 3: Check general format for the fileids file; utterance length (must be positive); files exist</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 4: Checking number of lines in the transcript file should match lines in fileids file</p>
+<p class='warning'>WARNING: Transcript file missing a newline at end of file</p>
+<span class='status FAILED'>FAILED</span>
+<p class='phase'>Phase 5: Determine amount of training data, see if n_tied_states seems reasonable.</p>
+<p class='result'>Estimated Total Hours Training: 0.669305555555556</p>
+<p class='result'>This is a small amount of data, no comment at this time</p>
+<span class='status WARNING'>WARNING</span>
+<p class='phase'>Phase 6: Checking that all the words in the transcript are in the dictionary</p>
+<p class='result'>Words in dictionary: 1</p>
+<p class='result'>Words in filler dictionary: 3</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 7: Checking that all the phones in the transcript are in the phonelist, and all phones in the phonelist appear at least once</p>
+<span class='status passed'>passed</span>
+<hr>
+<h3>MODULE: 0000 train grapheme-to-phoneme model	(2017-07-30 19:01)</h3>
+<p>Skipped (set $CFG_G2P_MODEL = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 01 Train LDA transformation	(2017-07-30 19:01)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 02 Train MLLT transformation	(2017-07-30 19:01)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 05 Vector Quantization	(2017-07-30 19:01)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: 10 Training Context Independent models for forced alignment and VTLN	(2017-07-30 19:01)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 11 Force-aligning transcripts	(2017-07-30 19:01)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 12 Force-aligning data for VTLN	(2017-07-30 19:01)</h3>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 20 Training Context Independent models	(2017-07-30 19:01)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...</span>
+<span class='progress'>models...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Flat initialize</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.make_ci_mdef_fromphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>mk_flat <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.makeflat_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -156.502842913468</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -155.825150446151</p>
+<p class='result'>Convergence Ratio = 0.677692467317343</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.587424776925</p>
+<p class='result'>Convergence Ratio = 1.23772566922634</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.513343017223</p>
+<p class='result'>Convergence Ratio = 1.0740817597015</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.258269350488</p>
+<p class='result'>Convergence Ratio = 0.255073666735342</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.182319983399</p>
+<p class='result'>Training completed after 6 iterations</p>
+<hr>
+<h3>MODULE: 30 Training Context Dependent models	(2017-07-30 19:01)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Initialization</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.make_alltriphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.copycitocd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for iteration: 1 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for iteration: 2 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.022120771944</p>
+<p class='result'>Convergence Ratio = 0.10910977381161</p>
+<p class='result'>Baum welch starting for iteration: 3 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992944594314</p>
+<p class='result'>Training completed after 3 iterations</p>
+<hr>
+<h3>MODULE: 40 Build Trees	(2017-07-30 19:01)</h3>
+<p class='phase'>Phase 1: Cleaning up old log files...</p>
+<p class='phase'>Phase 2: Make Questions</p>
+<p class='result'>make_quests <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.make_questions.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Tree building</p>
+<p class='result'>Processing each phone with each state</p>
+<p class='result'>sp 0 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.0.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 1 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 2 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Skipping SIL</p>
+<hr>
+<h3>MODULE: 45 Prune Trees	(2017-07-30 19:01)</h3>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.build.alltriphones.mdef.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 1: Tree Pruning</p>
+<p class='result'>prunetree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.prunetree.200.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 2: State Tying</p>
+<p class='result'>tiestate <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.tiestate.200.log">Log File</a></p><span class='status completed'>completed</span>
+<hr>
+<h3>MODULE: 50 Training Context dependent models	(2017-07-30 19:01)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Copy CI to CD initialize</p>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.copy.ci.2.cd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.019215604897</p>
+<p class='result'>Convergence Ratio = 0.112014940858728</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Split Gaussians, increase by 1</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.1.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Convergence Ratio = 0.0264370201283839</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.451255447188</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.96679809089</p>
+<p class='result'>Convergence Ratio = 0.484457356297781</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.796015770907</p>
+<p class='result'>Convergence Ratio = 0.170782319983175</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.498485162897</p>
+<p class='result'>Convergence Ratio = 0.297530608010135</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.298360655738</p>
+<p class='result'>Convergence Ratio = 0.200124507159302</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.188379331812</p>
+<p class='result'>Convergence Ratio = 0.109981323926434</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Split Gaussians, increase by 2</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.2.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Convergence Ratio = 0.0695164971990039</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.522722556547</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.012243203984</p>
+<p class='result'>Convergence Ratio = 0.510479352562754</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.839510271841</p>
+<p class='result'>Convergence Ratio = 0.17273293214339</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.576924673169</p>
+<p class='result'>Convergence Ratio = 0.262585598672274</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.35496991077</p>
+<p class='result'>Convergence Ratio = 0.221954762399122</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.208466486823</p>
+<p class='result'>Convergence Ratio = 0.146503423946996</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.099896244034</p>
+<p class='result'>Convergence Ratio = 0.108570242788971</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 8 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 8</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Split Gaussians, increase by 4</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.4.4.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Convergence Ratio = 0.0810956630005819</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.419049595352</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.920979456319</p>
+<p class='result'>Convergence Ratio = 0.498070139033246</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.778128242374</p>
+<p class='result'>Convergence Ratio = 0.142851213945079</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.560157709068</p>
+<p class='result'>Convergence Ratio = 0.217970533305731</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.370865324756</p>
+<p class='result'>Convergence Ratio = 0.189292384311813</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.245445113094</p>
+<p class='result'>Convergence Ratio = 0.125420211662004</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.162274330774</p>
+<p>Training for 8 Gaussian(s) completed after 7 iterations</p>
+<hr>
+<h3>MODULE: 60 Lattice Generation	(2017-07-30 19:02)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 61 Lattice Pruning	(2017-07-30 19:02)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 62 Lattice Format Conversion	(2017-07-30 19:02)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 65 MMIE Training	(2017-07-30 19:02)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 90 deleted interpolation	(2017-07-30 19:02)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: DECODE Decoding using models previously trained	(2017-07-30 19:02)</h3>
+<p class='result'>Decoding 130 segments starting at 0 (part 1 of 1) </p>
+<p class='result'>pocketsphinx_batch <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/decode/an4-1-1.log">Log File</a></p><p class='error'>ERROR: FATAL: "batch.c", line 822: PocketSphinx decoder init failed</p>
+<p class='error'>ERROR: This step had 1 ERROR messages and 0 WARNING messages.  Please check the log file for details.</p>
+<span class='status FAILED'>FAILED</span>
+<p class='error'>ERROR: Failed to start pocketsphinx_batch</p>
+<p>        Aligning results to find error rate</p>
+<p class='result'>SENTENCE ERROR: 100.0% (130/130)   WORD ERROR RATE: 100.0% (773/773)</p>
+<p class='result'><hr>
+<h3>MODULE: 000 Computing feature from audio files	(2017-07-30 19:03)</h3>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.train-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='audio files'>Extracting features from  segments starting at  (part 1 of 1) </p>
+<p class='result'>sphinx_fe <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/000.comp_feat/an4.test-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>Feature extraction is done</p>
+<hr>
+<h3>MODULE: 00 verify training files	(2017-07-30 19:03)</h3>
+<p class='phase'>Phase 1: Checking to see if the dict and filler dict agrees with the phonelist file.</p>
+<p class='result'>Found 4 words using 2 phones</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 2: Checking to make sure there are not duplicate entries in the dictionary</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 3: Check general format for the fileids file; utterance length (must be positive); files exist</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 4: Checking number of lines in the transcript file should match lines in fileids file</p>
+<p class='warning'>WARNING: Transcript file missing a newline at end of file</p>
+<span class='status FAILED'>FAILED</span>
+<p class='phase'>Phase 5: Determine amount of training data, see if n_tied_states seems reasonable.</p>
+<p class='result'>Estimated Total Hours Training: 0.669305555555556</p>
+<p class='result'>This is a small amount of data, no comment at this time</p>
+<span class='status WARNING'>WARNING</span>
+<p class='phase'>Phase 6: Checking that all the words in the transcript are in the dictionary</p>
+<p class='result'>Words in dictionary: 1</p>
+<p class='result'>Words in filler dictionary: 3</p>
+<span class='status passed'>passed</span>
+<p class='phase'>Phase 7: Checking that all the phones in the transcript are in the phonelist, and all phones in the phonelist appear at least once</p>
+<span class='status passed'>passed</span>
+<hr>
+<h3>MODULE: 0000 train grapheme-to-phoneme model	(2017-07-30 19:03)</h3>
+<p>Skipped (set $CFG_G2P_MODEL = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 01 Train LDA transformation	(2017-07-30 19:03)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 02 Train MLLT transformation	(2017-07-30 19:03)</h3>
+<p>Skipped (set $CFG_LDA_MLLT = 'yes' to enable)</p>
+<hr>
+<h3>MODULE: 05 Vector Quantization	(2017-07-30 19:03)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: 10 Training Context Independent models for forced alignment and VTLN	(2017-07-30 19:03)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 11 Force-aligning transcripts	(2017-07-30 19:03)</h3>
+<p>Skipped:  $ST::CFG_FORCEDALIGN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 12 Force-aligning data for VTLN	(2017-07-30 19:03)</h3>
+<p>Skipped:  $ST::CFG_VTLN set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 20 Training Context Independent models	(2017-07-30 19:03)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...</span>
+<span class='progress'>models...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Flat initialize</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.make_ci_mdef_fromphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>mk_flat <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.makeflat_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_gau <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.initvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.normvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpmean_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>cp_parm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.cpvar_cihmm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -156.502842913468</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -155.825150446151</p>
+<p class='result'>Convergence Ratio = 0.677692467317343</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -154.587424776925</p>
+<p class='result'>Convergence Ratio = 1.23772566922634</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.513343017223</p>
+<p class='result'>Convergence Ratio = 1.0740817597015</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.258269350488</p>
+<p class='result'>Convergence Ratio = 0.255073666735342</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/20.ci_hmm/an4.1.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.182319983399</p>
+<p class='result'>Training completed after 6 iterations</p>
+<hr>
+<h3>MODULE: 30 Training Context Dependent models	(2017-07-30 19:03)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Initialization</p>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.make_alltriphonelist.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.copycitocd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for iteration: 1 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for iteration: 2 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.022120771944</p>
+<p class='result'>Convergence Ratio = 0.10910977381161</p>
+<p class='result'>Baum welch starting for iteration: 3 (1 of 1) </p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/30.cd_hmm_untied/an4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992944594314</p>
+<p class='result'>Training completed after 3 iterations</p>
+<hr>
+<h3>MODULE: 40 Build Trees	(2017-07-30 19:03)</h3>
+<p class='phase'>Phase 1: Cleaning up old log files...</p>
+<p class='phase'>Phase 2: Make Questions</p>
+<p class='result'>make_quests <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.make_questions.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Tree building</p>
+<p class='result'>Processing each phone with each state</p>
+<p class='result'>sp 0 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.0.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 1 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>sp 2 </p>
+<p class='result'>bldtree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/40.buildtrees/an4.buildtree.sp.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Skipping SIL</p>
+<hr>
+<h3>MODULE: 45 Prune Trees	(2017-07-30 19:03)</h3>
+<p class='result'>mk_mdef_gen <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.build.alltriphones.mdef.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 1: Tree Pruning</p>
+<p class='result'>prunetree <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.prunetree.200.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 2: State Tying</p>
+<p class='result'>tiestate <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/45.prunetree/an4.tiestate.200.log">Log File</a></p><span class='status completed'>completed</span>
+<hr>
+<h3>MODULE: 50 Training Context dependent models	(2017-07-30 19:03)</h3>
+<p class='phase'>Phase 1: Cleaning up directories:</p>
+<span class='progress'>	accumulator...</span>
+<span class='progress'>logs...</span>
+<span class='progress'>qmanager...
+</span>
+<span class='status completed'>completed</span>
+<p class='phase'>Phase 2: Copy CI to CD initialize</p>
+<p class='result'>init_mixw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.copy.ci.2.cd.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='phase'>Phase 3: Forward-Backward</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.131230545756</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.019215604897</p>
+<p class='result'>Convergence Ratio = 0.112014940858728</p>
+<p class='result'>Baum welch starting for 1 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.1.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Split Gaussians, increase by 1</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.1.1.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.992778584769</p>
+<p class='result'>Convergence Ratio = 0.0264370201283839</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -153.451255447188</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.96679809089</p>
+<p class='result'>Convergence Ratio = 0.484457356297781</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.796015770907</p>
+<p class='result'>Convergence Ratio = 0.170782319983175</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.498485162897</p>
+<p class='result'>Convergence Ratio = 0.297530608010135</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.298360655738</p>
+<p class='result'>Convergence Ratio = 0.200124507159302</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.188379331812</p>
+<p class='result'>Convergence Ratio = 0.109981323926434</p>
+<p class='result'>Baum welch starting for 2 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.2.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Split Gaussians, increase by 2</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.2.2.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.118862834613</p>
+<p class='result'>Convergence Ratio = 0.0695164971990039</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.522722556547</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -152.012243203984</p>
+<p class='result'>Convergence Ratio = 0.510479352562754</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.839510271841</p>
+<p class='result'>Convergence Ratio = 0.17273293214339</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.576924673169</p>
+<p class='result'>Convergence Ratio = 0.262585598672274</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.35496991077</p>
+<p class='result'>Convergence Ratio = 0.221954762399122</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.208466486823</p>
+<p class='result'>Convergence Ratio = 0.146503423946996</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.099896244034</p>
+<p class='result'>Convergence Ratio = 0.108570242788971</p>
+<p class='result'>Baum welch starting for 4 Gaussian(s), iteration: 8 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 8</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.4.8.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Split Gaussians, increase by 4</p>
+<p class='result'>inc_comp <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.split_gaussians.4.4.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.018800581033</p>
+<p class='result'>Convergence Ratio = 0.0810956630005819</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 1 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 1</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.1.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -151.419049595352</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 2 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 2</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.2.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.920979456319</p>
+<p class='result'>Convergence Ratio = 0.498070139033246</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 3 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 3</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.3.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.778128242374</p>
+<p class='result'>Convergence Ratio = 0.142851213945079</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 4 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 4</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.4.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.560157709068</p>
+<p class='result'>Convergence Ratio = 0.217970533305731</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 5 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 5</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.5.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.370865324756</p>
+<p class='result'>Convergence Ratio = 0.189292384311813</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 6 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 6</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.6.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.245445113094</p>
+<p class='result'>Convergence Ratio = 0.125420211662004</p>
+<p class='result'>Baum welch starting for 8 Gaussian(s), iteration: 7 (1 of 1)</p>
+<p class='result'>bw <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7-1.bw.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Normalization for iteration: 7</p>
+<p class='result'>norm <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/50.cd_hmm_tied/an4.8.7.norm.log">Log File</a></p><span class='status completed'>completed</span>
+<p class='result'>Current Overall Likelihood Per Frame = -150.162274330774</p>
+<p>Training for 8 Gaussian(s) completed after 7 iterations</p>
+<hr>
+<h3>MODULE: 60 Lattice Generation	(2017-07-30 19:04)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 61 Lattice Pruning	(2017-07-30 19:04)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 62 Lattice Format Conversion	(2017-07-30 19:04)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 65 MMIE Training	(2017-07-30 19:04)</h3>
+<p>Skipped:  $ST::CFG_MMIE set to 'no' in sphinx_train.cfg</p>
+<hr>
+<h3>MODULE: 90 deleted interpolation	(2017-07-30 19:04)</h3>
+<p>Skipped for continuous models</p>
+<hr>
+<h3>MODULE: DECODE Decoding using models previously trained	(2017-07-30 19:04)</h3>
+<p class='result'>Decoding 130 segments starting at 0 (part 1 of 1) </p>
+<p class='result'>pocketsphinx_batch <a href="file:///home/pankaj/GSoC/New_an4/an4/logdir/decode/an4-1-1.log">Log File</a></p><span class='status completed'>completed</span>
+<p>        Aligning results to find error rate</p>
+<p class='result'>SENTENCE ERROR: 80.0% (104/130)   WORD ERROR RATE: 30.0% (231/773)</p>
 <p class='result'>

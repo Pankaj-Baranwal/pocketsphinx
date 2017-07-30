@@ -19,16 +19,16 @@ Current configuration:
 -varfn			/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances
 
 INFO: main.c(207): Reading and accumulating counts from /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1
-INFO: s3mixw_io.c(117): Read /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/mixw_counts [9x1x4 array]
+INFO: s3mixw_io.c(117): Read /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/mixw_counts [18x1x4 array]
 INFO: s3tmat_io.c(118): Read /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/tmat_counts [2x3x4 array]
-INFO: s3gau_io.c(386): Read /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/gauden_counts with means with vars (2pass) [9x1x4 vector arrays]
+INFO: s3gau_io.c(386): Read /home/pankaj/GSoC/New_an4/an4/bwaccumdir/an4_buff_1/gauden_counts with means with vars (2pass) [18x1x4 vector arrays]
 INFO: main.c(321): -2passvar yes
-INFO: main.c(391): Normalizing mean for n_mgau= 9, n_stream= 1, n_density= 4
+INFO: main.c(391): Normalizing mean for n_mgau= 18, n_stream= 1, n_density= 4
 INFO: main.c(414): Normalizing var
-INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [9x1x4 array]
+INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [18x1x4 array]
 INFO: s3tmat_io.c(176): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/transition_matrices [2x3x4 array]
-INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/means [9x1x4 array]
-INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances [9x1x4 array]
-Fri Jul 28 06:12:58 2017
-Current Overall Likelihood Per Frame = -152.530109981324
-Convergence ratio = 0.201950612160061
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/means [18x1x4 array]
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances [18x1x4 array]
+Sun Jul 30 19:04:21 2017
+Current Overall Likelihood Per Frame = -151.576924673169
+Convergence ratio = 0.262585598672274

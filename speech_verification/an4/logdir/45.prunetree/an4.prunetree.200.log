@@ -20,13 +20,13 @@ INFO: model_def_io.c(578): 2 total tied transition matrices
 INFO: model_def_io.c(579): 4 max state/model
 INFO: model_def_io.c(580): 4 min state/model
 INFO: main.c(82): Reading: /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.tree_questions
-INFO: main.c(185): sp-0	1 [0 < 0.000000e+00]
-INFO: main.c(185): sp-1	1 [0 < 0.000000e+00]
-INFO: main.c(185): sp-2	1 [0 < 0.000000e+00]
-INFO: main.c(270): Prior to pruning n_seno= 3
-WARN: "main.c", line 275: n_seno_wanted= 200, but only 3 defined by trees
-INFO: main.c(278): n_twig= 0
-INFO: main.c(386): sp-0	1
-INFO: main.c(386): sp-1	1
-INFO: main.c(386): sp-2	1
-Fri Jul 28 06:12:44 2017
+INFO: main.c(185): sp-0	4 [0 < 0.000000e+00]
+INFO: main.c(185): sp-1	4 [0 < 0.000000e+00]
+INFO: main.c(185): sp-2	4 [0 < 0.000000e+00]
+INFO: main.c(270): Prior to pruning n_seno= 12
+WARN: "main.c", line 275: n_seno_wanted= 200, but only 12 defined by trees
+INFO: main.c(278): n_twig= 6
+INFO: main.c(386): sp-0	7
+INFO: main.c(386): sp-1	7
+INFO: main.c(386): sp-2	7
+Sun Jul 30 19:03:57 2017

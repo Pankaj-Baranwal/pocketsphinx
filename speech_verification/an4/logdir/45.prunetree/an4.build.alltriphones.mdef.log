@@ -34,4 +34,4 @@ INFO: mk_mdef_gen.c(445): 0 unique word internal triphones in dictionary
 INFO: mk_mdef_gen.c(446): 0 unique word ending triphones in dictionary
 INFO: mk_mdef_gen.c(897): 2 n_base, 4 n_tri
 INFO: mk_mdef_gen.c(969): Wrote mdef file /home/pankaj/GSoC/New_an4/an4/model_architecture/an4.alltriphones.mdef
-Fri Jul 28 06:12:44 2017
+Sun Jul 30 19:03:57 2017

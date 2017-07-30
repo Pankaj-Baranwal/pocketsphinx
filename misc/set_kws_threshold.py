@@ -36,6 +36,7 @@ def preprocess_files(dic_path, kwlist_path):
     with open(dic_path) as _f:
         _content = _f.readlines()
     _content = [x.strip() for x in _content]
+    print (_content)
     
     with open(kwlist_path) as _f:
         WORDS = _f.readlines()
@@ -293,8 +294,8 @@ def process_threshold(analysis_result):
     return missed, false_alarms
     
 if __name__ == '__main__':
-    DIC_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic"
-    KWLIST_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/automated.kwlist"
+    DIC_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/test.dic"
+    KWLIST_FILE = "/home/pankaj/catkin_ws/src/pocketsphinx/demo/test.kwlist"
     if len(sys.argv) == 3:
         DIC_FILE = sys.argv[1]
         KWLIST_FILE = sys.argv[2]

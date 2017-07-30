@@ -25,6 +25,7 @@ def record(OUTPUT_FILENAME):
     Records user's speech
     """
     os.system('rec -q -c 1 -r 16000 -b 16 ' + OUTPUT_FILENAME + ' &')
+    print ("STARTED RECORDING. PRESS ENTER TO STOP")
     with raw_mode(sys.stdin):
         while True:
             if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:

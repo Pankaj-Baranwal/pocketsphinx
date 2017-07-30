@@ -29,6 +29,6 @@ INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4
 INFO: s3tmat_io.c(176): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/transition_matrices [2x3x4 array]
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/means [6x1x1 array]
 INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.ci_cont/variances [6x1x1 array]
-Fri Jul 28 06:12:40 2017
-Current Overall Likelihood Per Frame = -156.072670678564
-Convergence ratio = 0.524880680639001
+Sun Jul 30 19:03:48 2017
+Current Overall Likelihood Per Frame = -155.825150446151
+Convergence ratio = 0.677692467317343

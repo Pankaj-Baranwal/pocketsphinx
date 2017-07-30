@@ -13,21 +13,30 @@ Current configuration:
 -outvarfn		/home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/variances
 
 INFO: main.c(86): Reading mixing weight file /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights.
-INFO: s3mixw_io.c(117): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [9x1x4 array]
-INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/means [9x1x4 array]
-INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances [9x1x4 array]
-INFO: s3gau_io.c(553): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [9x1x4 array]
+INFO: s3mixw_io.c(117): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [18x1x4 array]
+INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/means [18x1x4 array]
+INFO: s3gau_io.c(169): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/variances [18x1x4 array]
+INFO: s3gau_io.c(553): Read /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_200/mixture_weights [18x1x4 array]
 INFO: main.c(151): output n_density == 8
-0:0(1.28e+04)2(1.19e+04)1(9.61e+03)3(7.80e+03)
-1:1(1.14e+04)2(8.30e+03)3(7.75e+03)0(6.39e+03)
-2:2(2.42e+04)0(2.25e+04)1(2.22e+04)3(1.82e+04)
-3:0(3.52e+03)2(3.41e+03)1(2.46e+03)3(2.08e+03)
-4:0(4.24e+03)2(3.82e+03)3(3.02e+03)1(2.32e+03)
-5:1(1.46e+04)3(1.38e+04)2(1.38e+04)0(1.09e+04)
-6:0(3.52e+03)2(3.41e+03)1(2.46e+03)3(2.08e+03)
-7:0(4.24e+03)2(3.82e+03)3(3.02e+03)1(2.32e+03)
-8:1(1.46e+04)3(1.38e+04)2(1.38e+04)0(1.09e+04)INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/mixture_weights [9x1x8 array]
-INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/means [9x1x8 array]
-INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/variances [9x1x8 array]
+0:1(5.25e+03)2(4.79e+03)3(4.04e+03)0(3.15e+03)
+1:3(7.20e+03)1(7.06e+03)2(6.94e+03)0(3.86e+03)
+2:1(7.77e+03)2(6.41e+03)3(5.23e+03)0(3.59e+03)
+3:0(2.36e+04)2(2.01e+04)1(1.59e+04)3(1.12e+04)
+4:3(1.30e+04)2(1.28e+04)1(1.13e+04)0(1.12e+04)
+5:2(1.71e+04)1(1.46e+04)3(1.25e+04)0(1.24e+04)
+6:0(1.75e+04)2(1.58e+04)1(1.35e+04)3(9.11e+03)
+7:0(2.56e+03)2(2.20e+03)3(2.01e+03)1(1.49e+03)
+8:0(1.67e+03)2(1.51e+03)3(1.25e+03)1(1.08e+03)
+9:2(3.01e+02)0(2.86e+02)3(2.67e+02)1(2.23e+02)
+10:2(2.42e+03)1(1.90e+03)3(1.38e+03)0(1.09e+03)
+11:0(8.87e+03)2(7.97e+03)3(7.79e+03)1(7.42e+03)
+12:2(2.24e+03)1(2.10e+03)0(1.88e+03)3(1.83e+03)
+13:2(4.43e+02)0(3.82e+02)3(2.85e+02)1(2.32e+02)
+14:2(2.62e+03)1(2.23e+03)3(2.01e+03)0(1.47e+03)
+15:2(4.50e+02)0(2.95e+02)1(2.90e+02)3(1.80e+02)
+16:2(1.55e+04)1(9.70e+03)0(8.88e+03)3(7.44e+03)
+17:2(2.68e+03)3(1.23e+03)1(1.23e+03)0(4.51e+02)INFO: s3mixw_io.c(233): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/mixture_weights [18x1x8 array]
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/means [18x1x8 array]
+INFO: s3gau_io.c(228): Wrote /home/pankaj/GSoC/New_an4/an4/model_parameters/an4.cd_cont_initial/variances [18x1x8 array]
 
-Fri Jul 28 06:13:03 2017
+Sun Jul 30 19:04:30 2017
