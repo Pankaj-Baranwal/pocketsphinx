@@ -125,7 +125,6 @@ class KWSDetection(object):
         """Audio processing based on decoder config"""
         # For continuous mode
         rate = rospy.Rate(1) # 10hzs
-        rospy.loginfo("TESTIN AUDIO")
 
         need_continuous = rospy.has_param(self._option_param)
         # print (str(rospy.get_param(self._option_param)), 'is the value')
