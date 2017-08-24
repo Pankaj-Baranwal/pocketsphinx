@@ -14,7 +14,7 @@
     <arg name="spkeyphrase" default=":default"/>
     <arg name="threshold" default=":default"/>
     <arg name="spthreshold" default=":default"/>
-
+    <arg name="sp_verif" default="true" />
     <arg name="lm" default=":default" />
     <arg name="gram" default=":default"/>
     <arg name="grammar" default=":default"/>
@@ -65,6 +65,7 @@
         <param name="kws" value="$(arg kws)"/>
         <param name="keyphrase" value="$(arg keyphrase)"/>
         <param name="threshold" value="$(arg threshold)"/>
+        <param name="sp_verif" value="$(arg sp_verif)"/>
 
     </node>
 
