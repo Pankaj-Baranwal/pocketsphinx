@@ -3,13 +3,12 @@
   <name>pocketsphinx</name>
   <version>1.0.0</version>
   <description>
-    This package is a simple wrapper around the pocketsphinx speech recognizer, 
-    using a Python-based interface. 
+    ROS package for pocketsphinx speech recognizer
   </description>
   <author>Pankaj Baranwal</author>
-  <maintainer email="pankaj11520@ducic.ac.in">Pankaj Baranwal</maintainer>
+  <maintainer email="pankajbaranwal@lithics.in">Pankaj Baranwal</maintainer>
   <license>BSD</license>
-  <url type="website">http://ros.org/wiki/pocketsphinx</url>
+  <url type="website">http://github.com/Pankaj-Baranwal/ros-pocketsphinx</url>
 
   <buildtool_depend>catkin</buildtool_depend>
 
