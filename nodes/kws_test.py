@@ -124,10 +124,7 @@ class KWSDetection(object):
     def process_audio(self, data):
         """Audio processing based on decoder config"""
         # For continuous mode
-        rate = rospy.Rate(1) # 10hzs
-
         need_continuous = rospy.has_param(self._option_param)
-        # print (str(rospy.get_param(self._option_param)), 'is the value')
 
         # Check if keyword detected
         if not self.stop_output:

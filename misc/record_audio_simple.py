@@ -9,7 +9,7 @@ import time
 @contextlib.contextmanager
 def raw_mode(_file):
     """
-    Function handle the button press on successful utterance of word by user
+    Function to handle the button press on successful utterance of word by user
     """
     old_attrs = termios.tcgetattr(_file.fileno())
     new_attrs = old_attrs[:]
@@ -20,12 +20,13 @@ def raw_mode(_file):
     finally:
         termios.tcsetattr(_file.fileno(), termios.TCSADRAIN, old_attrs)
 
-def record(OUTPUT_FILENAME):
+def record(_output_file):
     """
     Records user's speech
     """
-    os.system('rec -q -c 1 -r 16000 -b 16 ' + OUTPUT_FILENAME + ' &')
+    os.system('rec -q -c 1 -r 16000 -b 16 ' + _output_file + ' &')
     print ("STARTED RECORDING. PRESS ENTER TO STOP")
+    
     with raw_mode(sys.stdin):
         while True:
             if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
