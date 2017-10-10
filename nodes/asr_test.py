@@ -113,9 +113,7 @@ class ASRTest(object):
             fsg = jsgf.build_fsg(rule, self.decoder.get_logmath(), 7.5)
             rospy.loginfo("Writing fsg to " +
                           self.gram + '.fsg')
-            rospy.loginfo('1234567')
             fsg.writefile(self.gram + '.fsg')
-            rospy.loginfo('1234567')
 
             self.decoder.set_fsg(self.gram, fsg)
             self.decoder.set_search(self.gram)
